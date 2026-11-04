@@ -120,7 +120,7 @@ P7创新 = {
 # 现场展示页（模板第 5 页章节页改造）：两张前端截图 + 标题说明
 DEMO = {
     "AutoShape 4": "现场展示 · 作品演示",
-    "AutoShape 5": "前端：评分报告 / 成长追踪（本页用于现场演示）",
+    "AutoShape 5": "前端：对话过程 / 面试报告 / 成长追踪（本页用于现场演示）",
 }
 
 P8完整度 = {
@@ -407,13 +407,11 @@ def fix_geometry(slide, page):
 # ---------------------------------------------------------------------------
 
 def build_demo_slide(slide, out_dir):
-    """两张前端截图并排 + 标题/说明。
+    """三张前端截图并排 + 标题/说明（对话过程 / 面试报告 / 成长曲线）。
 
-    截图约定：放在输出目录，命名「展示截图1.png / 展示截图2.png」
-    （也支持 shot1/shot2、.jpg/.jpeg）；重跑本脚本自动嵌入。
-    找不到图片时画占位框，先把版式定下来。
+    截图约定：放在输出目录，文件名 对话过程.png / 面试报告.png / 成长曲线.png
+    （也支持 .jpg/.jpeg）；重跑本脚本自动嵌入。缺图时画占位框。
     """
-    import glob
     from pptx.util import Inches, Pt
     from pptx.enum.shapes import MSO_SHAPE
     from pptx.enum.text import PP_ALIGN
@@ -431,26 +429,30 @@ def build_demo_slide(slide, out_dir):
     if "AutoShape 5" in by:
         by["AutoShape 5"].top = Inches(10.1)
 
-    slots = [
-        (2.4, 2.0, 10.4, 6.3, "评分报告页"),
-        (13.9, 2.0, 10.4, 6.3, "成长追踪页"),
-    ]
-    for idx, (xl, yt, w, h, cap) in enumerate(slots, 1):
-        left, top, wide, tall = Inches(xl), Inches(yt), Inches(w), Inches(h)
+    band_top, band_h = 1.9, 6.3          # 截图带（三栏统一高度，图在其中居中）
+    slot_w, gap = 7.3, 0.56
+    left0 = (26.67 - (3 * slot_w + 2 * gap)) / 2
+
+    shots = ["对话过程", "面试报告", "成长曲线"]
+    for idx, label in enumerate(shots):
+        xl = left0 + idx * (slot_w + gap)
+        left, top = Inches(xl), Inches(band_top)
+        wide, tall = Inches(slot_w), Inches(band_h)
 
         path = None
-        for pat in ("展示截图%d.*" % idx, "shot%d.*" % idx):
-            hits = [x for x in sorted(glob.glob(os.path.join(out_dir, pat)))
-                    if x.lower().endswith((".png", ".jpg", ".jpeg"))]
-            if hits:
-                path = hits[0]
+        for ext in (".png", ".jpg", ".jpeg"):
+            p = os.path.join(out_dir, label + ext)
+            if os.path.exists(p):
+                path = p
                 break
 
         if path:
             pic = slide.shapes.add_picture(path, left, top, width=wide)
-            if pic.height > tall:          # 太高 → 按高度缩放并水平居中
+            if pic.height > tall:            # 太高 → 按高度缩放（保持比例）
                 pic.height = tall
-                pic.left = int(left) + (int(wide) - int(pic.width)) // 2
+            # 在槽位内水平/垂直居中
+            pic.left = int(left) + (int(wide) - int(pic.width)) // 2
+            pic.top = int(top) + (int(tall) - int(pic.height)) // 2
         else:
             box = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE,
                                          left, top, wide, tall)
@@ -462,16 +464,15 @@ def build_demo_slide(slide, out_dir):
             p = tf.paragraphs[0]
             p.alignment = PP_ALIGN.CENTER
             r = p.add_run()
-            r.text = ("截图占位 %d\n放入「%s」截图（展示截图%d.png）后自动替换"
-                      % (idx, cap, idx))
+            r.text = "截图占位\n放入「%s.png」后自动替换" % label
             r.font.size = Pt(22)
             r.font.color.rgb = RGBColor(0x64, 0x74, 0x8B)
 
-        cap_box = slide.shapes.add_textbox(left, Inches(8.45), wide, Inches(0.4))
+        cap_box = slide.shapes.add_textbox(left, Inches(band_top + 6.5), wide, Inches(0.4))
         cp = cap_box.text_frame.paragraphs[0]
         cp.alignment = PP_ALIGN.CENTER
         cr = cp.add_run()
-        cr.text = cap
+        cr.text = label
         cr.font.size = Pt(18)
         cr.font.color.rgb = RGBColor(0x64, 0x74, 0x8B)
 
