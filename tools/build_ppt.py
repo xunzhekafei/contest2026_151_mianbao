@@ -8,8 +8,8 @@
                   AI 开发 → 商业潜力 → 总结
     精简版 12 页：技术难度合并为 1 页（+演示视频位）
 
-用法（答辩材料 2026-11-04 起放仓库外，见 D:\面包包\demo）：
-    python tools/build_ppt.py "<模板.pptx 路径>" "D:\面包包\demo"
+用法（答辩材料 2026-11-04 起放仓库外，见 D:\\面包包\\demo）：
+    python tools/build_ppt.py "<模板.pptx 路径>" "D:\\面包包\\demo"
 
 做法：模板每种版式只用一次，按【模板页码 -> 形状名 -> 文本】替换文字，
 保留原有字体/字号/配色。改文案后重跑本脚本即可；不要直接改生成出来的 PPTX。
@@ -103,16 +103,24 @@ P6框架 = {
 }
 
 P7创新 = {
-    "AutoShape 3": "产品创新性 · 交互模式与硬件形态",
+    "AutoShape 3": "产品创新性 · 交互模式与功能融合",
     "AutoShape 13": "交互模式新颖",
     "AutoShape 14": "按键即面试：K1 开始、K3 切岗位、K2 压力档——语音实体交互，不是网页点选",
-    "AutoShape 15": "硬件形态自研",
-    "AutoShape 16": "官方无机械数据 → 实测标定 + 参数化建模 → 3D 打印外壳，已试装成品",
+    # 2026-11-04 用户口径：硬件点换成"融合式创新"——多数能力来自成熟组件与其它
+    # 项目，创新在把它们融合成完整体验（如实说，不硬吹单点原创）。
+    "AutoShape 15": "融合式创新",
+    "AutoShape 16": "多数能力来自成熟组件与其它项目，我们把它融合成完整体验：面试 → 报告 → 成长，一条链路可演示",
     "AutoShape 17": "场景痛点精准",
     "AutoShape 18": "校招 / 转岗练习与院校就业中心；公共设备扫码认领，记录跟人走",
     "AutoShape 19": "功能思路新",
     "AutoShape 20": "五段节奏 + 导演环追问 + 跨场成长曲线 + 副语言反馈",
     "AutoShape 21": "与网页点选式 AI 面试相比，练的是「开口说」与「被追问」的真实压力。",
+}
+
+# 现场展示页（模板第 5 页章节页改造）：两张前端截图 + 标题说明
+DEMO = {
+    "AutoShape 4": "现场展示 · 作品演示",
+    "AutoShape 5": "前端：评分报告 / 成长追踪（本页用于现场演示）",
 }
 
 P8完整度 = {
@@ -222,12 +230,14 @@ NOTE_P3 = "【0:40】架构一句话：手感在端、智能在云。板端管�
 NOTE_P4 = "【0:55】技术难度第一层：把新芯片真正用起来。麦克风一度采回全是零——不猜，换设备逐个实测，定位到数字麦，驱动还没有增益控件，软件补；更狠的是 Wi-Fi 驱动里一个不带锁的堆遍历，跟界面一并发就崩；屏幕、按键、自启这几个坑全部上板才暴露，每个都定位到根因修掉。"
 NOTE_P5 = "【0:50】第二层是架构：主线程守交互节奏，工作线程跑三段流水线，阻塞调用卡不住按键；单实例、串口逃逸、断网三层兜底都做了。云端单服务、协议文档化、skills 热加载、近四百项测试——端侧改坏了也伤不到云端。"
 NOTE_P6 = "【0:55】第三层是 AI 框架的深度使用：MIMO 三个模型接成完整链路——识别、出题评分、合成语音。中间还有三层自己的东西：空识别短路，没人说话一点八秒回一句，不惊动大模型；导演环按上一答质量决定深入还是换角度；证据逐字核对，评语必须能指回你的原话。"
-NOTE_P7 = "【0:40】创新点两处：交互上，按键即面试——语音实体交互，练的是开口说和被追问的真实压力，不是网页点选；硬件上，官方没有机械数据，我们实测标定、参数化建模、3D 打印外壳，已经装进成品。"
+NOTE_P7 = "【0:40】创新点：交互上，按键即面试——语音实体交互，练的是开口说和被追问的真实压力，不是网页点选。功能上我们不追求单点原创——多数能力来自成熟组件与其它项目，创新在融合：面试、报告、成长串成一条可演示的完整体验。"
 NOTE_P8 = "【0:40】完整度：真机全链路可跑，文档、协议、四千行台账齐全，近四百项测试，三端协同——板端、云端、手机、网页，扫码绑定、记录同步、报告导出。"
 NOTE_P9 = "【0:40】单场报告只是孤岛，我们做成成长系统：跨场曲线、维度对比、薄弱点按 1/3/7/14 天提醒复习。副语言是面试官第一印象的来源，行业都做、开源都不能用，我们自研。"
 NOTE_P10 = "【0:40】AI 开发这一项是我们扎实的地方：五个技能 JSON 沉淀为可复用 Skills，热加载、可插拔；整个开发流程 AI 结对、日志归档、四千行台账；净化规则来自线上抓到的真实脏输出——AI 既在产品里，也在开发方式里。"
 NOTE_P11 = "【0:35】商业潜力：求职练习是高频刚需，面试舱的定价验证了支付意愿，但门槛太高。我们用消费级硬件成本做同件事，设备加练习服务，院校和个人两条路径，题库岗位和外壳都能扩展。"
 NOTE_P12 = "【0:20】总结：一台按键就开始的设备，一层层经真机打磨的技术，一条从报告到成长的闭环。把一次面试，变成看得见的成长。谢谢各位老师。"
+NOTE_DEMO = ("【现场演示】这一页用于现场展示前端作品：评分报告 → 成长追踪 → 下载 PDF。"
+             "按现场节奏演示，不设固定时长。")
 NOTE_P13 = "欢迎提问与交流。"
 
 # 精简版：技术难度合并页口播；商业化页后接演示视频
@@ -393,6 +403,80 @@ def fix_geometry(slide, page):
 
 
 # ---------------------------------------------------------------------------
+# 现场展示页（模板第 5 页章节页改造）
+# ---------------------------------------------------------------------------
+
+def build_demo_slide(slide, out_dir):
+    """两张前端截图并排 + 标题/说明。
+
+    截图约定：放在输出目录，命名「展示截图1.png / 展示截图2.png」
+    （也支持 shot1/shot2、.jpg/.jpeg）；重跑本脚本自动嵌入。
+    找不到图片时画占位框，先把版式定下来。
+    """
+    import glob
+    from pptx.util import Inches, Pt
+    from pptx.enum.shapes import MSO_SHAPE
+    from pptx.enum.text import PP_ALIGN
+    from pptx.dml.color import RGBColor
+
+    by = {sh.name: sh for sh in slide.shapes}
+    # 去掉章节编号与装饰线；标题/说明下移到底部
+    for name in ("AutoShape 2", "AutoShape 3"):
+        sh = by.get(name)
+        if sh is not None:
+            sh._element.getparent().remove(sh._element)
+    if "AutoShape 4" in by:
+        by["AutoShape 4"].top = Inches(8.9)
+        by["AutoShape 4"].height = Inches(1.0)
+    if "AutoShape 5" in by:
+        by["AutoShape 5"].top = Inches(10.1)
+
+    slots = [
+        (2.4, 2.0, 10.4, 6.3, "评分报告页"),
+        (13.9, 2.0, 10.4, 6.3, "成长追踪页"),
+    ]
+    for idx, (xl, yt, w, h, cap) in enumerate(slots, 1):
+        left, top, wide, tall = Inches(xl), Inches(yt), Inches(w), Inches(h)
+
+        path = None
+        for pat in ("展示截图%d.*" % idx, "shot%d.*" % idx):
+            hits = [x for x in sorted(glob.glob(os.path.join(out_dir, pat)))
+                    if x.lower().endswith((".png", ".jpg", ".jpeg"))]
+            if hits:
+                path = hits[0]
+                break
+
+        if path:
+            pic = slide.shapes.add_picture(path, left, top, width=wide)
+            if pic.height > tall:          # 太高 → 按高度缩放并水平居中
+                pic.height = tall
+                pic.left = int(left) + (int(wide) - int(pic.width)) // 2
+        else:
+            box = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE,
+                                         left, top, wide, tall)
+            box.fill.solid()
+            box.fill.fore_color.rgb = RGBColor(0xF2, 0xF4, 0xF7)
+            box.line.color.rgb = RGBColor(0xC7, 0xD2, 0xE0)
+            tf = box.text_frame
+            tf.word_wrap = True
+            p = tf.paragraphs[0]
+            p.alignment = PP_ALIGN.CENTER
+            r = p.add_run()
+            r.text = ("截图占位 %d\n放入「%s」截图（展示截图%d.png）后自动替换"
+                      % (idx, cap, idx))
+            r.font.size = Pt(22)
+            r.font.color.rgb = RGBColor(0x64, 0x74, 0x8B)
+
+        cap_box = slide.shapes.add_textbox(left, Inches(8.45), wide, Inches(0.4))
+        cp = cap_box.text_frame.paragraphs[0]
+        cp.alignment = PP_ALIGN.CENTER
+        cr = cp.add_run()
+        cr.text = cap
+        cr.font.size = Pt(18)
+        cr.font.color.rgb = RGBColor(0x64, 0x74, 0x8B)
+
+
+# ---------------------------------------------------------------------------
 # 通用替换
 # ---------------------------------------------------------------------------
 
@@ -493,6 +577,7 @@ FULL_ORDER = [
     (22, P10AI开发, NOTE_P10),
     (18, P11商业, NOTE_P11),
     (6, P12总结, NOTE_P12),
+    (5, DEMO, NOTE_DEMO),
     (31, THANKS, NOTE_P13),
 ]
 
@@ -508,6 +593,7 @@ LITE_ORDER = [
     (22, P10AI开发, NOTE_P10),
     (18, P11商业, NOTE_P11_LITE_VIDEO),
     (6, P12总结, NOTE_P12),
+    (5, DEMO, NOTE_DEMO),
     (31, THANKS, NOTE_P13),
 ]
 
@@ -522,6 +608,8 @@ def build(template, out_dir, order, filename):
         fill_slide(page, slide, content)
         apply_fonts(slide, FONT_PT.get(page))
         fix_geometry(slide, page)
+        if page == 5:
+            build_demo_slide(slide, out_dir)
         if page == 1:
             # 封面项目名 17 字 @144pt 会折行压住团队行 —— 缩到 100pt 保单行
             from pptx.util import Pt
