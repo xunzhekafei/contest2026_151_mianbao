@@ -121,7 +121,7 @@ P7创新 = {
 # 2026-11-04 晚：现场演示时间不够，改为静态展示页，文字不再提"现场演示"。
 DEMO = {
     "AutoShape 4": "作品展示",
-    "AutoShape 5": "前端：对话过程 / 面试报告 / 成长追踪 · 实物：整机",
+    "AutoShape 5": "前端：对话过程 / 面试报告 / 成长追踪 · 实物：待机 / 面试中",
 }
 
 P8完整度 = {
@@ -237,8 +237,8 @@ NOTE_P9 = "【0:40】单场报告只是孤岛，我们做成成长系统：跨�
 NOTE_P10 = "【0:40】AI 开发这一项是我们扎实的地方：五个技能 JSON 沉淀为可复用 Skills，热加载、可插拔；整个开发流程 AI 结对、日志归档、四千行台账；净化规则来自线上抓到的真实脏输出——AI 既在产品里，也在开发方式里。"
 NOTE_P11 = "【0:35】商业潜力：求职练习是高频刚需，面试舱的定价验证了支付意愿，但门槛太高。我们用消费级硬件成本做同件事，设备加练习服务，院校和个人两条路径，题库岗位和外壳都能扩展。"
 NOTE_P12 = "【0:20】总结：一台按键就开始的设备，一层层经真机打磨的技术，一条从报告到成长的闭环。把一次面试，变成看得见的成长。谢谢各位老师。"
-NOTE_DEMO = ("【0:15】这一页是作品全貌：三张前端截图——对话过程、面试报告、成长追踪，"
-             "以及左下角的整机实物照片。")
+NOTE_DEMO = ("【0:15】这一页是作品全貌：三张前端截图——对话过程、面试报告、成长追踪；"
+             "左下两张实拍——待机页和面试中的整机状态。")
 NOTE_P13 = "欢迎提问与交流。"
 
 # 精简版：技术难度合并页口播；商业化页后接演示视频
@@ -449,15 +449,16 @@ def build_demo_slide(slide, out_dir):
         sh = by.get(name)
         if sh is not None:
             sh._element.getparent().remove(sh._element)
+    # 标题/说明：右下（左边依次是两张实物照片）
     if "AutoShape 4" in by:
-        by["AutoShape 4"].left = Inches(8.4)
-        by["AutoShape 4"].width = Inches(16.4)
-        by["AutoShape 4"].top = Inches(9.0)
+        by["AutoShape 4"].left = Inches(11.6)
+        by["AutoShape 4"].width = Inches(14.0)
+        by["AutoShape 4"].top = Inches(9.9)
         by["AutoShape 4"].height = Inches(1.2)
     if "AutoShape 5" in by:
-        by["AutoShape 5"].left = Inches(8.4)
-        by["AutoShape 5"].width = Inches(16.4)
-        by["AutoShape 5"].top = Inches(10.5)
+        by["AutoShape 5"].left = Inches(11.6)
+        by["AutoShape 5"].width = Inches(14.0)
+        by["AutoShape 5"].top = Inches(11.4)
 
     band_top, band_h = 1.9, 6.3          # 截图带（三栏统一高度，图在其中居中）
     slot_w, gap = 7.3, 0.56
@@ -506,42 +507,49 @@ def build_demo_slide(slide, out_dir):
         cr.font.size = Pt(18)
         cr.font.color.rgb = RGBColor(0x64, 0x74, 0x8B)
 
-    # ---- 左下：整机实物照片（4:3 左右；文件 作品实物图.jpg）----
-    photo_path = None
-    for ext in (".jpg", ".jpeg", ".png"):
-        p = os.path.join(out_dir, "作品实物图" + ext)
-        if os.path.exists(p):
-            photo_path = p
-            break
-    pl, pt_, pw = 1.9, 8.7, 5.9
-    photo_max_h = 5.3
-    if photo_path:
-        pic = slide.shapes.add_picture(_upright_image(photo_path),
-                                       Inches(pl), Inches(pt_), width=Inches(pw))
-        if pic.height > Inches(photo_max_h):        # 高度限幅，保持比例
-            pic.height = Inches(photo_max_h)
-            pic.left = Inches(pl) + int((Inches(pw) - pic.width) / 2)
-    else:
-        box = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(pl),
-                                     Inches(pt_), Inches(pw), Inches(photo_max_h))
-        box.fill.solid()
-        box.fill.fore_color.rgb = RGBColor(0xF2, 0xF4, 0xF7)
-        box.line.color.rgb = RGBColor(0xC7, 0xD2, 0xE0)
-        p = box.text_frame.paragraphs[0]
-        p.alignment = PP_ALIGN.CENTER
-        r = p.add_run()
-        r.text = "实物照片占位\n放入「作品实物图.jpg」后自动替换"
-        r.font.size = Pt(20)
-        r.font.color.rgb = RGBColor(0x64, 0x74, 0x8B)
+    # ---- 左下：两张实物照片（作品实物图 / 面试过程中；均为竖图，按 EXIF 摆正）----
+    photos = [("作品实物图", "作品实物", 2.0),
+              ("面试过程中", "面试过程", 6.6)]
+    photo_top, photo_max_h, slot_w = 8.7, 5.3, 4.4
 
-    photo_cap = slide.shapes.add_textbox(Inches(pl), Inches(14.12),
-                                         Inches(pw), Inches(0.4))
-    cp = photo_cap.text_frame.paragraphs[0]
-    cp.alignment = PP_ALIGN.CENTER
-    cr = cp.add_run()
-    cr.text = "作品实物"
-    cr.font.size = Pt(18)
-    cr.font.color.rgb = RGBColor(0x64, 0x74, 0x8B)
+    for fname, cap, xl in photos:
+        path = None
+        for ext in (".jpg", ".jpeg", ".png"):
+            p = os.path.join(out_dir, fname + ext)
+            if os.path.exists(p):
+                path = p
+                break
+
+        if path:
+            pic = slide.shapes.add_picture(_upright_image(path),
+                                           Inches(xl), Inches(photo_top),
+                                           width=Inches(slot_w))
+            if pic.height > Inches(photo_max_h):        # 高度限幅，保持比例
+                pic.height = Inches(photo_max_h)
+                # 槽位内水平居中
+                pic.left = Inches(xl) + int((Inches(slot_w) - pic.width) / 2)
+        else:
+            box = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(xl),
+                                         Inches(photo_top), Inches(slot_w),
+                                         Inches(photo_max_h))
+            box.fill.solid()
+            box.fill.fore_color.rgb = RGBColor(0xF2, 0xF4, 0xF7)
+            box.line.color.rgb = RGBColor(0xC7, 0xD2, 0xE0)
+            p = box.text_frame.paragraphs[0]
+            p.alignment = PP_ALIGN.CENTER
+            r = p.add_run()
+            r.text = "照片占位\n放入「%s.jpg」后自动替换" % fname
+            r.font.size = Pt(18)
+            r.font.color.rgb = RGBColor(0x64, 0x74, 0x8B)
+
+        cap_box = slide.shapes.add_textbox(Inches(xl), Inches(14.12),
+                                           Inches(slot_w), Inches(0.4))
+        cp = cap_box.text_frame.paragraphs[0]
+        cp.alignment = PP_ALIGN.CENTER
+        cr = cp.add_run()
+        cr.text = cap
+        cr.font.size = Pt(18)
+        cr.font.color.rgb = RGBColor(0x64, 0x74, 0x8B)
 
 
 # ---------------------------------------------------------------------------
