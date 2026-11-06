@@ -95,7 +95,9 @@ def call_llm(system_prompt: str, messages: list, temperature: float = 0.7,
     try:
         client = OpenAI(
             api_key=MIMO_API_KEY,
-            base_url=MIMO_BASE_URL
+            base_url=MIMO_BASE_URL,
+            timeout=90.0,      # 2026-11-06: 上游卡住会把会话并发闸锁死 —— 必须有上限
+            max_retries=1           # 只重试一次，最坏 2×timeout 内一定返回
         )
 
         # 构建完整消息列表

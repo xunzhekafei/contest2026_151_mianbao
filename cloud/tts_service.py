@@ -39,7 +39,9 @@ def tts_text_to_audio(text: str, voice: str = None, style: str = None) -> str:
         # 创建 OpenAI 客户端（兼容 xiaomi mimo API）
         client = OpenAI(
             api_key=MIMO_API_KEY,
-            base_url=MIMO_BASE_URL
+            base_url=MIMO_BASE_URL,
+            timeout=90.0,      # 2026-11-06: 上游卡住会把会话并发闸锁死 —— 必须有上限
+            max_retries=1           # 只重试一次，最坏 2×timeout 内一定返回
         )
 
         # 使用默认音色
@@ -110,7 +112,9 @@ def tts_text_to_audio_stream(text: str, output_file: str, voice: str = None, sty
         # 创建 OpenAI 客户端
         client = OpenAI(
             api_key=MIMO_API_KEY,
-            base_url=MIMO_BASE_URL
+            base_url=MIMO_BASE_URL,
+            timeout=90.0,      # 2026-11-06: 上游卡住会把会话并发闸锁死 —— 必须有上限
+            max_retries=1           # 只重试一次，最坏 2×timeout 内一定返回
         )
 
         # 使用默认音色
