@@ -7,6 +7,9 @@ import io
 import os
 import threading
 import uuid
+import time
+import collections
+import html as html_mod
 import logging
 from llm_service import (DEFAULT_PRESSURE, PRESSURE_LEVELS, llm_interview,
                          score_interview)
@@ -169,6 +172,23 @@ def _end_request(session_id):
         _inflight.discard(session_id)
 
 
+# ---- 云端事件面板（2026-11-06）----
+# 用户反馈"上传失败时看不到云端发生了什么"。这里用内存环形缓冲记最近事件，
+# 提供 /status 网页与 /api/status JSON —— 只服务排练/演示排查，不参与面试逻辑。
+_EVENTS = collections.deque(maxlen=300)
+_EVENT_LOCK = threading.Lock()
+
+
+def _event(kind, detail, session_id=""):
+    with _EVENT_LOCK:
+        _EVENTS.append({
+            "ts": time.strftime("%H:%M:%S"),
+            "kind": kind,
+            "session": (session_id or "")[:8],
+            "detail": str(detail),
+        })
+
+
 def _finished_payload(session_id, session):
     """已结束的会话再收到请求：幂等返回报告。
 
@@ -235,14 +255,21 @@ def handle_interview():
         if is_new:
             session_manager.clean_expired_sessions()
 
+        t_req = time.time()
+        _event("请求", "语音 state=%s role=%s audio=%dKB" % (state, role,
+               len(audio_base64) // 1024), session_id)
+
         # 已结束：幂等返回既有报告（见 _finished_payload 的注释）
         if session.is_finished:
             logger.info(f"[session={session_id}] 已结束，返回既有报告（不重复处理）")
+            _event("幂等", "会话已结束，返回既有报告", session_id)
             return jsonify(_finished_payload(session_id, session))
 
         # 并发闸：同一会话同时只处理一个请求
         if not _begin_request(session_id):
             logger.warning(f"[session={session_id}] 上一条还在处理，拒绝并发请求")
+            _event("拒绝409", "上一条还在处理（并发闸）—— 端侧会显示上传失败",
+                   session_id)
             return jsonify({"type": "error", "text": "上一条还在处理，请稍候",
                             "tts_audio": "", "session_id": session_id,
                             "next_action": "continue"}), 409
@@ -252,7 +279,12 @@ def handle_interview():
         user_text = ""
         if audio_base64 and state == "recording_finished":
             logger.info(f"[session={session_id}] 开始 ASR 识别...")
+            t_asr = time.time()
             user_text = asr_audio_to_text(audio_base64, audio_format, "zh")
+            _event("ASR", "%d 字 / %dms：%s" % (
+                len(user_text or ""),
+                int((time.time() - t_asr) * 1000),
+                (user_text or "")[:40]), session_id)
             if user_text:
                 logger.info(f"[session={session_id}] ASR 识别结果: {user_text[:100]}...")
                 session.add_user_message(user_text)
@@ -293,8 +325,13 @@ def handle_interview():
 
         # 调用 LLM 生成回复
         logger.info(f"[session={session_id}] 调用 LLM...")
+        t_llm = time.time()
         llm_result = llm_interview(role, session.get_history(), state, audio_base64,
                                    session.pressure, session.target_rounds)
+        _event("LLM", "%d 字 / %dms → %s" % (
+            len(llm_result.get("text", "")),
+            int((time.time() - t_llm) * 1000),
+            llm_result.get("next_action", "?")), session_id)
         ai_text = llm_result.get('text', '')
         next_action = llm_result.get('next_action', 'continue')
 
@@ -311,10 +348,13 @@ def handle_interview():
 
         # TTS 合成
         logger.info(f"[session={session_id}] 开始 TTS...")
+        t_tts = time.time()
         tts_audio_base64 = tts_text_to_audio(
             flatten_for_tts(ai_text),
             style="专业、友好、有洞察力的面试官"
         )
+        _event("TTS", "%dKB / %dms" % (len(tts_audio_base64) // 1024,
+               int((time.time() - t_tts) * 1000)), session_id)
 
         # ---- 落盘 ----
         # 位置是刻意的：**TTS 之后、return 之前**。
@@ -329,6 +369,9 @@ def handle_interview():
         if next_action != "continue":
             _start_scoring(session_id)
 
+        _event("完成", "type=%s 总用时 %dms" % (
+            "question" if next_action == "continue" else "report",
+            int((time.time() - t_req) * 1000)), session_id)
         return jsonify({
             "type": "question" if next_action == "continue" else "report",
             "text": ai_text,
@@ -340,6 +383,8 @@ def handle_interview():
 
     except Exception as e:
         logger.error(f"处理请求时发生错误: {str(e)}", exc_info=True)
+        _event("错误", "%s: %s" % (type(e).__name__, e),
+               locals().get("session_id", ""))
         return jsonify({
             "type": "error",
             "text": f"服务器内部错误: {str(e)}",
@@ -398,17 +443,22 @@ def handle_interview_text():
         # 不能让客户端的一次疏忽把整场带偏。
         role = session.role
 
+        t_req = time.time()
+        _event("请求", "文字 state=%s role=%s" % (state, role), session_id)
+
         # 已结束：幂等返回（文字演练不走 TTS，所以这里用轻量版，不白合成音频）
         if session.is_finished:
             last = next((m.get("content", "") for m in reversed(session.get_history())
                          if m.get("role") == "assistant"), "")
             logger.info(f"[session={session_id}] 已结束，返回既有报告（不重复处理）")
+            _event("幂等", "文字：会话已结束，返回既有报告", session_id)
             return jsonify({"type": "report", "text": last,
                             "session_id": session_id, "next_action": "finish"})
 
         # 并发闸：报告轮要跑 ~10 秒，这期间连发第二条就会生成两份报告（2026-10-18 实测）
         if not _begin_request(session_id):
             logger.warning(f"[session={session_id}] 上一条还在处理，拒绝并发请求")
+            _event("拒绝409", "文字：上一条还在处理", session_id)
             return jsonify({"error": "上一条还在处理，请稍候再发",
                             "session_id": session_id, "next_action": "continue"}), 409
         acquired = True
@@ -427,9 +477,13 @@ def handle_interview_text():
                 session.add_expression(speech_metrics(answer))
             except Exception as metrics_error:   # noqa: BLE001
                 logger.warning(f"[表达] 指标计算失败（不影响演练）：{metrics_error}")
+            t_llm = time.time()
             result = llm_interview(role, session.get_history(), state,
                                    pressure=session.pressure,
                                    target_rounds=session.target_rounds)
+            _event("LLM", "%d 字 / %dms" % (
+                len(result.get("text", "")),
+                int((time.time() - t_llm) * 1000)), session_id)
 
         ai_text = result.get("text", "")
         next_action = result.get("next_action", "continue")
@@ -445,6 +499,9 @@ def handle_interview_text():
         if next_action != "continue":
             _start_scoring(session_id)
 
+        _event("完成", "文字 type=%s 总用时 %dms" % (
+            "question" if next_action == "continue" else "report",
+            int((time.time() - t_req) * 1000)), session_id)
         return jsonify({
             "type": "question" if next_action == "continue" else "report",
             "text": ai_text,
@@ -453,6 +510,8 @@ def handle_interview_text():
         })
     except Exception as error:
         logger.error(f"文字演练出错: {error}", exc_info=True)
+        _event("错误", "文字：%s: %s" % (type(error).__name__, error),
+               locals().get("session_id", ""))
         return jsonify({"error": f"服务器内部错误: {error}", "text": "",
                         "session_id": session_id, "next_action": "continue"}), 500
     finally:
@@ -463,6 +522,59 @@ def handle_interview_text():
 @app.route('/api/health', methods=['GET'])
 def health_check():
     return jsonify({"status": "ok", "message": "AI模拟面试官云端服务运行中"})
+
+
+@app.route('/api/status', methods=['GET'])
+def api_status():
+    """最近的云端事件 + 正在处理中的会话（JSON）。"""
+    with _EVENT_LOCK:
+        events = list(_EVENTS)[-100:]
+    with _inflight_lock:
+        inflight = sorted(_inflight)
+    return jsonify({"inflight": inflight, "events": events})
+
+
+@app.route('/status', methods=['GET'])
+def status_page():
+    """云端事件面板：打开就能看到最近每轮请求做了什么 / 卡在哪（排练排查用）。"""
+    with _EVENT_LOCK:
+        events = list(_EVENTS)[-120:][::-1]
+    with _inflight_lock:
+        inflight = sorted(_inflight)
+
+    rows = "".join(
+        "<tr class='k-%s'><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>"
+        % (html_mod.escape(e["kind"]), e["ts"], html_mod.escape(e["kind"]),
+           html_mod.escape(e["session"]), html_mod.escape(e["detail"]))
+        for e in events
+    ) or "<tr><td colspan='4' class='muted'>暂无事件 —— 打一轮面试就会出现</td></tr>"
+
+    busy = ("、".join(html_mod.escape(x[:8]) for x in inflight)
+            if inflight else "无（会话没被占用）")
+
+    page = (
+        "<!doctype html><html lang='zh-CN'><head><meta charset='utf-8'>"
+        "<meta http-equiv='refresh' content='2'>"
+        "<title>云端状态 · 预面</title><style>"
+        "body{font:14px/1.6 -apple-system,'Segoe UI','Microsoft YaHei',sans-serif;"
+        "background:#0f1b2a;color:#e6edf3;margin:24px}"
+        "h1{font-size:18px;margin:0 0 6px} .sub{color:#9fb3c8;margin-bottom:14px}"
+        ".busy{background:#1c2c3e;border-radius:8px;padding:8px 12px;margin-bottom:14px}"
+        "table{border-collapse:collapse;width:100%%}"
+        "th,td{text-align:left;padding:6px 10px;border-bottom:1px solid #22334a;"
+        "vertical-align:top}"
+        "th{color:#9fb3c8;font-weight:500}"
+        "td{font-family:Consolas,monospace;font-size:13px}"
+        ".k-拒绝409 td{color:#ffb4b4} .k-错误 td{color:#ff8080}"
+        ".k-完成 td{color:#9be3b4} .muted{color:#9fb3c8}"
+        "</style></head><body>"
+        "<h1>云端状态 · 预面</h1>"
+        "<div class='sub'>每 2 秒自动刷新。最近 120 条事件（新→旧）。排练与演示排查用。</div>"
+        "<div class='busy'>正在处理中的会话：%s</div>"
+        "<table><tr><th>时间</th><th>事件</th><th>会话</th><th>详情</th></tr>%s</table>"
+        "</body></html>" % (busy, rows)
+    )
+    return page
 
 
 # ============================================================
