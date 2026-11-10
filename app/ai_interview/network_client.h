@@ -100,6 +100,29 @@ int cloud_discard_session(const char *session_id);
  */
 int cloud_send_audio(const cloud_request_t *req, cloud_response_t *resp);
 
+/* ==========================================================================
+ * 边录边传（2026-11-10）：录音的同时用 chunked POST 上传 PCM，录音结束时
+ * 音频已经传完 —— 把原来 20 秒量级的上传时间从关键路径上消掉。
+ *
+ * 用法（工作线程）：
+ *     st = cloud_stream_begin(&req);         // 起后台发送线程，立即返回
+ *     audio_set_chunk_sink(feed_cb, st);      // 录音每 100ms 喂一块
+ *     ... audio_record_wav() ...
+ *     audio_set_chunk_sink(NULL, NULL);
+ *     rc = cloud_stream_finish(st, &resp);    // 等响应；st 已释放
+ * 失败（含网络太慢、缓冲溢出、传输失败）返回非 CLOUD_OK，调用方**回退**
+ * cloud_send_audio 整段上传（原有重试/补送逻辑不变）。
+ *
+ * ⚠️ 中断（K2 取消 / 无人声）要调 cloud_stream_abort()：它不发 chunked 结束
+ * 块，服务端会把半截请求当断连丢弃 —— 不会把半段回答记进面试。
+ * ========================================================================== */
+typedef struct cloud_stream cloud_stream_t;
+
+cloud_stream_t *cloud_stream_begin(const cloud_request_t *req);
+int  cloud_stream_feed(cloud_stream_t *s, const uint8_t *pcm, size_t len);
+int  cloud_stream_finish(cloud_stream_t *s, cloud_response_t *resp);
+void cloud_stream_abort(cloud_stream_t *s);
+
 /*
  * 解析云端响应体。独立出来是为了能在 PC 上脱离硬件做单元测试。
  * 这是"空 tts_audio 判为失败"的唯一实现点。

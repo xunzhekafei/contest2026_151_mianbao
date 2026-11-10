@@ -59,6 +59,16 @@
  */
 static unsigned int g_dac_volume = 160;
 
+/* 边录边传的分块回调（2026-11-10，见 audio_io.h） */
+static audio_chunk_sink_t g_chunk_sink;
+static void *g_chunk_ctx;
+
+void audio_set_chunk_sink(audio_chunk_sink_t sink, void *ctx)
+{
+    g_chunk_sink = sink;
+    g_chunk_ctx = ctx;
+}
+
 static int codec_configure(void)
 {
     static const struct {
@@ -383,6 +393,7 @@ ai_rec_result_t audio_record_wav(uint8_t **out, size_t *out_len,
         const int16_t *src;
         int16_t *dst;
         long long sum2 = 0;
+        size_t chunk_off;
         int i;
         int c;
 
@@ -407,6 +418,7 @@ ai_rec_result_t audio_record_wav(uint8_t **out, size_t *out_len,
         /* 下混成单声道并施加数字增益。
          * DMIC 驱动没有暴露增益控件，实测录音偏小，只能在这里补。
          * 取平均而非取单路：不确定麦克风落在那一路，取平均对两种情况都成立。 */
+        chunk_off = pcm_len;
         src = scratch;
         dst = (int16_t *)(buf + 44 + pcm_len);
         for (i = 0; i < rc; i++) {
@@ -429,6 +441,12 @@ ai_rec_result_t audio_record_wav(uint8_t **out, size_t *out_len,
             sum2 += (long long)v * v;
         }
         pcm_len += (size_t)rc * out_frame_bytes;
+
+        /* 边录边传：把刚下混好的这一块交给网络层（只入队，不阻塞） */
+        if (g_chunk_sink != NULL) {
+            g_chunk_sink(buf + 44 + chunk_off,
+                         (size_t)rc * out_frame_bytes, g_chunk_ctx);
+        }
 
         /* 静音判定：均方与门限平方比，等价于"RMS 是否超过门限"，
          * 但省掉了每块的平方根 */

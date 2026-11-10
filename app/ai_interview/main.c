@@ -488,6 +488,12 @@ static int app_pop_event(system_event_t *e)
 
 /* ---------- 流水线 ---------- */
 
+/* 录音分块回调：把 PCM 块转给"边录边传"的发送线程（audio_io 的 sink） */
+static void app_stream_sink(const uint8_t *pcm, size_t len, void *ctx)
+{
+    (void)cloud_stream_feed((cloud_stream_t *)ctx, pcm, len);
+}
+
 static int upload_once(const uint8_t *wav, size_t wav_len, cloud_response_t *resp)
 {
     cloud_request_t req;
@@ -518,6 +524,8 @@ static void run_one_round(void)
     int attempt;
     int is_new_session;
     int is_retry = 0;
+    cloud_stream_t *st = NULL;
+    int stream_ok = 0;
 
     memset(&resp, 0, sizeof(resp));
     g_drop_round = 0;   /* 新的一轮开始，上一次"舍弃本场"的指令到此为止 */
@@ -570,11 +578,40 @@ static void run_one_round(void)
             }
         }
 
-        /* ---- 1. 录音 ---- */
+        /* ---- 1a. 边录边传（2026-11-10）----
+         * 先起后台上传线程，录音时逐块喂 PCM；录音结束时音频基本已经传完，
+         * 整段上传那 20 秒量级从关键路径消失。起不来就完全走原来的整段上传。 */
+        {
+            char sid[64];
+            cloud_request_t sreq;
+
+            pthread_mutex_lock(&g_lock);
+            strncpy(sid, g_session_id, sizeof(sid) - 1);
+            sid[sizeof(sid) - 1] = '\0';
+            pthread_mutex_unlock(&g_lock);
+
+            memset(&sreq, 0, sizeof(sreq));
+            sreq.session_id = sid;
+            sreq.role = current_role();
+            sreq.pressure = current_pressure();
+            sreq.state = "recording_finished";
+
+            st = cloud_stream_begin(&sreq);
+            if (st != NULL) {
+                audio_set_chunk_sink(app_stream_sink, st);
+                printf("[Main] 边录边传已开启（录音同时上传）\n");
+            }
+        }
+
+        /* ---- 1b. 录音 ---- */
         rec = audio_record_wav(&wav, &wav_len, &g_abort);
+        audio_set_chunk_sink(NULL, NULL);
+
         if (rec == AI_REC_NOSPEECH) {
             /* 一直没人声：**本地**说一句"没听清"（缓存，断网也能出声），不上传、
              * 不进历史 —— 同云端空识别短路的口径，不打乱轮次计数。 */
+            cloud_stream_abort(st);
+            st = NULL;
             printf("[Main] 一直没听到人声 —— 本地提示后回待机（不上传）\n");
             (void)tts_cache_play(TTS_CACHE_NO_HEAR, &g_abort);
             app_post_event(EVENT_ERROR);
@@ -582,11 +619,35 @@ static void run_one_round(void)
         }
         if (rec != AI_REC_OK) {
             /* 取消/设备错误都回到 IDLE：状态机里 RECORDING --ERROR--> IDLE */
+            cloud_stream_abort(st);
+            st = NULL;
             app_post_event(EVENT_ERROR);
             return;
         }
 
         app_post_event(EVENT_RECORD_DONE);   /* RECORDING -> UPLOADING */
+
+        /* ---- 1c. 收尾边录边传：等这一轮的回包（音频已在录音期间传完）---- */
+        if (st != NULL) {
+            if (g_abort) {
+                cloud_stream_abort(st);      /* 不发结束块 → 云端丢弃，不记账 */
+                st = NULL;
+            } else {
+                time_t t_wait = time(NULL);
+                int srt = cloud_stream_finish(st, &resp);
+
+                st = NULL;
+                if (srt == CLOUD_OK) {
+                    stream_ok = 1;
+                    printf("[Main] 边录边传完成（收尾等待 %ld 秒，上传已与录音并行）\n",
+                           (long)(time(NULL) - t_wait));
+                } else {
+                    printf("[Main] 边录边传未成功（%s），回退整段上传\n",
+                           cloud_strerror(srt));
+                    memset(&resp, 0, sizeof(resp));
+                }
+            }
+        }
     }
 
     /* ---- 2. 上传（带重试）----
@@ -596,8 +657,8 @@ static void run_one_round(void)
      * 期间按 K2 只是置了个标志，板子照样走完三次重试才进错误态 —— 日志嘴上说
      * "取消当前一轮"，实际要再按一次 K2 才能回到待机（台账 §11.26 实测记过）。
      */
-    rc = CLOUD_ERR_HTTP;
-    for (attempt = 1; attempt <= UPLOAD_MAX_RETRY; attempt++) {
+    rc = stream_ok ? CLOUD_OK : CLOUD_ERR_HTTP;
+    for (attempt = 1; !stream_ok && attempt <= UPLOAD_MAX_RETRY; attempt++) {
         if (g_abort) {
             break;
         }

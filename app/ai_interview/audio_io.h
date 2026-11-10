@@ -50,6 +50,14 @@ const char *audio_rec_strerror(ai_rec_result_t r);
 const char *audio_play_strerror(ai_play_result_t r);
 
 /*
+ * 录音分块回调（2026-11-10，边录边传）：每产生一个最终**单声道** PCM 块
+ * （约 100ms）回调一次，供网络层边录边发。回调里只做内存入队，
+ * **不得阻塞、不得打印**。传 NULL 取消。
+ */
+typedef void (*audio_chunk_sink_t)(const uint8_t *pcm, size_t len, void *ctx);
+void audio_set_chunk_sink(audio_chunk_sink_t sink, void *ctx);
+
+/*
  * 设置播放音量（0~100%）。运行期生效，播放中也能调（2026-10-19 触摸音量控件用）。
  * 映射到 codec 的 DACL/DACR digital volume —— 它不是线性音量，而是 0.75dB/步的
  * 数字音量寄存器（0x00 静音、0xA0=0dB、0xFF=+71.25dB）。这里把 0~100% 均匀

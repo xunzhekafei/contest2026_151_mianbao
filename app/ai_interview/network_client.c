@@ -17,6 +17,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <pthread.h>
+#include <errno.h>
 
 #include <curl/curl.h>
 #include "netutils/cJSON.h"
@@ -765,4 +767,316 @@ void cloud_response_free(cloud_response_t *resp)
     free(resp->tts_wav);
 
     memset(resp, 0, sizeof(*resp));
+}
+
+/* ==========================================================================
+ * 边录边传（2026-11-10）
+ *
+ * 录音线程把 100ms 的 PCM 块推进环形缓冲；后台线程跑 libcurl，用
+ * READFUNCTION 把缓冲喂给一个 **chunked POST**（/api/interview/stream）。
+ * 录音结束置 eof → curl 发出结束块 → 云端处理并回包。
+ *
+ * 为什么能省时间：上传带宽实测（≈58KB/s）高于录音产生速度（16k 单声道
+ * 32KB/s），录音说完时音频基本已经传完，整段上传的 ~20 秒从关键路径消失。
+ *
+ * 失败一律回落整段上传（cloud_send_audio），不改变原有重试/补送逻辑。
+ * ========================================================================== */
+
+#define STREAM_RING_BYTES   (256u * 1024u)
+#define STREAM_THREAD_STACK (256u * 1024u)
+
+struct cloud_stream {
+    char url[192];
+    char role_enc[192];
+    char pressure_enc[64];
+    char session_id[64];
+    char user_token[128];
+    int  target_rounds;
+
+    uint8_t *ring;
+    size_t ring_cap;
+    size_t ring_head;
+    size_t ring_tail;
+    pthread_mutex_t lock;
+    pthread_cond_t cond;
+    int eof;
+    int aborted;
+    int overflow;
+
+    struct mem_chunk chunk;     /* 响应体（复用整段上传那套） */
+    long status;
+    CURLcode res;
+    pthread_t tid;
+    int thread_ok;
+};
+
+/* 请求头只能放 ASCII：中文角色/压力档做百分号编码（UTF-8 字节） */
+static void url_encode(const char *in, char *out, size_t cap)
+{
+    static const char *hex = "0123456789ABCDEF";
+    size_t o = 0;
+    const unsigned char *p;
+
+    if (in == NULL) {
+        in = "";
+    }
+    for (p = (const unsigned char *)in; *p != '\0' && o + 3 < cap; p++) {
+        if ((*p >= 'A' && *p <= 'Z') || (*p >= 'a' && *p <= 'z') ||
+            (*p >= '0' && *p <= '9') ||
+            *p == '-' || *p == '_' || *p == '.' || *p == '~') {
+            out[o++] = (char)*p;
+        } else {
+            out[o++] = '%';
+            out[o++] = hex[*p >> 4];
+            out[o++] = hex[*p & 0x0F];
+        }
+    }
+    out[o] = '\0';
+}
+
+/* curl 的 READFUNCTION：从环形缓冲取数据；取空且 eof → 返回 0（发结束块）。
+ * 用户取消 → CURL_READFUNC_ABORT（连接直接断，云端不会处理半截音频）。 */
+static size_t stream_read_cb(char *buf, size_t size, size_t nitems, void *ud)
+{
+    struct cloud_stream *s = (struct cloud_stream *)ud;
+    size_t want = size * nitems;
+    size_t got = 0;
+
+    pthread_mutex_lock(&s->lock);
+    for (;;) {
+        size_t avail;
+
+        if (s->aborted) {
+            pthread_mutex_unlock(&s->lock);
+            return CURL_READFUNC_ABORT;
+        }
+
+        avail = (s->ring_head + s->ring_cap - s->ring_tail) % s->ring_cap;
+        if (avail > 0) {
+            while (got < want && avail > 0) {
+                buf[got++] = (char)s->ring[s->ring_tail];
+                s->ring_tail = (s->ring_tail + 1) % s->ring_cap;
+                avail--;
+            }
+            break;
+        }
+        if (s->eof) {
+            break;
+        }
+        pthread_cond_wait(&s->cond, &s->lock);
+    }
+    pthread_mutex_unlock(&s->lock);
+    return got;
+}
+
+static void *stream_thread(void *arg)
+{
+    struct cloud_stream *s = (struct cloud_stream *)arg;
+    struct curl_slist *headers = NULL;
+    CURL *curl;
+    char h[320];
+
+    curl = curl_easy_init();
+    if (curl == NULL) {
+        s->res = CURLE_FAILED_INIT;
+        return NULL;
+    }
+
+    headers = curl_slist_append(headers, "Content-Type: application/octet-stream");
+    headers = curl_slist_append(headers, "Expect:");
+    snprintf(h, sizeof(h), "X-Session-Id: %s", s->session_id);
+    headers = curl_slist_append(headers, h);
+    snprintf(h, sizeof(h), "X-Role: %s", s->role_enc);
+    headers = curl_slist_append(headers, h);
+    snprintf(h, sizeof(h), "X-Pressure: %s", s->pressure_enc);
+    headers = curl_slist_append(headers, h);
+    snprintf(h, sizeof(h), "X-Target-Rounds: %d", s->target_rounds);
+    headers = curl_slist_append(headers, h);
+    if (s->user_token[0] != '\0') {
+        snprintf(h, sizeof(h), "X-User-Token: %s", s->user_token);
+        headers = curl_slist_append(headers, h);
+    }
+
+    curl_easy_setopt(curl, CURLOPT_URL, s->url);
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+    curl_easy_setopt(curl, CURLOPT_POST, 1L);
+    curl_easy_setopt(curl, CURLOPT_READFUNCTION, stream_read_cb);
+    curl_easy_setopt(curl, CURLOPT_READDATA, s);
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, -1L);  /* 未知长度 → chunked */
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_memory_cb);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&s->chunk);
+    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 10L);
+    curl_easy_setopt(curl, CURLOPT_TIMEOUT, 180L);       /* 录音 30s + 云端处理 */
+    curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1L);
+#if defined(CONFIG_APP_AI_INTERVIEW_TLS_INSECURE)
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+    curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
+#endif
+
+    s->res = curl_easy_perform(curl);
+    curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &s->status);
+    curl_easy_cleanup(curl);
+    curl_slist_free_all(headers);
+    return NULL;
+}
+
+cloud_stream_t *cloud_stream_begin(const cloud_request_t *req)
+{
+    struct cloud_stream *s;
+    pthread_attr_t attr;
+    const char *tok;
+    int rc;
+
+    if (req == NULL || req->role == NULL || req->pressure == NULL) {
+        return NULL;
+    }
+    cloud_init();
+
+    s = calloc(1, sizeof(*s));
+    if (s == NULL) {
+        return NULL;
+    }
+    s->ring = malloc(STREAM_RING_BYTES);
+    s->chunk.memory = malloc(1);
+    if (s->ring == NULL || s->chunk.memory == NULL) {
+        free(s->ring);
+        free(s->chunk.memory);
+        free(s);
+        return NULL;
+    }
+    s->ring_cap = STREAM_RING_BYTES;
+    s->chunk.size = 0;
+    pthread_mutex_init(&s->lock, NULL);
+    pthread_cond_init(&s->cond, NULL);
+
+    snprintf(s->url, sizeof(s->url), "%s/api/interview/stream",
+             app_cloud_base_url());
+    url_encode(req->role, s->role_enc, sizeof(s->role_enc));
+    url_encode(req->pressure, s->pressure_enc, sizeof(s->pressure_enc));
+    if (req->session_id != NULL) {
+        strncpy(s->session_id, req->session_id, sizeof(s->session_id) - 1);
+    }
+    tok = cloud_user_token();
+    if (tok != NULL) {
+        strncpy(s->user_token, tok, sizeof(s->user_token) - 1);
+    }
+    s->target_rounds = cloud_target_rounds();
+
+    pthread_attr_init(&attr);
+    pthread_attr_setstacksize(&attr, STREAM_THREAD_STACK);
+    rc = pthread_create(&s->tid, &attr, stream_thread, s);
+    pthread_attr_destroy(&attr);
+    if (rc != 0) {
+        printf("[Cloud] 边录边传线程创建失败 (%d)，回退整段上传\n", rc);
+        pthread_mutex_destroy(&s->lock);
+        pthread_cond_destroy(&s->cond);
+        free(s->ring);
+        free(s->chunk.memory);
+        free(s);
+        return NULL;
+    }
+    s->thread_ok = 1;
+    return s;
+}
+
+int cloud_stream_feed(cloud_stream_t *s, const uint8_t *pcm, size_t len)
+{
+    size_t head;
+    size_t tail;
+    size_t space;
+    size_t i;
+
+    if (s == NULL || pcm == NULL || len == 0) {
+        return -1;
+    }
+
+    pthread_mutex_lock(&s->lock);
+    if (s->aborted || s->eof) {
+        pthread_mutex_unlock(&s->lock);
+        return -1;
+    }
+    head = s->ring_head;
+    tail = s->ring_tail;
+    space = s->ring_cap - ((head + s->ring_cap - tail) % s->ring_cap) - 1;
+    if (len > space) {
+        /* 缓冲满 = 上传跟不上录音（网络过慢）—— 标记失败，让调用方回退 */
+        s->overflow = 1;
+        pthread_mutex_unlock(&s->lock);
+        printf("[Cloud] 边录边传缓冲满（网络过慢），将回退整段上传\n");
+        return -1;
+    }
+    for (i = 0; i < len; i++) {
+        s->ring[head] = pcm[i];
+        head = (head + 1) % s->ring_cap;
+    }
+    s->ring_head = head;
+    pthread_cond_signal(&s->cond);
+    pthread_mutex_unlock(&s->lock);
+    return 0;
+}
+
+static void stream_destroy(cloud_stream_t *s)
+{
+    pthread_mutex_destroy(&s->lock);
+    pthread_cond_destroy(&s->cond);
+    free(s->ring);
+    free(s->chunk.memory);
+    free(s);
+}
+
+int cloud_stream_finish(cloud_stream_t *s, cloud_response_t *resp)
+{
+    int ret;
+
+    if (s == NULL || resp == NULL) {
+        return CLOUD_ERR_HTTP;
+    }
+
+    memset(resp, 0, sizeof(*resp));
+
+    pthread_mutex_lock(&s->lock);
+    s->eof = 1;
+    pthread_cond_broadcast(&s->cond);
+    pthread_mutex_unlock(&s->lock);
+
+    if (s->thread_ok) {
+        pthread_join(s->tid, NULL);
+    }
+
+    if (s->overflow) {
+        ret = CLOUD_ERR_HTTP;           /* 调用方回退整段上传 */
+    } else if (s->res != CURLE_OK) {
+        printf("[Cloud] 边录边传失败: %s（回退整段上传）\n",
+               curl_easy_strerror(s->res));
+        resp->http_status = 0;
+        ret = CLOUD_ERR_HTTP;
+    } else if (s->status < 200 || s->status >= 300) {
+        printf("[Cloud] 流式端点返回 HTTP %ld\n", s->status);
+        resp->http_status = s->status;
+        ret = CLOUD_ERR_HTTP;
+    } else {
+        ret = cloud_parse_response(s->chunk.memory != NULL ? s->chunk.memory : "",
+                                   s->chunk.size, resp);
+        resp->http_status = s->status;
+    }
+
+    stream_destroy(s);
+    return ret;
+}
+
+void cloud_stream_abort(cloud_stream_t *s)
+{
+    if (s == NULL) {
+        return;
+    }
+
+    pthread_mutex_lock(&s->lock);
+    s->aborted = 1;
+    pthread_cond_broadcast(&s->cond);
+    pthread_mutex_unlock(&s->lock);
+
+    if (s->thread_ok) {
+        pthread_join(s->tid, NULL);
+    }
+    stream_destroy(s);
 }
