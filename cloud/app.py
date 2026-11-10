@@ -1,10 +1,12 @@
 """
 AI模拟面试官 — 云端 Flask 服务
 """
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file, Response
 import base64
 import io
+import json
 import os
+import queue
 import threading
 import uuid
 import time
@@ -15,12 +17,13 @@ from llm_service import (DEFAULT_PRESSURE, PRESSURE_LEVELS, extract_note,
                          llm_interview, review_one, score_interview)
 from asr_service import asr_audio_to_text
 from tts_service import tts_text_to_audio
-from reply_guard import flatten_for_tts
+from reply_guard import flatten_for_tts, strip_meta
 from speech_metrics import speech_metrics
 from growth import build_growth
 from session_manager import SessionManager
 from question_bank import warmup as warmup_question_bank
 import interview_stage
+from live_stream import SentenceAccumulator
 import report_export
 import session_store
 import user_store
@@ -693,6 +696,133 @@ def handle_interview_text():
     finally:
         if acquired:
             _end_request(session_id)
+
+
+def _sse_pack(event, payload):
+    """SSE 帧格式：event + data，空行分隔。"""
+    return "event: %s\ndata: %s\n\n" % (
+        event, json.dumps(payload, ensure_ascii=False))
+
+
+@app.route('/api/interview/live', methods=['POST'])
+def handle_interview_live():
+    """流式问答（2026-11-10，Phase 1：网页边出字边播报）。
+
+    POST 同 /api/interview/text；响应 text/event-stream：
+      event: meta      {"session_id", "type"}
+      event: sentence  {"text", "audio"}   # audio 可能为空串（TTS 失败只出字）
+      event: done      {"type", "next_action", "session_id", "text"}
+      event: error     {"error"}
+
+    LLM 用 stream=True 逐 token 收；按句切分后**每句单独过 reply_guard、单独 TTS**，
+    前端边出字边播报 —— 首音延迟从"整段生成+整段合成"降到第一句的时间。
+    """
+    data = request.get_json() or {}
+    role = data.get("role") or "AI 应用开发"
+    pressure = data.get("pressure")
+    if pressure not in PRESSURE_LEVELS:
+        pressure = DEFAULT_PRESSURE
+    target_rounds = interview_stage.normalize_target(data.get("target_rounds"))
+    state = data.get("state") or "recording_finished"
+    answer = (data.get("text") or "").strip()
+    session_id = data.get("session_id") or ""
+
+    if not session_id:
+        session_id = str(uuid.uuid4())
+
+    is_new = session_manager.get_session(session_id) is None
+    session = session_manager.get_or_create_session(session_id, role, pressure,
+                                                    target_rounds)
+    if is_new:
+        user = _user_from_request(data)
+        session.user_id = user.get("id", "") if user else ""
+    role = session.role
+
+    if session.is_finished:
+        last = next((m.get("content", "") for m in reversed(session.get_history())
+                     if m.get("role") == "assistant"), "")
+        body = (_sse_pack("meta", {"session_id": session_id, "type": "report"}) +
+                _sse_pack("done", {"type": "report", "next_action": "finish",
+                                    "session_id": session_id, "text": last}))
+        return Response(body, mimetype="text/event-stream")
+
+    if not _begin_request(session_id):
+        return jsonify({"error": "上一条还在处理，请稍候再发",
+                        "session_id": session_id, "next_action": "continue"}), 409
+
+    q = queue.Queue()
+
+    def emit(kind, payload):
+        q.put((kind, payload))
+
+    def stream_sentence(sentence):
+        """一句 → 过闸 → TTS → 推给前端（TTS 失败只出字）。"""
+        clean = strip_meta(sentence)
+        if not clean:
+            return
+        audio = ""
+        try:
+            audio = tts_text_to_audio(flatten_for_tts(clean),
+                                      style="专业、友好、有洞察力的面试官")
+        except Exception as tts_error:      # noqa: BLE001 —— 一句失败不阻塞后面
+            logger.warning(f"[流式] 本句 TTS 失败（只出字）：{tts_error}")
+        emit("sentence", {"text": clean, "audio": audio or ""})
+
+    acc = SentenceAccumulator()
+
+    def on_token(delta):
+        for sentence in acc.feed(delta):
+            stream_sentence(sentence)
+
+    def work():
+        try:
+            if state != "start":
+                if not answer:
+                    emit("error", {"error": "文本不能为空"})
+                    return
+                session.add_user_message(answer)
+                _start_note(session_id, max(1, session.question_count),
+                            _last_question(session), answer)
+            result = llm_interview(role, session.get_history(), state,
+                                   pressure=session.pressure,
+                                   target_rounds=session.target_rounds,
+                                   stream_cb=on_token)
+            for sentence in acc.flush():
+                stream_sentence(sentence)
+            ai_text = result.get("text", "")
+            next_action = result.get("next_action", "continue")
+            session.add_ai_message(ai_text)
+            if next_action != "continue":
+                session.finish()
+            session_store.save(session_manager.snapshot(session_id))
+            if next_action != "continue":
+                _start_review_stream(session_id)
+                _start_scoring(session_id)
+            emit("done", {"type": "question" if next_action == "continue"
+                           else "report",
+                           "next_action": next_action,
+                           "session_id": session_id, "text": ai_text})
+        except Exception as error:          # noqa: BLE001
+            logger.error(f"[流式] 生成失败: {error}", exc_info=True)
+            emit("error", {"error": str(error)})
+        finally:
+            _end_request(session_id)
+            q.put((None, None))
+
+    def gen():
+        yield _sse_pack("meta", {"session_id": session_id, "type": "question"})
+        threading.Thread(target=work, name=f"live-{session_id[:8]}",
+                         daemon=True).start()
+        while True:
+            kind, payload = q.get()
+            if kind is None:
+                break
+            yield _sse_pack(kind, payload)
+
+    resp = Response(gen(), mimetype="text/event-stream")
+    resp.headers["Cache-Control"] = "no-cache"
+    resp.headers["X-Accel-Buffering"] = "no"
+    return resp
 
 
 @app.route('/api/health', methods=['GET'])

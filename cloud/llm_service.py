@@ -79,7 +79,7 @@ def load_skill(skill_name: str) -> dict:
 
 
 def call_llm(system_prompt: str, messages: list, temperature: float = 0.7,
-             max_tokens: int = 500) -> str:
+             max_tokens: int = 500, stream_cb=None) -> str:
     """
     调用小米 MIMO LLM API
 
@@ -88,6 +88,9 @@ def call_llm(system_prompt: str, messages: list, temperature: float = 0.7,
         messages: 对话消息列表
         temperature: 温度参数
         max_tokens: 最大生成 token 数
+        stream_cb: 可选，每收到一段增量文本回调一次（2026-11-10 流式分句 TTS 用）。
+            **返回值仍是完整文本** —— 调用方的历史/闸门逻辑完全不变；
+            回调抛异常只记日志，不影响这次生成。
 
     Returns:
         LLM 生成的文本
@@ -104,18 +107,44 @@ def call_llm(system_prompt: str, messages: list, temperature: float = 0.7,
         full_messages = [{"role": "system", "content": system_prompt}]
         full_messages.extend(messages)
 
-        logger.info(f"LLM 请求: model={LLM_MODEL}, 消息数={len(full_messages)}")
+        logger.info(f"LLM 请求: model={LLM_MODEL}, 消息数={len(full_messages)}"
+                    + ("（流式）" if stream_cb is not None else ""))
 
-        completion = client.chat.completions.create(
-            model=LLM_MODEL,
-            messages=full_messages,
-            temperature=temperature,
-            max_tokens=max_tokens,
-            extra_body=THINKING_DISABLED
-        )
+        if stream_cb is None:
+            completion = client.chat.completions.create(
+                model=LLM_MODEL,
+                messages=full_messages,
+                temperature=temperature,
+                max_tokens=max_tokens,
+                extra_body=THINKING_DISABLED
+            )
+            result = completion.choices[0].message.content
+        else:
+            stream = client.chat.completions.create(
+                model=LLM_MODEL,
+                messages=full_messages,
+                temperature=temperature,
+                max_tokens=max_tokens,
+                extra_body=THINKING_DISABLED,
+                stream=True
+            )
+            parts = []
+            for chunk in stream:
+                delta = ""
+                try:
+                    if chunk.choices:
+                        delta = chunk.choices[0].delta.content or ""
+                except (AttributeError, IndexError):
+                    delta = ""
+                if delta:
+                    parts.append(delta)
+                    try:
+                        stream_cb(delta)
+                    except Exception as cb_error:   # noqa: BLE001
+                        logger.warning(f"[流式] 回调出错（已忽略）：{cb_error}")
+            result = "".join(parts)
 
-        result = completion.choices[0].message.content
-        logger.info(f"LLM 返回: {result[:100]}...")
+        logger.info(f"LLM 返回: {(result or '')[:100]}...")
         return result
 
     except Exception as e:
@@ -127,7 +156,7 @@ def call_llm(system_prompt: str, messages: list, temperature: float = 0.7,
 # Skill 实现函数
 # ============================================================
 
-def start_interview(role: str) -> dict:
+def start_interview(role: str, stream_cb=None) -> dict:
     """
     Skill: start_interview — 开始面试，生成第一个问题
 
@@ -150,7 +179,8 @@ def start_interview(role: str) -> dict:
         system_prompt=system_prompt,
         messages=messages,
         temperature=skill.get("temperature", 0.7),
-        max_tokens=skill.get("max_tokens", 500)
+        max_tokens=skill.get("max_tokens", 500),
+        stream_cb=stream_cb
     )
 
     if result:
@@ -161,7 +191,8 @@ def start_interview(role: str) -> dict:
 
 def next_question(role: str, history: list, last_answer: str,
                   pressure: str = DEFAULT_PRESSURE,
-                  target_rounds: int = interview_stage.DEFAULT_TARGET_ROUNDS) -> dict:
+                  target_rounds: int = interview_stage.DEFAULT_TARGET_ROUNDS,
+                  stream_cb=None) -> dict:
     """
     Skill: next_question — 根据用户回答生成下一个问题或追问
 
@@ -345,11 +376,14 @@ def next_question(role: str, history: list, last_answer: str,
     parts.append("请根据回答决定是追问还是提出新问题。")
     messages.append({"role": "user", "content": "\n\n".join(parts)})
 
+    # ⚠️ 只有**主调用**流式；下面的重问闸重试不流式 —— 重试意味着首答要被
+    #    作废，已经推给前端的句子只能由 done 事件里的最终文本覆盖（前端会替换气泡）。
     result = call_llm(
         system_prompt=system_prompt,
         messages=messages,
         temperature=skill.get("temperature", 0.7),
-        max_tokens=skill.get("max_tokens", 800)
+        max_tokens=skill.get("max_tokens", 800),
+        stream_cb=stream_cb
     )
 
     # 判断是否结束面试（超过 10 轮）
@@ -766,12 +800,13 @@ def _finish_requested(history: list) -> str:
 
 def llm_interview(role: str, history: list, state: str, audio_base64: str = "",
                   pressure: str = DEFAULT_PRESSURE,
-                  target_rounds: int = interview_stage.DEFAULT_TARGET_ROUNDS) -> dict:
+                  target_rounds: int = interview_stage.DEFAULT_TARGET_ROUNDS,
+                  stream_cb=None) -> dict:
     """
     兼容旧版接口（已被 skill 函数替代）
     """
     if state == "start":
-        return start_interview(role)
+        return start_interview(role, stream_cb=stream_cb)
     elif state == "evaluate":
         if history:
             last_q = history[-2]["content"] if len(history) >= 2 else ""
@@ -806,7 +841,7 @@ def llm_interview(role: str, history: list, state: str, audio_base64: str = "",
                     logger.info(f"[结束] 到达目标轮数 {total_rounds}，生成报告")
                 return generate_feedback(role, history)
             return next_question(role, history[:-1], history[-1]["content"], pressure,
-                                 total_rounds)
+                                 total_rounds, stream_cb=stream_cb)
 
     return start_interview(role)
 

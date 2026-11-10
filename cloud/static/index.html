@@ -646,6 +646,11 @@
 <div id="composer">
   <textarea id="answerBox" rows="1"
             placeholder="在这里输入你的回答，Ctrl+Enter 发送"></textarea>
+  <label id="liveWrap" title="边出字边合成语音（每轮会多几次 TTS 调用）"
+         style="display:flex;align-items:center;gap:4px;font-size:12.5px;
+                color:var(--ink-dim);white-space:nowrap;cursor:pointer">
+    <input type="checkbox" id="liveChk">流式
+  </label>
   <button id="sendBtn">发送</button>
 </div>
 
@@ -1025,6 +1030,11 @@
       })
       .then(function (d) {
         if (seq !== tickSeq) { return; }     // 旧的响应晚到了 —— 丢掉，别拿它覆盖新的
+
+        // 流式回答进行中：跳过重绘 —— 服务端已把"你的回答"写进历史，但"面试官的
+        // 回答"还没写完；这时重渲染会把流式气泡撤掉（2026-11-10 实测：文字变一次性出现）。
+        // 同时不覆盖状态栏，保留「流式第 N 句」的进度提示。结束后自己 tick() 收尾。
+        if (liveActive) { return; }
         setStatus("ok", "已连接");
 
         // 指纹：消息条数 + 最后一条内容 + 结束标志 + 评分状态，全没变就不重绘。
@@ -1580,6 +1590,117 @@
       .then(function () { starting = false; });
   }
 
+  // ---------- 流式播报（2026-11-10，Phase 1）----------
+  // 勾选「流式」后走 /api/interview/live：SSE 边出字边播报，首音延迟 = 第一句的时间。
+  // 音频段按顺序排队播放；最终文本以 done 事件为准（重问闸重试会替换前文）。
+  var elLiveChk = document.getElementById("liveChk");
+  // 流式进行中：服务端已经把"你的回答"写进历史，2 秒轮询会看到变化并整块重渲染，
+  // 那会把流式气泡撤掉（文字就只剩最后一次性出现）。这个标志期间暂停轮询渲染。
+  var liveActive = false;
+  var liveAudioQueue = [];
+  var liveAudioBusy = false;
+
+  function liveEnqueueAudio(b64) {
+    if (!b64) { return; }
+    liveAudioQueue.push("data:audio/wav;base64," + b64);
+    livePlayNext();
+  }
+
+  function livePlayNext() {
+    if (liveAudioBusy || !liveAudioQueue.length) { return; }
+    liveAudioBusy = true;
+    var audio = new Audio(liveAudioQueue.shift());
+    audio.onended = audio.onerror = function () {
+      liveAudioBusy = false;
+      livePlayNext();
+    };
+    var played = audio.play();
+    if (played && played.catch) {
+      played.catch(function () { liveAudioBusy = false; });
+    }
+  }
+
+  function liveSetBubble(text) {
+    // ⚠️ 必须取「面试官」那一条：showPending 里候选人气泡排在前面，
+    //    只写 .bubble 会选中候选人自己的气泡（2026-11-10 实测踩到）。
+    var bubble = elPending.querySelector(".row.assistant .bubble");
+    if (!bubble) { return; }
+    bubble.classList.remove("typing");
+    bubble.textContent = text;
+    if (stickBottom) { toBottom(); }
+  }
+
+  function sendTextLive(text) {
+    var reader = null;
+    var liveCount = 0;
+    liveActive = true;
+    fetch("/api/interview/live", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ session_id: SID, role: textRole,
+                             pressure: textPressure, text: text })
+    }).then(function (r) {
+      if (!r.ok) {
+        return r.json().then(function (d) {
+          throw new Error(d.error || ("HTTP " + r.status));
+        });
+      }
+      if (!r.body || !r.body.getReader) { throw new Error("浏览器不支持流式响应"); }
+      reader = r.body.getReader();
+      var decoder = new TextDecoder("utf-8");
+      var buf = "";
+      var spoken = "";
+      function pump() {
+        return reader.read().then(function (res) {
+          if (res.done) { return; }
+          buf += decoder.decode(res.value, { stream: true });
+          var idx;
+          while ((idx = buf.indexOf("\n\n")) >= 0) {
+            var block = buf.slice(0, idx);
+            buf = buf.slice(idx + 2);
+            var ev = "", data = "";
+            block.split("\n").forEach(function (line) {
+              if (line.indexOf("event:") === 0) { ev = line.slice(6).trim(); }
+              else if (line.indexOf("data:") === 0) { data += line.slice(5).trim(); }
+            });
+            if (!data) { continue; }
+            var payload;
+            try { payload = JSON.parse(data); } catch (e) { continue; }
+            if (ev === "sentence") {
+              liveCount++;
+              if (payload.text) {
+                spoken += payload.text;
+                liveSetBubble(spoken);
+                setStatus("ok", "流式第 " + liveCount + " 句（" + spoken.length + " 字）");
+                console.log("[live] 第 " + liveCount + " 句:", payload.text);
+              }
+              if (payload.audio) { liveEnqueueAudio(payload.audio); }
+            } else if (ev === "done" && payload.text) {
+              liveSetBubble(payload.text);
+            } else if (ev === "error") {
+              throw new Error(payload.error || "流式生成失败");
+            }
+          }
+          return pump();
+        });
+      }
+      return pump();
+    }).then(function () {
+      liveActive = false;
+      hidePending();
+      tick();                     // 以会话快照为准重渲染（最终文本/报告卡）
+    }).catch(function (e) {
+      liveActive = false;
+      hidePending();
+      elAnswerBox.value = text;   // 把你的话还回输入框
+      setStatus("err", e.message);
+    }).then(function () {
+      elSendBtn.disabled = false;
+      elAnswerBox.disabled = false;
+      elAnswerBox.focus();
+    });
+  }
+
   function sendText() {
     var text = (elAnswerBox.value || "").trim();
     if (!text || !SID || elSendBtn.disabled) { return; }
@@ -1588,6 +1709,10 @@
     setStatus("ok", "面试官正在思考…");   // 状态栏那条是给"看不见气泡"的时刻兜底的
     showPending(text);                     // ★ 先把你说的那句话画出来 —— 别等
     elAnswerBox.value = "";                // 输入框立刻清空，与"已经发出去了"一致
+    if (elLiveChk && elLiveChk.checked) {
+      sendTextLive(text);                  // 流式分支自己负责收尾（按钮/输入框恢复）
+      return;
+    }
     textPost({ session_id: SID, role: textRole, pressure: textPressure, text: text })
       .then(function (d) {
         if (d.error) { throw new Error(d.error); }
