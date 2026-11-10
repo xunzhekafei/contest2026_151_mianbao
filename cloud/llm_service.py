@@ -811,6 +811,115 @@ def llm_interview(role: str, history: list, state: str, audio_base64: str = "",
     return start_interview(role)
 
 
+# ---------------------------------------------------------------------------
+# 结构化面试笔记（2026-11-10）
+# ---------------------------------------------------------------------------
+
+def _normalize_note(raw):
+    """把模型输出收敛成 {summary, points[], doubt}；解析失败返回 {}。
+
+    字段约束与 skills/interview_note.json 的规则一致：这里**再挡一层**，
+    防止模型多给字段/超长/类型不对把下游（网页、导出、落盘）弄脏。
+    """
+    try:
+        import score_guard
+        parsed = score_guard.extract_json(raw or "")
+    except Exception:                       # noqa: BLE001 —— 笔记失败绝不影响面试
+        return {}
+    if not isinstance(parsed, dict):
+        return {}
+
+    def _clean(value, limit):
+        text = " ".join(str(value or "").split())
+        return text[:limit]
+
+    summary = _clean(parsed.get("summary"), 80)
+    doubt = _clean(parsed.get("doubt"), 80)
+    points = []
+    for item in (parsed.get("points") or [])[:4]:
+        if not isinstance(item, dict):
+            continue
+        text = _clean(item.get("text"), 60)
+        if text:
+            points.append({"kind": _clean(item.get("kind"), 8) or "要点",
+                           "text": text})
+
+    if not summary and not points:
+        return {}
+    return {"summary": summary, "points": points, "doubt": doubt}
+
+
+def _normalize_review(raw, answer):
+    """收敛单题复盘输出：evidence 必须能在**这段回答**里找到（压标点后子串比对），
+    找不到就丢掉 evidence（保留 suggestion）；suggestion 为空则整条作废。
+
+    不做"缺证据重试一次"：逐题流式是后台逐条生成，单条失败直接跳过更省，
+    证据缺失在页面上表现为「（未引用原话）」——如实，不编。
+    """
+    try:
+        import score_guard
+        parsed = score_guard.extract_json(raw or "")
+    except Exception:                       # noqa: BLE001 —— 复盘失败绝不影响报告
+        return None
+    if not isinstance(parsed, dict):
+        return None
+
+    def _clean(value, limit):
+        return " ".join(str(value or "").split())[:limit]
+
+    evidence = _clean(parsed.get("evidence"), 40)
+    suggestion = _clean(parsed.get("suggestion"), 100)
+    if not suggestion:
+        return None
+    if evidence:
+        try:
+            ok = score_guard.evidence_supported(
+                evidence, [{"role": "user", "content": answer or ""}])
+        except Exception:                   # noqa: BLE001
+            ok = False
+        if not ok:
+            evidence = ""
+    return {"evidence": evidence, "suggestion": suggestion}
+
+
+def review_one(role: str, question: str, answer: str):
+    """对一道题生成逐题复盘条目（后台逐题调用；失败返回 None）。
+
+    返回 {"evidence": ..., "suggestion": ...}。用途见 app.py 的 _start_review_stream。
+    """
+    if not (answer or "").strip():
+        return None
+    skill = load_skill("per_question_review")
+    if not skill or not (skill.get("system_prompt") or "").strip():
+        return None
+    system_prompt = skill["system_prompt"].replace("{role}", role or "AI 应用开发")
+    user_content = "面试官的问题：%s\n候选人的回答：%s" % (
+        (question or "（开场，没有前置问题）").strip(), answer.strip())
+    raw = call_llm(system_prompt, [{"role": "user", "content": user_content}],
+                   temperature=skill.get("temperature", 0.3),
+                   max_tokens=skill.get("max_tokens", 300))
+    return _normalize_review(raw, answer)
+
+
+def extract_note(role: str, question: str, answer: str) -> dict:
+    """把一轮问答整理成结构化面试笔记（后台异步调用，不阻塞面试）。
+
+    失败一律返回 {} —— 调用方（app.py 的 _start_note）只记日志。
+    """
+    if not (answer or "").strip():
+        return {}
+    skill = load_skill("interview_note")
+    if not skill or not (skill.get("system_prompt") or "").strip():
+        return {}
+    system_prompt = skill["system_prompt"].replace("{role}", role or "AI 应用开发")
+    user_content = "面试官的问题：%s\n候选人的回答：%s" % (
+        (question or "（开场，没有前置问题）").strip(), answer.strip())
+    raw = call_llm(system_prompt, [{"role": "user", "content": user_content}],
+                   temperature=skill.get("temperature", 0.2),
+                   max_tokens=skill.get("max_tokens", 500))
+    return _normalize_note(raw)
+
+
 # 测试
 if __name__ == "__main__":
     print("LLM 服务模块已加载")

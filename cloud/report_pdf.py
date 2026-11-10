@@ -288,8 +288,29 @@ def render(snapshot) -> bytes:
         story.append(_table(rows, [16 * mm, 18 * mm, 30 * mm, 22 * mm,
                                    38 * mm, 22 * mm], regular, bold))
 
+    # ---- 面试笔记（2026-11-10）----
+    notes = [e for e in (snapshot.get("notes") or []) if isinstance(e, dict)]
+    if notes:
+        story.append(Paragraph("面试笔记", h2))
+        for entry in notes:
+            note = entry.get("note") if isinstance(entry.get("note"), dict) else {}
+            story.append(Paragraph("<b>第 %s 题</b>：%s" % (
+                _esc(entry.get("round", "?")),
+                _esc(entry.get("question") or "（开场）")), body))
+            if note.get("summary"):
+                story.append(Paragraph("概括：%s" % _esc(note["summary"]), dim))
+            for point in (note.get("points") or []):
+                if isinstance(point, dict) and point.get("text"):
+                    story.append(Paragraph("· 【%s】%s" % (
+                        _esc(point.get("kind") or "要点"),
+                        _esc(point["text"])), dim))
+            if note.get("doubt"):
+                story.append(Paragraph("待追问：%s" % _esc(note["doubt"]), quote))
+            story.append(Spacer(1, 2 * mm))
+
     # ---- 逐题复盘 ----
-    per_question = score.get("per_question") or []
+    # 评分还没回来时，用"逐题流式"已生成的条目（2026-11-10）
+    per_question = (score.get("per_question") or []) or (snapshot.get("per_question_live") or [])
     if per_question:
         story.append(Paragraph("逐题复盘", h2))
         for item in per_question:

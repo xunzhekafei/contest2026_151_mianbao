@@ -840,11 +840,50 @@
       html += '</table></details>';
     }
 
+    // 面试笔记（2026-11-10）：后台逐轮整理的结构化记录（概括/要点/待追问）。
+    // 与逐题复盘一样默认折起来；老数据没有这个字段时整块不出现。
+    var notes = d && d.notes;
+    if (notes && notes.length) {
+      html += '<details class="pq"><summary>面试笔记（' + notes.length + ' 轮）</summary>';
+      for (var ni = 0; ni < notes.length; ni++) {
+        var entry = notes[ni] || {};
+        var nt = entry.note || {};
+        html +=
+          '<div class="pq-item">' +
+            '<div class="pq-q">第 ' + esc(entry.round) + ' 题 · ' +
+              esc(entry.question || "（开场）") + '</div>';
+        if (nt.summary) {
+          html += '<div class="pq-ev">概括：' + esc(nt.summary) + '</div>';
+        }
+        var pts = nt.points || [];
+        for (var pi = 0; pi < pts.length; pi++) {
+          var pt = pts[pi] || {};
+          if (pt.text) {
+            html += '<div class="pq-sug">【' + esc(pt.kind || "要点") + '】' +
+              esc(pt.text) + '</div>';
+          }
+        }
+        if (nt.doubt) {
+          html += '<div class="pq-sug">待追问：' + esc(nt.doubt) + '</div>';
+        }
+        html += '</div>';
+      }
+      html += '</details>';
+    }
+
     // 逐题复盘：每题「问题 / 他的原话 / 更好的答法」，默认折起来（见 CSS 注释）。
     // 这是卡片里唯一"告诉他下一遍怎么答"的部分 —— 总分说明现状，这节才给方向。
-    var pq = s && s.per_question;
+    // 2026-11-10 起支持"逐题流式"：评分整体还没回来时，先用后台逐题生成的
+    // per_question_live 顶上（页面每 2 秒轮询，条目会一条条变多）；评分到达后
+    // 以 score.per_question 为准（同一内容，权威版本）。
+    var pqFinal = s && s.per_question;
+    var pq = (pqFinal && pqFinal.length) ? pqFinal : (d && d.per_question_live);
     if (pq && pq.length) {
-      html += '<details class="pq"><summary>逐题复盘（' + pq.length + ' 题）</summary>';
+      var pqLabel = (pqFinal && pqFinal.length)
+        ? '逐题复盘（' + pq.length + ' 题）'
+        : '逐题复盘（生成中 ' + pq.length + ' 题…）';
+      html += '<details class="pq"' + ((pqFinal && pqFinal.length) ? '' : ' open') +
+              '><summary>' + pqLabel + '</summary>';
       for (var j = 0; j < pq.length; j++) {
         var q = pq[j] || {};
         html +=

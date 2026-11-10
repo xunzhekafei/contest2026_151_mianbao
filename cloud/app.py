@@ -11,8 +11,8 @@ import time
 import collections
 import html as html_mod
 import logging
-from llm_service import (DEFAULT_PRESSURE, PRESSURE_LEVELS, llm_interview,
-                         score_interview)
+from llm_service import (DEFAULT_PRESSURE, PRESSURE_LEVELS, extract_note,
+                         llm_interview, review_one, score_interview)
 from asr_service import asr_audio_to_text
 from tts_service import tts_text_to_audio
 from reply_guard import flatten_for_tts
@@ -101,6 +101,104 @@ def _start_scoring(session_id):
                            f"（不影响这场面试）：{error}")
 
     thread = threading.Thread(target=_work, name=f"score-{session_id[:8]}", daemon=True)
+    thread.start()
+    return thread
+
+
+def _last_question(session):
+    """这一轮回答对应的提问（history 里最近一条 assistant）。
+
+    调用点必须在 `add_user_message()` **之后**：此时 history[-1] 是刚记下的
+    回答，往前找最近一条 assistant 就是它要回答的那个问题。
+    """
+    for message in reversed(session.get_history()):
+        if message.get("role") == "assistant":
+            return message.get("content", "")
+    return ""
+
+
+def _start_note(session_id, round_no, question, answer):
+    """每轮回答后，在后台把这一轮整理成结构化笔记（2026-11-10）。
+
+    纪律同 _start_scoring：只发起不等待（不增加端侧延迟）、失败静默、
+    只写会话快照（网页 / 导出 / 落盘），绝不改端侧响应体。
+    """
+    def _work():
+        try:
+            session = session_manager.get_session(session_id)
+            if session is None:
+                return                      # 会话已被清理（舍弃本场），那就算了
+            note = extract_note(session.role, question, answer)
+            if not note:
+                return
+            session.add_note({
+                "round": round_no,
+                "question": (question or "")[:120],
+                "answer": (answer or "")[:200],
+                "note": note,
+                "created_at": time.time(),
+            })
+            session_store.save(session_manager.snapshot(session_id))
+            _event("笔记", f"第 {round_no} 轮已整理", session_id)
+            logger.info(f"[笔记] session={session_id} 第 {round_no} 轮已整理")
+        except Exception as error:          # noqa: BLE001 —— 见上面"失败静默"
+            logger.warning(f"[笔记] session={session_id} 整理失败（不影响面试）：{error}")
+
+    thread = threading.Thread(target=_work, name=f"note-{session_id[:8]}", daemon=True)
+    thread.start()
+    return thread
+
+
+def _question_pairs(session):
+    """把 history 折成 [(题号, 问题, 回答), ...]（报告正文不会被当成问题）。
+
+    规则：assistant 消息是"当前问题"；每条 user 消息与最近一条 assistant 配对。
+    报告轮里最后一条 assistant 是报告正文（之后没有 user），不会被配上。
+    """
+    pairs = []
+    question = "（开场，没有前置问题）"
+    for message in session.get_history():
+        role = message.get("role")
+        content = message.get("content", "")
+        if role == "assistant":
+            question = content
+        elif role == "user":
+            pairs.append((len(pairs) + 1, question, content))
+    return pairs
+
+
+def _start_review_stream(session_id):
+    """报告轮之后，**逐题**生成复盘条目（2026-11-10，后台线程）。
+
+    与 _start_scoring 并行：评分整体要十几秒才回来，而这里每完成一题就把
+    `per_question_live` 落一次盘 —— 网页轮询（每 2 秒）时能一条条看到，
+    不用干等。评分到达后其 `per_question` 是权威版本，展示层优先用它。
+
+    纪律：只发起不等待 / 失败静默 / 只写会话快照，不动端侧响应。
+    """
+    def _work():
+        try:
+            session = session_manager.get_session(session_id)
+            if session is None:
+                return
+            for index, question, answer in _question_pairs(session):
+                if not (answer or "").strip():
+                    continue
+                item = review_one(session.role, question, answer)
+                if not item:
+                    continue
+                session.add_live_review({
+                    "index": index,
+                    "question": (question or "")[:120],
+                    "evidence": item.get("evidence", ""),
+                    "suggestion": item.get("suggestion", ""),
+                })
+                session_store.save(session_manager.snapshot(session_id))
+                _event("复盘", f"第 {index} 题已生成", session_id)
+        except Exception as error:          # noqa: BLE001 —— 见上面"失败静默"
+            logger.warning(f"[复盘] session={session_id} 逐题生成失败（不影响报告）：{error}")
+
+    thread = threading.Thread(target=_work, name=f"review-{session_id[:8]}", daemon=True)
     thread.start()
     return thread
 
@@ -212,11 +310,10 @@ def _finished_payload(session_id, session):
     }
 
 
-@app.route('/api/interview', methods=['POST'])
-def handle_interview():
+def _interview_core(data):
+    """语音面试主链路核心 —— JSON 入口与流式上传入口共用（2026-11-10）。"""
     acquired = False
     try:
-        data = request.get_json()
         if not data:
             return jsonify({"type": "error", "text": "请求体不能为空", "tts_audio": "", "session_id": "", "next_action": "finish"}), 400
 
@@ -288,6 +385,9 @@ def handle_interview():
             if user_text:
                 logger.info(f"[session={session_id}] ASR 识别结果: {user_text[:100]}...")
                 session.add_user_message(user_text)
+                # 结构化面试笔记（2026-11-10）：后台异步整理，不增加端侧延迟
+                _start_note(session_id, max(1, session.question_count),
+                            _last_question(session), user_text)
                 # 副语言指标（语速/口头语/停顿）。纯统计、无额外 API 调用；
                 # 失败只记日志 —— 它只影响报告里的一栏，绝不能拖垮这一轮面试。
                 try:
@@ -367,6 +467,7 @@ def handle_interview():
         # 报告轮：起一个后台线程去评分。**在 return 之前"发起"，但不在这里等** ——
         # 线程已经跑起来，而响应马上返回，板子拿到的延迟与没有评分时完全一样。
         if next_action != "continue":
+            _start_review_stream(session_id)
             _start_scoring(session_id)
 
         _event("完成", "type=%s 总用时 %dms" % (
@@ -395,6 +496,77 @@ def handle_interview():
     finally:
         if acquired:
             _end_request(session_id)
+
+
+@app.route('/api/interview', methods=['POST'])
+def handle_interview():
+    return _interview_core(request.get_json())
+
+
+def _pcm16_to_wav(pcm, rate=16000, channels=1, sampwidth=2):
+    """给裸 PCM 补 44 字节 WAV 头（流式上传在设备侧只发裸流，云端补头）。"""
+    import struct as _struct
+    data_len = len(pcm)
+    header = b"RIFF" + _struct.pack("<I", 36 + data_len) + b"WAVE"
+    header += b"fmt " + _struct.pack("<IHHIIHH", 16, 1, channels, rate,
+                                     rate * channels * sampwidth,
+                                     channels * sampwidth, 16)
+    header += b"data" + _struct.pack("<I", data_len)
+    return header + pcm
+
+
+@app.route('/api/interview/stream', methods=['POST'])
+def handle_interview_stream():
+    """流式上传入口（2026-11-10，边录边传）。
+
+    请求体 = 裸 PCM16（16k 单声道小端）字节流，chunked 或带 Content-Length；
+    元数据走请求头（角色/压力档含中文 → 设备侧 URL 编码）：
+      X-Session-Id / X-Role / X-Pressure / X-Target-Rounds / X-User-Token
+    云端补 WAV 头后走与 /api/interview 完全相同的处理链路。
+
+    ⚠️ 与本接口的「中断即丢弃」约定：设备中止传输时不会发 chunked 结束块，
+    werkzeug 会在读流时抛 ClientDisconnected —— 本轮不会被处理，也就不会
+    出现「半截音频被当成一次回答」。
+    """
+    import urllib.parse as _url
+
+    def _h(name, default=""):
+        return request.headers.get(name, default) or default
+
+    session_id = _h("X-Session-Id")
+    role = _url.unquote(_h("X-Role", "AI 应用开发"))
+    pressure = _url.unquote(_h("X-Pressure", "标准"))
+    target_rounds = _h("X-Target-Rounds", "10")
+    user_token = _h("X-User-Token")
+
+    t0 = time.time()
+    buf = bytearray()
+    while True:
+        chunk = request.stream.read(65536)
+        if not chunk:
+            break
+        buf.extend(chunk)
+    recv = max(time.time() - t0, 1e-3)
+    kb = len(buf) // 1024
+    _event("上传", "流式 %dKB / %.1fs / %dKB/s" % (kb, recv, int(kb / recv)),
+           session_id)
+
+    if not buf:
+        return jsonify({"type": "error", "text": "音频为空",
+                        "tts_audio": "", "session_id": session_id,
+                        "next_action": "continue"}), 400
+
+    data = {
+        "session_id": session_id,
+        "audio": base64.b64encode(_pcm16_to_wav(bytes(buf))).decode("ascii"),
+        "audio_format": "wav",
+        "role": role,
+        "pressure": pressure,
+        "target_rounds": target_rounds,
+        "state": "recording_finished",
+        "user_token": user_token,
+    }
+    return _interview_core(data)
 
 
 @app.route('/api/interview/text', methods=['POST'])
@@ -471,6 +643,9 @@ def handle_interview_text():
             if not answer:
                 return jsonify({"error": "文本不能为空"}), 400
             session.add_user_message(answer)
+            # 结构化面试笔记（2026-11-10）：与语音链路一致，后台异步整理
+            _start_note(session_id, max(1, session.question_count),
+                        _last_question(session), answer)
             # 文字演练只有文本：口头语/字数可算，时长/语速/停顿一律留空
             # （speech_metrics 对无音频的情况返回 None，前端显示"—"）。
             try:
@@ -497,6 +672,7 @@ def handle_interview_text():
 
         # 与设备链路一致：报告轮之后在后台评分（**同样只发起、不等待**）
         if next_action != "continue":
+            _start_review_stream(session_id)
             _start_scoring(session_id)
 
         _event("完成", "文字 type=%s 总用时 %dms" % (

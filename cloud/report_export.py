@@ -175,10 +175,32 @@ def to_markdown(snapshot) -> str:
             ))
         lines.append("")
 
+    # 面试笔记（2026-11-10）：后台逐轮整理的结构化记录（概括/要点/待追问）。
+    # 没有（老数据 / 还没整理完）时整节不出现 —— 与 score 的"可缺省"纪律一致。
+    notes = snapshot.get("notes") or []
+    entries = [e for e in notes if isinstance(e, dict)]
+    if entries:
+        lines += ["## 面试笔记", ""]
+        for entry in entries:
+            note = entry.get("note") if isinstance(entry.get("note"), dict) else {}
+            lines.append(f"**第 {entry.get('round', '?')} 题**："
+                         f"{entry.get('question') or '（开场）'}")
+            if note.get("summary"):
+                lines.append(f"- 概括：{note['summary']}")
+            for point in (note.get("points") or []):
+                if isinstance(point, dict) and point.get("text"):
+                    lines.append(f"  - 【{point.get('kind') or '要点'}】{point['text']}")
+            if note.get("doubt"):
+                lines.append(f"- 待追问：{note['doubt']}")
+            lines.append("")
+
     # 逐题复盘：每题「问题 / 他的原话 / 更好的答法」。
     # 这是这份报告里**最像"练习工具"**的一节 —— 总分和维度只说明现状，
     # 这一节才告诉他下一遍该怎么答。
     per_question = (score or {}).get("per_question") if isinstance(score, dict) else None
+    if not per_question:
+        # 评分还没回来时，用"逐题流式"已生成的条目（2026-11-10）
+        per_question = snapshot.get("per_question_live")
     if per_question:
         lines += ["## 逐题复盘", ""]
         for item in per_question:

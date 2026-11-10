@@ -27,6 +27,14 @@ class InterviewSession:
         # 副语言指标（2026-10-27）：每轮回答一条，见 speech_metrics.py。
         # 只给展示/导出用，**绝不进 LLM 的 messages**（同 score 的纪律）。
         self.expression = []
+        # 结构化面试笔记（2026-11-10）：每轮回答后由**后台线程**异步整理
+        # （见 app.py 的 _start_note）。同样只给展示/导出用，不进 messages。
+        # 条目格式：{"round", "question", "answer", "note": {...}, "created_at"}
+        self.notes = []
+        # 逐题复盘·流式版（2026-11-10）：报告轮之后由后台线程**逐题**生成，
+        # 每完成一题就落库 —— 网页轮询时一条条出现（不等评分整体算完）。
+        # 条目格式：{"index", "question", "evidence", "suggestion"}
+        self.per_question_live = []
         # 账号归属（2026-10-27）：扫码绑定的用户 id；未绑定为空串。
         # 建会话时钉住 —— 一场面试中途换账号不会把记录劈成两半。
         self.user_id = ""
@@ -44,6 +52,24 @@ class InterviewSession:
         entry = {"round": len(self.expression) + 1}
         entry.update(metrics)
         self.expression.append(entry)
+        self.updated_at = time.time()
+    def add_note(self, entry: dict):
+        """记一条结构化笔记（后台线程调用；格式见 __init__ 的 notes 注释）。"""
+        if not entry:
+            return
+        self.notes.append(entry)
+        self.updated_at = time.time()
+    def add_live_review(self, entry: dict):
+        """记一条逐题复盘（后台线程调用；同题号重复到达时以最新为准）。"""
+        if not entry:
+            return
+        index = entry.get("index")
+        for i, old in enumerate(self.per_question_live):
+            if old.get("index") == index:
+                self.per_question_live[i] = entry
+                self.updated_at = time.time()
+                return
+        self.per_question_live.append(entry)
         self.updated_at = time.time()
     def get_history(self):
         return self.history
@@ -124,6 +150,14 @@ class SessionManager:
             "score": session.score,
             # 副语言指标：老会话/落盘老数据没有这个字段 → 消费方按空列表处理。
             "expression": list(session.expression),
+            # 结构化面试笔记（2026-11-10）：后台线程逐轮追加，按轮次排序导出。
+            # 老数据同样可能没有 → 消费方按空列表处理。
+            "notes": sorted(list(session.notes),
+                            key=lambda n: n.get("round", 0)),
+            # 逐题复盘·流式版（2026-11-10）：题号排序；评分里的 per_question
+            # 到达后是权威版本，网页/导出优先用它，这个只做"生成中"的渐进展示。
+            "per_question_live": sorted(list(session.per_question_live),
+                                        key=lambda n: n.get("index", 0)),
             "user_id": session.user_id,
             "created_at": session.created_at,
             "updated_at": session.updated_at,

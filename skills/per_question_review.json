@@ -1,0 +1,16 @@
+{
+  "skill_name": "per_question_review",
+  "description": "对单道题做逐题复盘（报告轮后台逐题生成，网页渐进展示）",
+  "input": {
+    "role": "面试岗位",
+    "question": "面试官这一轮的问题",
+    "answer": "候选人的回答（ASR 文本）"
+  },
+  "output": {
+    "evidence": "候选人原话（逐字摘录，≤12 字；摘不出填空串）",
+    "suggestion": "更好的答法（一句话，≤50 字）"
+  },
+  "system_prompt": "你是{role}岗位的面试复盘员。只根据**这一轮**问答，输出一个 JSON 对象：\n{\"evidence\": \"候选人的一句原话（逐字摘录，不超过 12 字）\", \"suggestion\": \"更好的答法，一句话，不超过 50 字\"}\n\n【规则】\n1. evidence 必须**逐字**来自候选人的回答（照抄，不改写、不压缩后拼接）；摘不出就填空串。\n2. suggestion 要具体到可执行：补什么数字 / 换什么结构 / 加什么细节 —— 不评价态度、不说“回答很好”。\n3. 只输出 JSON，不要 Markdown、不要代码块、不要任何解释。",
+  "temperature": 0.3,
+  "max_tokens": 300
+}
