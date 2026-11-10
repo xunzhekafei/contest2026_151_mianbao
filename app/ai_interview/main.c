@@ -724,6 +724,12 @@ static void run_one_round(void)
         wav = NULL;
         cloud_response_free(&resp);
         app_post_event(EVENT_UPLOAD_FAIL);   /* -> ERROR；屏幕同时提示"按 K2 重试" */
+
+        /* C1（2026-11-10）：别让板子只是沉默 + 三短闪 —— 用**本地缓存**说一句
+         * 人话（断网也能出声）。用户按 K2 可打断这句提示。 */
+        if (!g_abort) {
+            (void)tts_cache_play(TTS_CACHE_NET_ERROR, &g_abort);
+        }
         return;
     }
 
@@ -853,6 +859,18 @@ static void *pipeline_worker(void *arg)
                 (void)tts_cache_store(TTS_CACHE_NO_HEAR, wav, len);
                 free(wav);
                 printf("[TTS] 「没听清」提示音已缓存\n");
+            }
+        }
+        /* 上传失败的语音提示（2026-11-10，C1）：断网时也要能说出来 */
+        if (!tts_cache_has(TTS_CACHE_NET_ERROR)) {
+            uint8_t *wav = NULL;
+            size_t len = 0;
+
+            if (cloud_tts_text("网络不太稳定，回答没传出去，按 K2 重发。",
+                               &wav, &len) == CLOUD_OK) {
+                (void)tts_cache_store(TTS_CACHE_NET_ERROR, wav, len);
+                free(wav);
+                printf("[TTS] 「网络异常」提示音已缓存\n");
             }
         }
     }
