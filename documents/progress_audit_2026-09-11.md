@@ -4442,3 +4442,39 @@ MD 导出含笔记节、PDF 200 且 `%PDF` 头正常。
    缓冲超过 `soft_max`（默认 36 字）就在最近的逗号/顿号处切一段；取"最早合法切点"。
    实测同一轮从 1 段变为 2 段（35 字 @11.1s / 13 字 @13.7s）。
    新增测试：长单句应在逗号处切成多段；全量 **440 项通过**。
+
+### 11.90 流式分句 TTS（Phase 2：设备边收边播，2026-11-11，镜像 d76e2597，待板测）
+
+**云端**
+* 把 live 管线抽成 `_live_response(session_id, session, state, answer=None,
+  audio_b64=None)`：网页文字入口与设备音频入口共用。
+* `/api/interview/stream` 增加 `X-Live: 1` 模式：chunked PCM 收完 → ASR →
+  LLM 流式 + 每句 TTS → SSE（meta / sentence / done）；空识别短路同
+  `/api/interview`（固定一句、不进历史）。
+
+**固件（`network_client.c` + `main.c`）**
+* `cloud_stream_begin(req, live, abort)`：live=1 时加 `X-Live: 1` 头，响应改用
+  **SSE 解析回调**：行缓冲 + 帧缓冲（帧 data 含音频 base64，动态增长到 8MB 上限）；
+  `sentence` 帧里的音频当场 base64 解码并 `audio_play_wav` 播放（K2 可打断）；
+  `done` 帧记下最终文本 / session / next_action。
+* `cloud_stream_finish` 的 live 分支：`done` → `CLOUD_OK`（`tts_wav` 留空，
+  main 跳过二次播放）；HTTP 非 2xx → 旧语义；**未收到任何数据** → 可安全回退
+  整段上传；**收到数据但没有 done** → `CLOUD_ERR_JSON`，main 标记
+  `skip_upload`（服务端很可能已处理，回退重传会让同一回答进两次历史）。
+* main：`cloud_stream_begin(&sreq, 1, &g_abort)`；播放前判空
+  （`resp.tts_wav == NULL` → 已分段播完，跳过）。
+
+**验证**
+* 编译：`CC: main.c / network_client.c` → `LD: nuttx` → `pack finish`；
+  镜像 `d76e2597…`，可搜到「流式回答中断 / 已分段播放 / X-Live」。
+* 端到端（模拟设备节奏）：用云端 TTS 合成 12.7 秒回答 → 按 100ms/块 chunked 发送
+  + `X-Live: 1` → **14.2s 出第一句（25 字，260KB 音频）、18.3s 第二句 + done**；
+  旧链路要等 ASR+LLM+整段 TTS ≈ 23~25s 才出声。
+* 测试会话已删除（日志确认是本次模拟产生的）。
+
+**待板测**：烧录 `d76e2597` → 打一轮，面试官应**分段出声**（第一句明显更早），
+串口出现「边录边传已开启（…回答分段播放）」；断网/慢网时应看到「回退整段上传」
+或「流式回答中断（服务端已处理，不回退重传）」。
+
+**边界**：报告轮（generate_feedback）仍不流式——报告音频仍是一次整段合成；
+后续若需要，可对报告文本也走分句（但报告有 report_guard 整段校验，需单独设计）。
