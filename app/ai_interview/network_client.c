@@ -26,6 +26,7 @@
 
 #include "network_client.h"
 #include "app_config.h"
+#include "audio_io.h"
 
 /* 单次响应上限：24kHz 单声道 WAV 的 base64 约 10 秒 640KB，留足余量 */
 #define CLOUD_RESP_MAX  (8u * 1024u * 1024u)
@@ -803,6 +804,22 @@ struct cloud_stream {
     int aborted;
     int overflow;
 
+    /* ---- SSE 边收边播（Phase 2，2026-11-11）---- */
+    int live;                   /* 1 = 响应是 text/event-stream */
+    volatile int *abort;        /* 播放时可被 K2 打断 */
+    char *line;                 /* 当前 SSE 行（动态增长） */
+    size_t line_len;
+    size_t line_cap;
+    char *frame;                /* 当前帧的 data 拼接（音频 base64 可达数百 KB） */
+    size_t frame_len;
+    size_t frame_cap;
+    char ev[16];                /* 当前帧事件名 */
+    int got_data;               /* 收到过任何 SSE 字节 */
+    int got_done;               /* 收到 done 帧 */
+    char done_text[320];
+    char done_session[64];
+    char done_action[16];
+
     struct mem_chunk chunk;     /* 响应体（复用整段上传那套） */
     long status;
     CURLcode res;
@@ -869,6 +886,147 @@ static size_t stream_read_cb(char *buf, size_t size, size_t nitems, void *ud)
     return got;
 }
 
+/* ---- SSE 帧处理（边收边播，2026-11-11）----
+ * 空行 = 一帧结束。sentence 帧里的音频解码后**当场播放**（阻塞本线程，
+ * 服务端会缓冲后续帧 —— 这正是"边说边播"的节拍）；done 帧记下最终文本。 */
+static void stream_frame_dispatch(struct cloud_stream *s)
+{
+    if (s->ev[0] != '\0' && s->frame_len > 0) {
+        if (strcmp(s->ev, "sentence") == 0) {
+            cJSON *root = cJSON_Parse(s->frame);
+            if (root != NULL) {
+                cJSON *audio = cJSON_GetObjectItem(root, "audio");
+                if (cJSON_IsString(audio) && audio->valuestring != NULL &&
+                    audio->valuestring[0] != '\0') {
+                    size_t b64_len = strlen(audio->valuestring);
+                    size_t wav_len = 0;
+                    int rc = mbedtls_base64_decode(NULL, 0, &wav_len,
+                                                   (const unsigned char *)audio->valuestring,
+                                                   b64_len);
+                    if (rc == 0 || rc == MBEDTLS_ERR_BASE64_BUFFER_TOO_SMALL) {
+                        uint8_t *wav = malloc(wav_len);
+                        if (wav != NULL) {
+                            if (mbedtls_base64_decode(wav, wav_len, &wav_len,
+                                                      (const unsigned char *)audio->valuestring,
+                                                      b64_len) == 0) {
+                                (void)audio_play_wav(wav, wav_len, s->abort);
+                            }
+                            free(wav);
+                        }
+                    }
+                }
+                cJSON_Delete(root);
+            }
+        } else if (strcmp(s->ev, "done") == 0) {
+            cJSON *root = cJSON_Parse(s->frame);
+            if (root != NULL) {
+                cJSON *item = cJSON_GetObjectItem(root, "text");
+                if (cJSON_IsString(item) && item->valuestring != NULL) {
+                    strncpy(s->done_text, item->valuestring,
+                            sizeof(s->done_text) - 1);
+                }
+                item = cJSON_GetObjectItem(root, "session_id");
+                if (cJSON_IsString(item) && item->valuestring != NULL) {
+                    strncpy(s->done_session, item->valuestring,
+                            sizeof(s->done_session) - 1);
+                }
+                item = cJSON_GetObjectItem(root, "next_action");
+                if (cJSON_IsString(item) && item->valuestring != NULL) {
+                    strncpy(s->done_action, item->valuestring,
+                            sizeof(s->done_action) - 1);
+                }
+                s->got_done = 1;
+                cJSON_Delete(root);
+            }
+        } else if (strcmp(s->ev, "error") == 0) {
+            printf("[Cloud] 流式端点返回 error 帧\n");
+        }
+    }
+    s->ev[0] = '\0';
+    s->frame_len = 0;
+}
+
+static size_t stream_write_live_cb(void *contents, size_t size, size_t nmemb,
+                                   void *ud)
+{
+    struct cloud_stream *s = (struct cloud_stream *)ud;
+    const char *p = (const char *)contents;
+    size_t total = size * nmemb;
+    size_t i;
+
+    s->got_data = 1;
+    for (i = 0; i < total; i++) {
+        char c = p[i];
+
+        if (c != '\n') {
+            if (s->line_len + 1 >= s->line_cap) {
+                size_t cap = s->line_cap ? s->line_cap * 2 : 256;
+                char *grown = realloc(s->line, cap);
+
+                if (grown == NULL) {
+                    return 0;
+                }
+                s->line = grown;
+                s->line_cap = cap;
+            }
+            s->line[s->line_len++] = c;
+            s->line[s->line_len] = '\0';
+            continue;
+        }
+
+        if (s->line_len > 0 && s->line[s->line_len - 1] == '\r') {
+            s->line_len--;
+            s->line[s->line_len] = '\0';
+        }
+
+        if (s->line_len == 0) {
+            stream_frame_dispatch(s);          /* 空行 = 帧结束 */
+        } else if (strncmp(s->line, "event:", 6) == 0) {
+            const char *name = s->line + 6;
+
+            while (*name == ' ') {
+                name++;
+            }
+            strncpy(s->ev, name, sizeof(s->ev) - 1);
+            s->ev[sizeof(s->ev) - 1] = '\0';
+        } else if (strncmp(s->line, "data:", 5) == 0) {
+            const char *data = s->line + 5;
+            size_t dlen;
+
+            while (*data == ' ') {
+                data++;
+            }
+            dlen = strlen(data);
+            if (s->frame_len + dlen + 1 > s->frame_cap) {
+                size_t cap = s->frame_cap ? s->frame_cap : 1024;
+                char *grown;
+
+                while (cap < s->frame_len + dlen + 1) {
+                    cap *= 2;
+                }
+                if (cap > CLOUD_RESP_MAX) {
+                    return 0;
+                }
+                grown = realloc(s->frame, cap);
+                if (grown == NULL) {
+                    return 0;
+                }
+                s->frame = grown;
+                s->frame_cap = cap;
+            }
+            memcpy(s->frame + s->frame_len, data, dlen);
+            s->frame_len += dlen;
+            s->frame[s->frame_len] = '\0';
+        }
+
+        s->line_len = 0;
+        if (s->line != NULL) {
+            s->line[0] = '\0';
+        }
+    }
+    return total;
+}
+
 static void *stream_thread(void *arg)
 {
     struct cloud_stream *s = (struct cloud_stream *)arg;
@@ -884,6 +1042,9 @@ static void *stream_thread(void *arg)
 
     headers = curl_slist_append(headers, "Content-Type: application/octet-stream");
     headers = curl_slist_append(headers, "Expect:");
+    if (s->live) {
+        headers = curl_slist_append(headers, "X-Live: 1");
+    }
     snprintf(h, sizeof(h), "X-Session-Id: %s", s->session_id);
     headers = curl_slist_append(headers, h);
     snprintf(h, sizeof(h), "X-Role: %s", s->role_enc);
@@ -903,8 +1064,13 @@ static void *stream_thread(void *arg)
     curl_easy_setopt(curl, CURLOPT_READFUNCTION, stream_read_cb);
     curl_easy_setopt(curl, CURLOPT_READDATA, s);
     curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, -1L);  /* 未知长度 → chunked */
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_memory_cb);
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&s->chunk);
+    if (s->live) {
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, stream_write_live_cb);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)s);
+    } else {
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_memory_cb);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&s->chunk);
+    }
     curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 10L);
     curl_easy_setopt(curl, CURLOPT_TIMEOUT, 180L);       /* 录音 30s + 云端处理 */
     curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1L);
@@ -920,7 +1086,8 @@ static void *stream_thread(void *arg)
     return NULL;
 }
 
-cloud_stream_t *cloud_stream_begin(const cloud_request_t *req)
+cloud_stream_t *cloud_stream_begin(const cloud_request_t *req, int live,
+                                   volatile int *abort)
 {
     struct cloud_stream *s;
     pthread_attr_t attr;
@@ -946,6 +1113,8 @@ cloud_stream_t *cloud_stream_begin(const cloud_request_t *req)
     }
     s->ring_cap = STREAM_RING_BYTES;
     s->chunk.size = 0;
+    s->live = live ? 1 : 0;
+    s->abort = abort;
     pthread_mutex_init(&s->lock, NULL);
     pthread_cond_init(&s->cond, NULL);
 
@@ -1020,6 +1189,8 @@ static void stream_destroy(cloud_stream_t *s)
     pthread_mutex_destroy(&s->lock);
     pthread_cond_destroy(&s->cond);
     free(s->ring);
+    free(s->line);
+    free(s->frame);
     free(s->chunk.memory);
     free(s);
 }
@@ -1041,6 +1212,43 @@ int cloud_stream_finish(cloud_stream_t *s, cloud_response_t *resp)
 
     if (s->thread_ok) {
         pthread_join(s->tid, NULL);
+    }
+
+    if (s->live) {
+        if (s->overflow) {
+            ret = CLOUD_ERR_HTTP;       /* 上传就没走通：调用方回退整段上传 */
+        } else if (s->got_done) {
+            char *text = s->done_text[0] ? malloc(strlen(s->done_text) + 1) : NULL;
+
+            if (text != NULL) {
+                strcpy(text, s->done_text);
+            }
+            resp->text = text;
+            strncpy(resp->session_id, s->done_session,
+                    sizeof(resp->session_id) - 1);
+            strncpy(resp->next_action, s->done_action,
+                    sizeof(resp->next_action) - 1);
+            resp->http_status = s->status;
+            /* tts_wav 留空：音频已在回调里边收边播，main 不再二次播放 */
+            ret = CLOUD_OK;
+        } else if (s->status < 200 || s->status >= 300) {
+            printf("[Cloud] 流式端点返回 HTTP %ld\n", s->status);
+            resp->http_status = s->status;
+            ret = CLOUD_ERR_HTTP;
+        } else if (s->res != CURLE_OK && !s->got_data) {
+            printf("[Cloud] 边录边传失败: %s（未收到数据，回退整段上传）\n",
+                   curl_easy_strerror(s->res));
+            resp->http_status = 0;
+            ret = CLOUD_ERR_HTTP;
+        } else {
+            /* 收到过数据但没有 done：服务端很可能已处理过本轮 ——
+             * 用 ERR_JSON 告诉 main"不要回退重传"，避免同一轮计两次。 */
+            printf("[Cloud] 流式回答中断（收到 %u 字节，无 done）\n",
+                   (unsigned)s->frame_len);
+            ret = CLOUD_ERR_JSON;
+        }
+        stream_destroy(s);
+        return ret;
     }
 
     if (s->overflow) {

@@ -526,6 +526,7 @@ static void run_one_round(void)
     int is_retry = 0;
     cloud_stream_t *st = NULL;
     int stream_ok = 0;
+    int skip_upload = 0;
 
     memset(&resp, 0, sizeof(resp));
     g_drop_round = 0;   /* 新的一轮开始，上一次"舍弃本场"的指令到此为止 */
@@ -596,10 +597,10 @@ static void run_one_round(void)
             sreq.pressure = current_pressure();
             sreq.state = "recording_finished";
 
-            st = cloud_stream_begin(&sreq);
+            st = cloud_stream_begin(&sreq, 1, &g_abort);   /* live=1：边收边播 */
             if (st != NULL) {
                 audio_set_chunk_sink(app_stream_sink, st);
-                printf("[Main] 边录边传已开启（录音同时上传）\n");
+                printf("[Main] 边录边传已开启（录音同时上传、回答分段播放）\n");
             }
         }
 
@@ -639,8 +640,15 @@ static void run_one_round(void)
                 st = NULL;
                 if (srt == CLOUD_OK) {
                     stream_ok = 1;
-                    printf("[Main] 边录边传完成（收尾等待 %ld 秒，上传已与录音并行）\n",
+                    printf("[Main] 边录边传完成（收尾等待 %ld 秒，回答已分段播放）\n",
                            (long)(time(NULL) - t_wait));
+                } else if (srt == CLOUD_ERR_JSON) {
+                    /* 服务端已经处理过这一轮（或至少开始处理）——不能回退整段上传，
+                     * 否则同一次回答会进两次历史。按本轮失败处理即可。 */
+                    printf("[Main] 流式回答中断（服务端已处理，不回退重传）\n");
+                    skip_upload = 1;
+                    rc = CLOUD_ERR_JSON;
+                    memset(&resp, 0, sizeof(resp));
                 } else {
                     printf("[Main] 边录边传未成功（%s），回退整段上传\n",
                            cloud_strerror(srt));
@@ -658,7 +666,8 @@ static void run_one_round(void)
      * "取消当前一轮"，实际要再按一次 K2 才能回到待机（台账 §11.26 实测记过）。
      */
     rc = stream_ok ? CLOUD_OK : CLOUD_ERR_HTTP;
-    for (attempt = 1; !stream_ok && attempt <= UPLOAD_MAX_RETRY; attempt++) {
+    for (attempt = 1; !stream_ok && !skip_upload &&
+                       attempt <= UPLOAD_MAX_RETRY; attempt++) {
         if (g_abort) {
             break;
         }
@@ -764,7 +773,12 @@ static void run_one_round(void)
     app_post_event(EVENT_UPLOAD_SUCCESS);    /* UPLOADING -> PLAYING */
 
     /* ---- 4. 播放 ---- */
-    (void)audio_play_wav(resp.tts_wav, resp.tts_wav_len, &g_abort);
+    if (resp.tts_wav != NULL) {
+        (void)audio_play_wav(resp.tts_wav, resp.tts_wav_len, &g_abort);
+    } else {
+        /* 流式链路：音频已在接收回调里分段播完（见 network_client 的 SSE 回调） */
+        printf("[Main] 本轮音频已分段播放，跳过二次播放\n");
+    }
 
     /* 面试结束则清空会话，下次 K1 开新面试 */
     if (strcmp(resp.next_action, "continue") != 0) {

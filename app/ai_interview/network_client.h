@@ -118,7 +118,10 @@ int cloud_send_audio(const cloud_request_t *req, cloud_response_t *resp);
  * ========================================================================== */
 typedef struct cloud_stream cloud_stream_t;
 
-cloud_stream_t *cloud_stream_begin(const cloud_request_t *req);
+/* live=1：响应按 SSE 边收边播（每句音频到就播，文本在 done 帧里返回）；
+ * abort：播放可被 K2 打断（可传 NULL）。 */
+cloud_stream_t *cloud_stream_begin(const cloud_request_t *req, int live,
+                                   volatile int *abort);
 int  cloud_stream_feed(cloud_stream_t *s, const uint8_t *pcm, size_t len);
 int  cloud_stream_finish(cloud_stream_t *s, cloud_response_t *resp);
 void cloud_stream_abort(cloud_stream_t *s);

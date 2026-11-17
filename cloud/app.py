@@ -559,6 +559,33 @@ def handle_interview_stream():
                         "tts_audio": "", "session_id": session_id,
                         "next_action": "continue"}), 400
 
+    # ---- 设备流式模式（Phase 2，2026-11-11）：X-Live: 1 → SSE 边收边播 ----
+    if _h("X-Live") == "1":
+        if not session_id:
+            session_id = str(uuid.uuid4())
+        is_new = session_manager.get_session(session_id) is None
+        session = session_manager.get_or_create_session(session_id, role, pressure,
+                                                        interview_stage.normalize_target(
+                                                            target_rounds))
+        if is_new:
+            token = user_token.strip()
+            user = user_store.user_for_token(token) if token else None
+            session.user_id = user.get("id", "") if user else ""
+        if session.is_finished:
+            last = next((m.get("content", "") for m in reversed(session.get_history())
+                         if m.get("role") == "assistant"), "")
+            body = (_sse_pack("meta", {"session_id": session_id, "type": "report"}) +
+                    _sse_pack("done", {"type": "report", "next_action": "finish",
+                                        "session_id": session_id, "text": last}))
+            return Response(body, mimetype="text/event-stream")
+        if not _begin_request(session_id):
+            return jsonify({"error": "上一条还在处理，请稍候再发",
+                            "session_id": session_id,
+                            "next_action": "continue"}), 409
+        audio_b64 = base64.b64encode(_pcm16_to_wav(bytes(buf))).decode("ascii")
+        return _live_response(session_id, session, "recording_finished",
+                              audio_b64=audio_b64, audio_format="wav")
+
     data = {
         "session_id": session_id,
         "audio": base64.b64encode(_pcm16_to_wav(bytes(buf))).decode("ascii"),
@@ -750,6 +777,18 @@ def handle_interview_live():
         return jsonify({"error": "上一条还在处理，请稍候再发",
                         "session_id": session_id, "next_action": "continue"}), 409
 
+    return _live_response(session_id, session, state, answer=answer)
+
+
+def _live_response(session_id, session, state, answer=None,
+                   audio_b64=None, audio_format="wav"):
+    """SSE 流式回答的**共享主体**（2026-11-10/11，Phase 1+2）。
+
+    调用方负责：建会话 / 已结束判定 / 拿到并发闸（_begin_request）。
+    这里负责：LLM 流式（有音频先 ASR）→ 按句过闸+TTS → 队列 → SSE。
+    中止/结束都会在 worker 的 finally 里释放并发闸。
+    """
+    role = session.role
     q = queue.Queue()
 
     def emit(kind, payload):
@@ -776,13 +815,37 @@ def handle_interview_live():
 
     def work():
         try:
-            if state != "start":
-                if not answer:
+            user_text = (answer or "").strip()
+            if audio_b64:
+                # 设备链路：先 ASR，再做流式；空识别短路与 /api/interview 同口径
+                try:
+                    user_text = asr_audio_to_text(audio_b64, audio_format, "zh") or ""
+                except Exception as asr_error:      # noqa: BLE001
+                    logger.warning(f"[流式] ASR 失败：{asr_error}")
+                    user_text = ""
+                if user_text.strip():
+                    session.add_user_message(user_text)
+                    try:
+                        session.add_expression(speech_metrics(
+                            user_text, base64.b64decode(audio_b64)))
+                    except Exception as metrics_error:  # noqa: BLE001
+                        logger.warning(f"[流式] 表达指标失败（不影响）：{metrics_error}")
+                    _start_note(session_id, max(1, session.question_count),
+                                _last_question(session), user_text)
+                else:
+                    reply = "抱歉，我没听清，请再说一次。"
+                    stream_sentence(reply)      # 照常出声，但不进历史
+                    emit("done", {"type": "question", "next_action": "continue",
+                                  "session_id": session_id, "text": reply})
+                    return
+            elif state != "start":
+                if not user_text:
                     emit("error", {"error": "文本不能为空"})
                     return
-                session.add_user_message(answer)
+                session.add_user_message(user_text)
                 _start_note(session_id, max(1, session.question_count),
-                            _last_question(session), answer)
+                            _last_question(session), user_text)
+
             result = llm_interview(role, session.get_history(), state,
                                    pressure=session.pressure,
                                    target_rounds=session.target_rounds,
