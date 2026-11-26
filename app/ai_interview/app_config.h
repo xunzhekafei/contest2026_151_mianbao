@@ -192,16 +192,12 @@ static inline const char *app_role(void)
     return CONFIG_APP_AI_INTERVIEW_ROLE;
 }
 
+
 /* ---- 内置岗位表（K3 循环切换用）----
- *
- * ⚠️ 六个名字必须与云端题库的 role **一字不差**（cloud/question_bank.py 的
- * ROLE_ALIASES），并与网页 /text 的岗位下拉一致 —— 对不上时云端**不报错**，
- * 只会静默退化成"没有参考题的自由提问"。顺序也跟题库/网页一致，K3 按序循环。
- *
- * 为什么不用 `set ROLE` 换岗位：NSH 的 set 按空白分词，"AI 应用开发" 传到进程
- * 里只剩 "AI"（Kconfig 里记着这个坑）。K3 走本地表，不受分词影响。
+ * 九个名字必须与云端题库的 role 一字不差。
+ * 顺序与网页岗位列表保持一致。
  */
-#define APP_ROLE_COUNT 6
+#define APP_ROLE_COUNT 9
 
 static inline const char *app_role_at(int index)
 {
@@ -212,13 +208,18 @@ static inline const char *app_role_at(int index)
         "机器学习工程师",
         "数据科学家",
         "数据分析师",
+        "前端工程师",
+        "后端开发工程师",
+        "算法工程师",
     };
 
     if (index < 0 || index >= APP_ROLE_COUNT) {
         return NULL;
     }
+
     return roles[index];
 }
+
 
 /* ---- 压力档位表（K2 在"待机且无会话"时循环切换）----
  *

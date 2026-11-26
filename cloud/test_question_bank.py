@@ -26,12 +26,25 @@ SOURCE = SOURCE_PATH.read_text(encoding="utf-8")
 # 允许 import 的顶层模块 —— 这份名单就是"离线可测"的保证
 ALLOWED_IMPORTS = {"json", "logging", "pathlib", "re", "threading", "unicodedata"}
 
-# 三个中文岗位的题数（与 question_bank/README.md 的出处表一致）
-ZH_ROLE_COUNTS = {"AI 应用开发": 748, "智能体开发": 315, "大模型算法工程师": 120}
-EN_ROLE_COUNTS = {"机器学习工程师": 576, "数据科学家": 495, "数据分析师": 576}
+# 九个岗位的题数（与 question_bank/README.md 的出处表一致）
+ZH_ROLE_COUNTS = {
+    "AI 应用开发": 748,
+    "智能体开发": 315,
+    "大模型算法工程师": 120,
+    "前端工程师": 6160,
+    "后端开发工程师": 492,
+    "算法工程师": 133,
+}
+
+EN_ROLE_COUNTS = {
+    "机器学习工程师": 576,
+    "数据科学家": 495,
+    "数据分析师": 576,
+}
+
+ALL_ROLES = list(ZH_ROLE_COUNTS) + list(EN_ROLE_COUNTS)
 
 # 演示岗位 + 每个题库岗位都要过一遍，防止某个岗位的数据把块撑爆
-ALL_ROLES = list(ZH_ROLE_COUNTS) + list(EN_ROLE_COUNTS)
 
 # 像"真人回答"的检索词（真实链路里这是候选人的 ASR 结果）
 SAMPLE_ANSWER = "我负责检索这块，用向量数据库做知识库召回，重排模型用的是 bge-reranker，上线后缓存把延迟降到了两百毫秒。"
@@ -45,7 +58,11 @@ def setUpModule():
 class TestBankLoading(unittest.TestCase):
     def test_record_count_and_roles(self):
         bank = qb.load_bank()
-        self.assertEqual(len(bank), 2830, "题库总数应为 1183(zh) + 1647(en)")
+        self.assertEqual(
+            len(bank),
+            9615,
+            "题库总数应为 2830(原有) + 6785(新增)",
+        )
         counts = {}
         for record in bank:
             role = record["role"]
@@ -68,7 +85,7 @@ class TestBankLoading(unittest.TestCase):
                     json.dumps([{"question": f"{name} 的题", "keywords": [], "role": "AI 应用开发",
                                  "category": "x", "level": "", "stage": ""}], ensure_ascii=False),
                     encoding="utf-8")
-            (root / "fe_questions.json").write_text(
+            (root / "unexpected_questions.json").write_text(
                 json.dumps(stray, ensure_ascii=False), encoding="utf-8")
             saved_dir, saved_cache = qb.BANK_DIR, qb._BANK_CACHE
             try:
@@ -76,8 +93,11 @@ class TestBankLoading(unittest.TestCase):
                 qb._BANK_CACHE = None
                 loaded = qb.load_bank()
                 self.assertEqual(len(loaded), len(qb.BANK_FILES),
-                                 "只有白名单里的文件该被加载，fe_questions.json 必须被忽略")
-                self.assertNotIn("前端", {r["question"] for r in loaded})
+                                 "只有 BANK_FILES 白名单里的文件应该被加载")
+                self.assertNotIn(
+                    "什么是前端盒模型",
+                  {r["question"] for r in loaded}
+                )
             finally:
                 qb.BANK_DIR, qb._BANK_CACHE = saved_dir, saved_cache
 
@@ -159,7 +179,7 @@ class TestCacheIntegrity(unittest.TestCase):
             self.assertEqual(errors, [])
             self.assertEqual(len(results), 16)
             self.assertEqual(len({id(r) for r in results}), 1, "并发加载产生了多个缓存对象")
-            self.assertEqual(len(results[0]), 2830)
+            self.assertEqual(len(results[0]), 9615)
         finally:
             qb._BANK_CACHE = saved_cache
 
@@ -171,6 +191,17 @@ class TestRoleMapping(unittest.TestCase):
         for alias, target in qb.ROLE_ALIASES.items():
             self.assertIn(target, roles, f"别名 {alias} 指向了不存在的岗位 {target}")
             self.assertEqual(qb.normalize_role(alias), target)
+
+    def test_new_role_aliases(self):
+        """新增三个岗位简称必须映射到对应的真实岗位。"""
+        cases = {
+            "前端": "前端工程师",
+            "后端": "后端开发工程师",
+            "算法": "算法工程师",
+        }
+        for alias, expected in cases.items():
+            with self.subTest(alias=alias):
+                self.assertEqual(qb.normalize_role(alias), expected)
 
     def test_normalize_role(self):
         cases = {
@@ -184,7 +215,12 @@ class TestRoleMapping(unittest.TestCase):
             "AI Agent开发": "智能体开发",
             "智能体开发": "智能体开发",
             "大模型算法工程师": "大模型算法工程师",
-            "算法工程师": "大模型算法工程师",
+            "算法": "算法工程师",
+            "算法工程师": "算法工程师",
+            "前端": "前端工程师",
+            "前端工程师": "前端工程师",
+            "后端": "后端开发工程师",
+            "后端开发工程师": "后端开发工程师",
             "ai/ml engineer": "机器学习工程师",
             "AI/ML Engineer": "机器学习工程师",     # 旧英文名仍可映射
             "机器学习工程师": "机器学习工程师",
@@ -196,12 +232,12 @@ class TestRoleMapping(unittest.TestCase):
         for raw, expected in cases.items():
             self.assertEqual(qb.normalize_role(raw), expected, f"normalize_role({raw!r})")
         # 题库里没有的岗位必须落空 —— 这是"退化为自由提问"的触发条件
-        for unmapped in ("产品经理", "前端工程师", "架构师", "", "   ", "Java 开发"):
+        for unmapped in ("产品经理", "架构师", "", "   ", "Java 开发"):
             self.assertEqual(qb.normalize_role(unmapped), "", f"{unmapped!r} 不该命中题库")
 
     def test_unmapped_role_yields_empty_block(self):
         """落空岗位 → 空块 → 提示词与没有题库时逐字节相同。"""
-        for role in ("产品经理", "前端工程师", ""):
+        for role in ("产品经理", "架构师", ""):
             self.assertEqual(qb.build_reference_block(role, SAMPLE_ANSWER, "", 3), "")
             self.assertEqual(qb.pick_candidates(role, SAMPLE_ANSWER, "", 3), [])
 
@@ -247,7 +283,7 @@ class TestDeterminismAndBudget(unittest.TestCase):
                              [r["question"] for r in picks[1]])
 
     def test_block_within_hard_limit_all_roles_all_rounds(self):
-        """3 岗位 × 10 轮块长恒 ≤ 400 —— 这是端侧 8MiB 缓冲的第一道保险。"""
+        """9 个岗位 × 10 轮块长恒 ≤ 400 —— 这是端侧 8MiB 缓冲的第一道保险。"""
         worst = ("", 0)
         for role in ALL_ROLES:
             for round_index in range(10):
@@ -332,7 +368,7 @@ class TestRoleFocusCoverage(unittest.TestCase):
     def test_每个题库岗位都有追问角度(self):
         focus = self._focus()
         # 2026-10-31 岗位名改中文后，旧英文键保留给历史会话/排练用；
-        # 新键必须与题库的六个中文岗位一一对应（多一个少一个都算漂移）。
+        # 新键必须与题库的九个中文岗位一一对应（多一个少一个都算漂移）。
         legacy = {"AI Agent 开发", "AI/ML Engineer", "Data Scientist", "Data Analyst"}
         self.assertEqual(set(focus) - legacy, set(ALL_ROLES),
                          "role_focus 的新键必须与题库岗位一一对应（多了少了都是漂移）")

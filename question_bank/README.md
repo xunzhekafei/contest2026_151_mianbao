@@ -1,9 +1,10 @@
 # 面试题库（AI 侧）
 
-本目录是「AI 模拟面试官」云端选题用的**离线题库**，vendored 自同一作者的开源项目
-[`xunzhekafei/myagent`](https://github.com/xunzhekafei/myagent)（MIT），配合
-[`../skills/README.md`](../skills/README.md) §5.1 那条「面试问题库｜每岗位 50+ 题」的
-数据需求 —— 在本仓库里就是这份数据。
+本目录是「AI 模拟面试官」云端选题用的**离线题库**。当前共收录 **9615 道题、9 个岗位**：
+原有中文与英文 AI 岗题库 2830 道，以及本次从同作者开源项目
+[`xunzhekafei/myagent`](https://github.com/xunzhekafei/myagent)（MIT）迁移的 3 份题库 6785 道。
+题库用于满足 [`../skills/README.md`](../skills/README.md) §5.1「面试问题库｜每岗位 50+ 题」
+的数据需求。
 
 **题只含题干，不含答案**（三个来源都如此，是有意保留的：模拟面试给候选人看到答案就失去意义了）。
 云端只把题干当作**选题方向**注入提示词，不照读、不逐字念 —— 见
@@ -13,24 +14,49 @@
 
 ```
 question_bank/
-├── README.md          ← 本文件（出处表 = 英文题库的**唯一**出处凭证，见下）
-├── LICENSE            ← MIT（Copyright (c) 2026 xunzhekafei）
+├── README.md          ← 本文件（数据出处与许可说明）
+├── LICENSE            ← 本目录文档/导入脚本许可，见下
 ├── data/
-│   ├── zh_questions.json   1183 道中文 AI 岗题（341,777 B）
-│   └── ai_questions.json   1647 道英文 AI 岗题（1,440,845 B）
-└── import/            ← 导入脚本，可完整复现上面两份数据
+│   ├── zh_questions.json       1183 道中文 AI 岗题
+│   ├── ai_questions.json       1647 道英文 AI 岗题
+│   ├── fe_questions.json      6160 道前端工程师题（1,750,341 B）
+│   ├── backend_questions.json  492 道后端开发工程师题（166,020 B）
+│   └── algorithm_questions.json 133 道算法工程师题（41,065 B）
+└── import/            ← 原有导入脚本，复现原有两份数据
     ├── import_dataset.py      从 HuggingFace 数据集导入英文题
-    └── import_github_bank.py  从 8 个 GitHub 仓库导入中文（含前端）题
+    └── import_github_bank.py  从 8 个 GitHub 仓库导入中文题
 ```
 
 ## 数据文件与出处
 
-两份文件的 sha256（与上游 `myagent` **逐字节一致**，未做任何清洗、裁剪或改写）：
+数据文件的 SHA256：
 
 | 文件 | 条数 | 大小 | sha256 |
-| ---- | ---- | ---- | ------ |
-| `zh_questions.json` | 1183 | 341,777 B | `32aa229889f0fdef5a5f9639d5f41aa15b5a8c57c0972cedd8c1eeb4a20d5482` |
-| `ai_questions.json` | 1647 | 1,440,845 B | `2fbc293920ac019a19d6061ca450b3b53ff623d1d062712e64dc9d358920abb1` |
+| ---- | ----: | ----: | ------ |
+| `zh_questions.json` | 1183 | 341,777 B（原记录） | `32aa229889f0fdef5a5f9639d5f41aa15b5a8c57c0972cedd8c1eeb4a20d5482` |
+| `ai_questions.json` | 1647 | 1,440,845 B（原记录） | `2fbc293920ac019a19d6061ca450b3b53ff623d1d062712e64dc9d358920abb1` |
+| `fe_questions.json` | 6160 | 1,750,341 B | `04615f646395109c1dfab1d288db11c38e70ac31a3c264e3011e6ed858fde3ff` |
+| `backend_questions.json` | 492 | 166,020 B | `79cc8b5123ba7f665309936b76e7a385d5f71360059ea1ac88ebe3f05f734822` |
+| `algorithm_questions.json` | 133 | 41,065 B | `07070bd64e42c41535a2ee9e67b634c70088b68953ec4db63902aa2c45b47012` |
+
+> 注：前三个新增文件的 SHA256 按本次迁移后本地文件的 `Get-FileHash -Algorithm SHA256` 结果记录。
+> 原有两份文件的大小和 SHA256 沿用迁移前 README 记录；本次尚未重新核对这两份文件的本地字节数。
+
+### 本次迁移新增的 3 份题库 — 6785 道
+
+数据源：[`xunzhekafei/myagent/interview/data`](https://github.com/xunzhekafei/myagent/tree/main/interview/data)，
+上游项目许可为 **MIT**。
+
+| 文件 | 条数 | 岗位 | 大小 | 许可 |
+| ---- | ----: | ---- | ----: | ---- |
+| `fe_questions.json` | 6160 | 前端工程师 | 1,750,341 B | MIT |
+| `backend_questions.json` | 492 | 后端开发工程师 | 166,020 B | MIT |
+| `algorithm_questions.json` | 133 | 算法工程师 | 41,065 B | MIT |
+| **合计** | **6785** | **3 个岗位** | — | **MIT** |
+
+本次迁移按原数据记录接入：**不改写 `question` 题干，保留 `source` 字段**。
+三个文件均已按 `question/keywords/role/category/level/stage/lang/source` 字段进行校验；
+记录数量分别为 6160、492、133，必需字段缺失数、空 `source` 数和空 `question` 数均为 0。
 
 ### `zh_questions.json` — 1183 道，全部中文
 
@@ -62,20 +88,22 @@ question_bank/
 | 字段 | 类型 | 说明 |
 | ---- | ---- | ---- |
 | `question` | str | 题干（**唯一必填**，其余字段都可能为空） |
-| `keywords` | list[str] | 检索关键词。**英文题库 1647/1647 有值；中文题库 1183 条全为空数组** |
+| `keywords` | list[str] | 检索关键词。原有英文题库 1647/1647 有值、原有中文题库 1183 条全为空数组；本次迁移三份数据保留上游字段和值 |
 | `role` | str | 岗位。取值见上两节；**中文题库的岗位名带空格**（`AI 应用开发`） |
 | `category` | str | 考点分类（如 `RAG 系统面试题`、`System Design & Architecture`），子串匹配 |
-| `level` | str | 难度。**只有英文题库有值**（`Level 1/2/3`）；中文题库全为空 |
-| `stage` | str | 面试阶段。英文题库四档全覆盖；中文题库仅 10 条有值（行为面） |
-| `lang` | str | `"zh"`。**只有中文题库有该字段** |
-| `source` | str | 来源仓库。**只有中文题库有该字段** |
-| `url` | str | 原始 issue 链接。本仓**两份数据里都没有**（随前端题库一起留下，见下） |
+| `level` | str | 难度。原有英文题库有 `Level 1/2/3`，原有中文题库全为空；本次迁移三份数据保留上游字段和值 |
+| `stage` | str | 面试阶段。原有英文题库四档全覆盖，原有中文题库仅 10 条有值（行为面）；本次迁移三份数据保留上游字段和值 |
+| `lang` | str | 语言标记。原有中文题库与本次迁移的三份题库有该字段；具体值按原始记录保留 |
+| `source` | str | 来源仓库。原有中文题库与本次迁移的三份题库有该字段；英文题库没有 |
+| `url` | str | 原始 issue 链接。本仓五份数据里都没有该字段 |
 
 ## 许可
 
 - 本目录的**导入脚本与文档**：MIT，见 [`LICENSE`](LICENSE)。
-- **两份题库数据**：MIT。中文各源的 `source` 字段与上表逐条对应；英文来源为上述
-  HuggingFace 数据集（MIT）。使用/再分发时请保留本文件的出处表。
+- **原有两份题库数据**：MIT。中文各源的 `source` 字段与上表逐条对应；英文来源为上述
+  HuggingFace 数据集（MIT）。
+- **本次新增三份题库数据**：来源为 [`xunzhekafei/myagent`](https://github.com/xunzhekafei/myagent)
+  的 `interview/data/`，上游项目许可为 MIT。使用/再分发时请保留本文件的出处说明。
 
 ## 复现导入
 
@@ -95,19 +123,18 @@ python3 question_bank/import/import_github_bank.py
 重新导入后建议核对 sha256 是否仍与上表一致（上游仓库更新会导致题目变化）。
 **离线校验题库本身不需要网络** —— 见 `../cloud/test_question_bank.py`。
 
-## 与上游的 3 处差异
+## 迁移与适配说明
 
-数据本身**逐字节一致**（sha256 见上表），差异只在布局与收录范围：
+本次迁移前，本仓仅收录 `zh_questions.json` 与 `ai_questions.json` 两份题库，共 2830 道。
+本次从同作者 `myagent` 项目的 `interview/data/` 追加迁移三份题库，共 6785 道；
+迁移后五份数据合计 **9615 道、9 个岗位**。
 
-1. **目录布局**：上游是 `interview/data/` + `interview/import_*.py`，本仓收进
-   `question_bank/`（`data/` 与 `import/` 分开，与 `skills/` 同级的顶层目录，便于评委浏览）。
-   两个导入脚本的 `DATA_DIR` / `OUT_PATH` 相应由 `parent/"data"` 改为 `parent.parent/"data"`。
-2. **收录范围**：上游三份共 8990 题，本仓**只收 AI 侧两份**，前端 `fe_questions.json`
-   （6160 题）不随仓分发 —— 理由见下节。导入脚本保留前端来源，导入过程仍可完整复现。
-3. **加载方式**：上游检索层用 `glob("*.json")` 扫整个目录，本仓 `cloud/question_bank.py`
-   改用 `BANK_FILES` **白名单**。这处差异是**有意的防御**：上面第 2 条意味着
-   `data/` 下随时可能多出 `fe_questions.json`，白名单能让它**静默不进题库**，
-   而 glob 会把它混进来（6000 多道前端题会淹没 AI 题）。
+1. **目录布局**：新增的三个 JSON 文件复制到本仓 `question_bank/data/`，与原有两份数据统一存放。
+2. **数据内容**：本次迁移不改写题干，不删除原有 2830 道题，并保留新增记录的 `source` 字段。
+3. **加载方式**：`cloud/question_bank.py` 使用 `BANK_FILES` **白名单**显式加载五份数据，
+   不依赖 `glob("*.json")` 自动扫描，避免目录中其他 JSON 文件被意外加载。
+4. **岗位适配**：云端岗位别名增加「前端 → 前端工程师」「后端 → 后端开发工程师」
+   「算法 → 算法工程师」；板端岗位列表扩展为 9 个岗位。
 
 ## 已知局限
 
@@ -123,8 +150,21 @@ python3 question_bank/import/import_github_bank.py
   （值只剩 `AI`），导致静默退化成自由提问。板子侧默认值改在 Kconfig 里，不走 `set`；
   详见 `../README.md` §4.7。
 
-## 为什么只有 AI 侧两份
+## 当前岗位与题量
 
-本队参赛作品是 **AI 岗**模拟面试官（演示岗位 `AI 应用开发`），前端题库（6160 题，
-1.8 MB）在本作品里**用不到**：它会让题库体积翻倍、把 `role` 映射表撑大一倍，而检索层
-每次只会挑 3 条题干。留脚本、不留数据，是需要时能一条命令找回来的最小代价。
+当前题库覆盖 9 个岗位、共 9615 道题：
+
+| 岗位 | 题数 |
+| ---- | ----: |
+| AI 应用开发 | 748 |
+| 智能体开发 | 315 |
+| 大模型算法工程师 | 120 |
+| 机器学习工程师 | 576 |
+| 数据科学家 | 495 |
+| 数据分析师 | 576 |
+| 前端工程师 | 6160 |
+| 后端开发工程师 | 492 |
+| 算法工程师 | 133 |
+| **合计** | **9615** |
+
+本次工作属于**题库迁移与适配（数据源：myagent，MIT）**，新增题库不是本仓原创题库。

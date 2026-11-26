@@ -1,0 +1,1864 @@
+[
+  {
+    "question": "K 个一组翻转链表",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "买卖股票",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "三数之和",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "二叉树中的最大路径和",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "二叉树的右视图",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "无重复字符的最长子串",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "合并两个有序数组",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "将有序数组转换为二叉搜索树",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "平衡二叉树",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "二叉树的最近公共祖先",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "搜索旋转排序数组",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "零钱兑换",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "删除排序链表中的重复元素",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "反转链表",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "数组中的第K个最大元素",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "合并区间",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "LRU缓存机制",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "二叉树的层序遍历",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "零钱兑换 II",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "剑指 Offer 09. 用两个栈实现队列",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "螺旋矩阵",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "将每个元素替换为右侧最大元素",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "从前序与中序遍历序列构造二叉树",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "相交链表",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "单词拆分",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "二进制求和",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "二叉搜索树中第K小的元素",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "剑指 Offer 61. 扑克牌中的顺子",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "二叉树的直径",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "路径总和",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "合并K个排序链表",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "最长公共子序列",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "两数相加",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "3无重复的最长字符串长度",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "环形链表",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "在每个树行中找最大值",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "下一个排列",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "下一个更大元素 II",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "二叉树的序列化与反序列化",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "寻找峰值",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "最大正方形",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "最长连续序列",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "和为K的子数组",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "字符串相加",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "奇偶链表",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "岛屿的最大面积",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "括号生成",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "最长有效括号",
+    "keywords": [
+      "字节-后端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-后端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "二叉树的前序遍历",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "最大子序和",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "二叉树的中序遍历",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "二叉树的后序遍历",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "翻转二叉树",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "合并两个有序链表",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "颠倒二进制位",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "最长上升子序列",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "路径总和 II",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "只出现一次的数字",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "回文链表",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "分隔链表",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "剑指 Offer 36. 二叉搜索树与双向链表",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "环形链表 II",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "搜索二维矩阵 II",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "剑指 Offer 21. 调整数组顺序使奇数位于偶数前面",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "二叉树的最大深度",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "单词拆分 II",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "买卖股票的最佳时机 II",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "LFU缓存",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "字符串解码",
+    "keywords": [
+      "字节-客户端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-客户端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "长度最小的子数组",
+    "keywords": [
+      "字节-前端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-前端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "复原IP地址",
+    "keywords": [
+      "字节-前端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-前端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "求根到叶子节点数字之和",
+    "keywords": [
+      "字节-前端",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-前端",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "岛屿数量",
+    "keywords": [
+      "字节-算法",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "函数的独占时间",
+    "keywords": [
+      "字节-算法",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "二叉树的锯齿形层次遍历",
+    "keywords": [
+      "字节-算法",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "另一个树的子树",
+    "keywords": [
+      "字节-算法",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "两数之和",
+    "keywords": [
+      "字节-测试",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-测试",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "剑指 Offer 39. 数组中出现次数超过一半的数字",
+    "keywords": [
+      "字节-测试",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-测试",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "有效的括号",
+    "keywords": [
+      "字节-测试",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-测试",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "删除链表的倒数第N个节点",
+    "keywords": [
+      "字节-测试",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-测试",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "数字转换为十六进制数",
+    "keywords": [
+      "字节-测试",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "字节-测试",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "反转部分链表",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "两个一组反转链表",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "k个一组反转链表",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "奇偶次序分离后合并有序链表",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "两个链表求和 I",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "两个链表求和 II",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "二叉树的前序中序后序遍历",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "重建二叉树",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "二叉树的翻转",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "二叉树的深度",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "二叉树的最大路径和",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "二叉树的最低公共祖先",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "独特的路径",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "House robber",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "买卖股票的最佳时机I",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "买卖股票的最佳时机II",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "矩阵中的路径",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "正则表达式匹配",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "连续子数组的最大和",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "最长不含重复字符的子字符串",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "最长递增子序列",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "矩阵中最长递增路径",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "搜索排序数组的插入位置",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "数字在数组中的位置",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "旋转数组的最小值",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "在旋转数组中查找",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "冒泡排序",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "插入排序",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "选择排序",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "归并排序",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "快速排序",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "计数排序",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "三数之和 3 Sum",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "Sum Closest",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "交换之后的最大值",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "总和≥s的连续子数组的最小长度",
+    "keywords": [
+      "算法专题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "算法专题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "Atoi",
+    "keywords": [
+      "编程题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "第一次缺失的正数",
+    "keywords": [
+      "编程题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "最大的第k个数",
+    "keywords": [
+      "编程题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "最长的连续1",
+    "keywords": [
+      "编程题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "具有最大乘积的连续子数组",
+    "keywords": [
+      "编程题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "合并k个排序列表",
+    "keywords": [
+      "编程题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "顺时针打印矩阵",
+    "keywords": [
+      "编程题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "编码和解码TinyURL",
+    "keywords": [
+      "编程题",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "讲一讲linux系统的启动过程",
+    "keywords": [
+      "基础知识",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "基础知识",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "http",
+    "keywords": [
+      "基础知识",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "基础知识",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "http、https",
+    "keywords": [
+      "基础知识",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "基础知识",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "单例模式",
+    "keywords": [
+      "基础知识",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "基础知识",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "tcp、udp",
+    "keywords": [
+      "基础知识",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "基础知识",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "一次完整http请求",
+    "keywords": [
+      "基础知识",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "基础知识",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "select、epoll",
+    "keywords": [
+      "基础知识",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "基础知识",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  },
+  {
+    "question": "多态、封装、继承",
+    "keywords": [
+      "基础知识",
+      "字节跳动"
+    ],
+    "role": "算法工程师",
+    "category": "基础知识",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "YaxeZhang/Just-Code (MIT)",
+    "company": "字节跳动"
+  }
+]

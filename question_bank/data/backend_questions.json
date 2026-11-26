@@ -1,0 +1,6960 @@
+[
+  {
+    "question": "Go 语言 map 如何顺序读取？",
+    "keywords": [
+      "Go",
+      "map",
+      "语言",
+      "顺序读取"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Go 语言 map 是并发安全的吗？",
+    "keywords": [
+      "Go",
+      "map",
+      "语言",
+      "是并发安全的"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Go 语言 new 和 make 关键字的区别",
+    "keywords": [
+      "Go",
+      "new",
+      "make",
+      "语言",
+      "关键字"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "为什么 Go 语言 struct 要使用 tags",
+    "keywords": [
+      "Go",
+      "struct",
+      "tags",
+      "语言",
+      "要使用"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Go 语言切片是如何扩容的？",
+    "keywords": [
+      "Go",
+      "语言切片是扩容的"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Go 语言数组和切片的区别",
+    "keywords": [
+      "Go",
+      "语言数组和切片"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Go语言的GPM调度器是什么？",
+    "keywords": [
+      "Go",
+      "GPM",
+      "Go语言的GPM调度器是"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Goroutine调度策略",
+    "keywords": [
+      "Goroutine",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "交替打印数字和字母",
+    "keywords": [
+      "交替打印数字和字母",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "判断字符串中字符是否全都不同",
+    "keywords": [
+      "判断字符串中字符全都不同",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "判断两个给定的字符串排序后是否一致",
+    "keywords": [
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "字符串替换问题",
+    "keywords": [
+      "字符串替换问题",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "机器人坐标问题",
+    "keywords": [
+      "机器人坐标问题",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "常见语法题目 一",
+    "keywords": [
+      "常见语法题目",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "写出打印的结果。",
+    "keywords": [
+      "写出打印的结果",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "下面的程序运行后为什么会爆异常。",
+    "keywords": [
+      "下面的程序运行后会爆异常",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "常见语法题目 二",
+    "keywords": [
+      "常见语法题目",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "请写出以下输入内容",
+    "keywords": [
+      "请写出以下输入内容",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "下面的迭代会有什么问题？",
+    "keywords": [
+      "下面的迭代会有问题",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "在 golang 协程和channel配合使用",
+    "keywords": [
+      "golang",
+      "channel",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "实现阻塞读且并发安全的map",
+    "keywords": [
+      "map",
+      "阻塞读且并发安全的map",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "高并发下的锁与map的读写",
+    "keywords": [
+      "map",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "写出以下逻辑，要求每秒钟调用一次proc并保证程序不退出?",
+    "keywords": [
+      "proc",
+      "写出以下逻辑",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "为 sync.WaitGroup 中Wait函数支持 WaitTimeout 功能.",
+    "keywords": [
+      "sync.WaitGroup",
+      "Wait",
+      "WaitTimeout",
+      "中Wait函数支持",
+      "功能.",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "写出以下打印内容",
+    "keywords": [
+      "写出以下打印内容",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "写出以下打印结果，并解释下为什么这么打印的。",
+    "keywords": [
+      "写出以下打印结果",
+      "并解释下这么打印的",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "写出以下打印结果",
+    "keywords": [
+      "写出以下打印结果",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "golang 并发题目测试",
+    "keywords": [
+      "golang",
+      "并发题目测试",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "RWMutex",
+    "keywords": [
+      "RWMutex",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Waitgroup",
+    "keywords": [
+      "Waitgroup",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "双检查实现单例",
+    "keywords": [
+      "双检查单例",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "channel",
+    "keywords": [
+      "channel",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "happens before",
+    "keywords": [
+      "happens",
+      "before",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "记一道字节跳动的算法面试题",
+    "keywords": [
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "多协程查询切片问题",
+    "keywords": [
+      "多协程查询切片问题",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "对已经关闭的的chan进行读写，会怎么样？为什么？",
+    "keywords": [
+      "chan",
+      "会样",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "写已经关闭的 chan",
+    "keywords": [
+      "chan",
+      "写已经关闭的",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "读已经关闭的 chan",
+    "keywords": [
+      "chan",
+      "读已经关闭的",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "为什么写已经关闭的 `chan` 就会 `panic` 呢？",
+    "keywords": [
+      "chan",
+      "panic",
+      "写已经关闭的",
+      "就会",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "为什么读已关闭的 chan 会一直能读到值？",
+    "keywords": [
+      "chan",
+      "读已关闭的",
+      "会一直能读到值",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "简单聊聊内存逃逸？",
+    "keywords": [
+      "简单聊聊内存逃逸",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "字符串转成byte数组，会发生内存拷贝吗？",
+    "keywords": [
+      "byte",
+      "字符串转成byte数组",
+      "会发生内存拷贝",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "http包的内存泄漏",
+    "keywords": [
+      "http",
+      "http包的内存泄漏",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "sync.Map 的用法",
+    "keywords": [
+      "sync.Map",
+      "的用法",
+      "Go"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "为什么 Go for-range 的 value 值地址每次都一样？",
+    "keywords": [
+      "Go",
+      "for-range",
+      "value",
+      "值地址每次都一样"
+    ],
+    "role": "后端开发工程师",
+    "category": "Go",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "MongoDB中对多条记录做更新操作命令是什么？",
+    "keywords": [
+      "MongoDB"
+    ],
+    "role": "后端开发工程师",
+    "category": "MongoDB",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "MongoDB如何才会拓展到多个shard里？",
+    "keywords": [
+      "MongoDB",
+      "shard"
+    ],
+    "role": "后端开发工程师",
+    "category": "MongoDB",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "为什么MySQL使用B+树做索引？",
+    "keywords": [
+      "MySQL",
+      "B+"
+    ],
+    "role": "后端开发工程师",
+    "category": "MySQL",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "MySQL数据库经典面试题解析",
+    "keywords": [
+      "MySQL"
+    ],
+    "role": "后端开发工程师",
+    "category": "MySQL",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "MySQL InnoDB MVCC 机制的原理及实现",
+    "keywords": [
+      "MySQL",
+      "InnoDB",
+      "MVCC",
+      "的及"
+    ],
+    "role": "后端开发工程师",
+    "category": "MySQL",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "乐观锁和悲观锁",
+    "keywords": [
+      "乐观锁和悲观锁",
+      "MySQL"
+    ],
+    "role": "后端开发工程师",
+    "category": "MySQL",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "MySQL的innodb引擎是如何实现MVCC的",
+    "keywords": [
+      "MySQL",
+      "innodb",
+      "MVCC"
+    ],
+    "role": "后端开发工程师",
+    "category": "MySQL",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "MyISAM和InnoDB",
+    "keywords": [
+      "MyISAM",
+      "InnoDB",
+      "MySQL"
+    ],
+    "role": "后端开发工程师",
+    "category": "MySQL",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "主键 超键 候选键 外键",
+    "keywords": [
+      "主键",
+      "超键",
+      "候选键",
+      "外键",
+      "MySQL"
+    ],
+    "role": "后端开发工程师",
+    "category": "MySQL",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "视图的作用，视图可以更改么？",
+    "keywords": [
+      "视图的作用",
+      "视图可以更改么",
+      "MySQL"
+    ],
+    "role": "后端开发工程师",
+    "category": "MySQL",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "drop,delete与truncate的区别",
+    "keywords": [
+      "drop",
+      "delete",
+      "truncate",
+      "MySQL"
+    ],
+    "role": "后端开发工程师",
+    "category": "MySQL",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "索引的工作原理及其种类",
+    "keywords": [
+      "索引的工作及其种类",
+      "MySQL"
+    ],
+    "role": "后端开发工程师",
+    "category": "MySQL",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "常用索引数据结构，以及MySQL B 树 B+ 树区别。",
+    "keywords": [
+      "MySQL",
+      "B",
+      "B+",
+      "常用索引数据结构"
+    ],
+    "role": "后端开发工程师",
+    "category": "MySQL",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "如何对 MySQL 进行服务器扩容。",
+    "keywords": [
+      "MySQL",
+      "进行服务器扩容"
+    ],
+    "role": "后端开发工程师",
+    "category": "MySQL",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "隔离级别、MVCC",
+    "keywords": [
+      "MVCC",
+      "隔离级别",
+      "MySQL"
+    ],
+    "role": "后端开发工程师",
+    "category": "MySQL",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "MySQL 的锁机制",
+    "keywords": [
+      "MySQL",
+      "的锁"
+    ],
+    "role": "后端开发工程师",
+    "category": "MySQL",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "表和索引所占空间。当表被truncate后，这个表和索引所占用的空间会恢复到初始大小，而delete操作不会减少表或索引所占用的空间。drop语句将表所占用的空间全释放掉。",
+    "keywords": [
+      "truncate",
+      "delete",
+      "drop",
+      "表和索引所占空间",
+      "当表被truncate后",
+      "MySQL"
+    ],
+    "role": "后端开发工程师",
+    "category": "MySQL",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "一般而言，drop>truncate>delete",
+    "keywords": [
+      "drop",
+      "truncate",
+      "delete",
+      "一般而言",
+      "MySQL"
+    ],
+    "role": "后端开发工程师",
+    "category": "MySQL",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "应用范围。truncate只能对table，delete可以是table和view",
+    "keywords": [
+      "truncate",
+      "table",
+      "delete",
+      "view",
+      "应用范围",
+      "MySQL"
+    ],
+    "role": "后端开发工程师",
+    "category": "MySQL",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "truncate和delete只删除数据，而drop则删除整个表（结构和数据)",
+    "keywords": [
+      "truncate",
+      "delete",
+      "drop",
+      "而drop则删除整个表",
+      "结构和数据",
+      "MySQL"
+    ],
+    "role": "后端开发工程师",
+    "category": "MySQL",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python的函数参数传递",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python中的元类(metaclass)",
+    "keywords": [
+      "Python",
+      "metaclass",
+      "Python中的元类"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "@staticmethod和@classmethod",
+    "keywords": [
+      "staticmethod",
+      "classmethod",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "类变量和实例变量",
+    "keywords": [
+      "类变量和实例变量",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python自省",
+    "keywords": [
+      "Python",
+      "Python自省"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python中单下划线和双下划线",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "字符串格式化:%和.format",
+    "keywords": [
+      "format",
+      "字符串格式化",
+      "%和.format",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "迭代器和生成器",
+    "keywords": [
+      "迭代器和生成器",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "args` 和 `**kwargs",
+    "keywords": [
+      "args",
+      "kwargs",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "面向切面编程AOP和装饰器",
+    "keywords": [
+      "AOP",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python中重载",
+    "keywords": [
+      "Python",
+      "Python中重载"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "新式类和旧式类",
+    "keywords": [
+      "新式类和旧式类",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "__new__`和`__init__`的区别",
+    "keywords": [
+      "new__",
+      "init__",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python中的作用域",
+    "keywords": [
+      "Python",
+      "Python中的作用域"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "GIL线程全局锁",
+    "keywords": [
+      "GIL",
+      "GIL线程全局锁",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "lambda函数",
+    "keywords": [
+      "lambda",
+      "lambda函数",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python函数式编程",
+    "keywords": [
+      "Python",
+      "Python函数式编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python里的拷贝",
+    "keywords": [
+      "Python",
+      "Python里的拷贝"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python垃圾回收机制",
+    "keywords": [
+      "Python",
+      "Python垃圾回收"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python的List",
+    "keywords": [
+      "Python",
+      "List",
+      "Python的List"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python的is",
+    "keywords": [
+      "Python",
+      "is",
+      "Python的is"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "read,readline和readlines",
+    "keywords": [
+      "read",
+      "readline",
+      "readlines",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python2和3的区别",
+    "keywords": [
+      "Python2",
+      "Python2和3",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "super init",
+    "keywords": [
+      "super",
+      "init",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "range and xrange",
+    "keywords": [
+      "range",
+      "and",
+      "xrange",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python基础",
+    "keywords": [
+      "Python",
+      "Python基础"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python 处理文件",
+    "keywords": [
+      "Python",
+      "处理文件"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "输入日期，判断这一天是这一年的第几天？",
+    "keywords": [
+      "输入日期",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "打乱一个排好序的list对象",
+    "keywords": [
+      "list",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "将字典按value值进行排序",
+    "keywords": [
+      "value",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "请反转字符串 \"aStr\"",
+    "keywords": [
+      "aStr",
+      "请反转字符串",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "将字符串 \"k:1|k1:2|k2:3|k3:4\" 处理成字典 {k:1,k1:2,...}",
+    "keywords": [
+      "k",
+      "k1",
+      "k2",
+      "k3",
+      "将字符串",
+      "处理成字典",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "写一个列表生成式，产生一个公差为11的等差数列",
+    "keywords": [
+      "写一个列表生成式",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "给定两个列表，找出他们相同的元素和不同的元素",
+    "keywords": [
+      "给定两个列表",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "python中内置的数据结构有几种",
+    "keywords": [
+      "python",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "反转一个整数，例如-123 --> -321",
+    "keywords": [
+      "反转一个整数",
+      "例如-123",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python遍历列表时删除元素的正确做法",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "字符串 `\"123\"` 转换成 `123`，不使用内置api，例如 `int()",
+    "keywords": [
+      "api",
+      "int",
+      "字符串",
+      "转换成",
+      "不使用内置api",
+      "例如",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "统计一个文本中单词频次最高的10个单词",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python高级",
+    "keywords": [
+      "Python",
+      "Python高级"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "介绍Cython，Pypy Cpython Numba各有什么缺点",
+    "keywords": [
+      "Cython",
+      "Pypy",
+      "Cpython",
+      "Numba",
+      "介绍Cython",
+      "Numba各有缺点",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "请描述抽象类和接口类的区别和联系",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python中如何动态获取和设置对象的属性",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "内存管理与垃圾回收机制",
+    "keywords": [
+      "内存管理与垃圾回收",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "哪些操作会导致Python内存溢出，怎么处理",
+    "keywords": [
+      "Python",
+      "处理"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "内存泄露是什么？如何避免？",
+    "keywords": [
+      "内存泄露是",
+      "避免",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "手写一个判断时间的装饰器",
+    "keywords": [
+      "手写一个判断时间的装饰器",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "带参数的装饰器",
+    "keywords": [
+      "带参数的装饰器",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "线程安全的装饰器",
+    "keywords": [
+      "线程安全的装饰器",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "交换两个变量的值",
+    "keywords": [
+      "交换两个变量的值",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "hasattr() getattr() setattr() 函数使用详解",
+    "keywords": [
+      "hasattr",
+      "getattr",
+      "setattr",
+      "函数使用详解",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "对装饰器的理解，并写出一个计时器记录方法执行性能的装饰器",
+    "keywords": [
+      "对装饰器的理解",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python中yield的用法",
+    "keywords": [
+      "Python",
+      "yield"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python的魔法方法",
+    "keywords": [
+      "Python",
+      "Python的魔法方法"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "面向对象中怎么实现只读属性",
+    "keywords": [
+      "面向对象中只读属性",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "谈谈你对面向对象的理解",
+    "keywords": [
+      "谈谈你对面向对象的理解",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python字符串查找和替换？",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "正则表达式贪婪与非贪婪模式的区别？",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "写出开头匹配字母和下划线，末尾是数字的正则表达式？",
+    "keywords": [
+      "写出开头匹配字母和下划线",
+      "末尾是数字的正则表达式",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "怎么过滤评论中的表情？",
+    "keywords": [
+      "过滤评论中的表情",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python里match与search的区别？",
+    "keywords": [
+      "Python",
+      "match",
+      "search"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "对Flask蓝图(Blueprint)的理解？",
+    "keywords": [
+      "Flask",
+      "Blueprint",
+      "对Flask蓝图",
+      "的理解",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Flask 和 Django 路由映射的区别？",
+    "keywords": [
+      "Flask",
+      "Django",
+      "路由映射",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "什么是wsgi,uwsgi,uWSGI?",
+    "keywords": [
+      "wsgi",
+      "uwsgi",
+      "uWSGI",
+      "是wsgi",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Django、Flask、Tornado的对比？",
+    "keywords": [
+      "Django",
+      "Flask",
+      "Tornado",
+      "Tornado的对比",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "CORS 和 CSRF的区别？",
+    "keywords": [
+      "CORS",
+      "CSRF",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Session,Cookie,JWT的理解",
+    "keywords": [
+      "Session",
+      "Cookie",
+      "JWT",
+      "JWT的理解",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "简述Django请求生命周期",
+    "keywords": [
+      "Django",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "用的restframework完成api发送时间时区",
+    "keywords": [
+      "restframework",
+      "api",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "nginx,tomcat,apach到都是什么？",
+    "keywords": [
+      "nginx",
+      "tomcat",
+      "apach",
+      "apach到都是",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "请给出你熟悉关系数据库范式有哪些，有什么作用？",
+    "keywords": [
+      "有作用",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "简述QQ登陆过程",
+    "keywords": [
+      "QQ",
+      "简述QQ登陆过程",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "post 和 get的区别?",
+    "keywords": [
+      "post",
+      "get",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "项目中日志的作用",
+    "keywords": [
+      "项目中日志的作用",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "django中间件的使用？",
+    "keywords": [
+      "django",
+      "django中间件的使用",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "谈一下你对uWSGI和nginx的理解？",
+    "keywords": [
+      "uWSGI",
+      "nginx",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Django中哪里用到了线程？哪里用到了协程？哪里用到了进程？",
+    "keywords": [
+      "Django",
+      "哪里用到了协程",
+      "哪里用到了进程",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "有用过Django REST framework吗？",
+    "keywords": [
+      "Django",
+      "REST",
+      "framework",
+      "有用过Django",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "试列出至少三种目前流行的大型数据库",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "列举您使用过的Python网络爬虫所用到的网络数据包?",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "爬取数据后使用哪个数据库存储数据的，为什么？",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "你用过的爬虫框架或者模块有哪些？优缺点？",
+    "keywords": [
+      "你用过的爬虫框架或者模块",
+      "优缺点",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "写爬虫是用多进程好？还是多线程好？",
+    "keywords": [
+      "写爬虫是用多进程好",
+      "还是多线程好",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "常见的反爬虫和应对方法？",
+    "keywords": [
+      "常见的反爬虫和应对方法",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "解析网页的解析器使用最多的是哪几个?",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "需要登录的网页，如何解决同时限制ip，cookie,session",
+    "keywords": [
+      "ip",
+      "cookie",
+      "session",
+      "需要登录的网页",
+      "解决同时限制ip",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "验证码的解决?",
+    "keywords": [
+      "验证码的解决",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "使用最多的数据库，对他们的理解？",
+    "keywords": [
+      "使用最多的数据库",
+      "对他们的理解",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "编写过哪些爬虫中间件？",
+    "keywords": [
+      "编写过爬虫中间件",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "“极验”滑动验证码如何破解？",
+    "keywords": [
+      "“极验”滑动验证码破解",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "爬虫多久爬一次，爬下来的数据是怎么存储？",
+    "keywords": [
+      "爬虫多久爬一次",
+      "爬下来的数据是存储",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "cookie过期的处理问题？",
+    "keywords": [
+      "cookie",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "动态加载又对及时性要求很高怎么处理？",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "HTTPS有什么优点和缺点？",
+    "keywords": [
+      "HTTPS",
+      "HTTPS有优点和缺点",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "HTTPS是如何实现安全传输数据的？",
+    "keywords": [
+      "HTTPS",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "TTL，MSL，RTT各是什么？",
+    "keywords": [
+      "TTL",
+      "MSL",
+      "RTT",
+      "RTT各是",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "谈一谈你对Selenium和PhantomJS了解",
+    "keywords": [
+      "Selenium",
+      "PhantomJS",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "平常怎么使用代理的 ？",
+    "keywords": [
+      "平常使用代理的",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "存放在数据库(redis、mysql等)。",
+    "keywords": [
+      "redis",
+      "mysql",
+      "存放在数据库",
+      "mysql等",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "怎么监控爬虫的状态?",
+    "keywords": [
+      "监控爬虫的状态",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "描述下scrapy框架运行的机制？",
+    "keywords": [
+      "scrapy",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "谈谈你对Scrapy的理解？",
+    "keywords": [
+      "Scrapy",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "怎么样让 scrapy 框架发送一个 post 请求（具体写出来）",
+    "keywords": [
+      "scrapy",
+      "post",
+      "样让",
+      "框架发送一个",
+      "请求",
+      "具体写出来",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "怎么监控爬虫的状态 ？",
+    "keywords": [
+      "监控爬虫的状态",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "怎么判断网站是否更新？",
+    "keywords": [
+      "判断网站更新",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "图片、视频爬取怎么绕过防盗连接",
+    "keywords": [
+      "图片",
+      "视频爬取绕过防盗连接",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "你爬出来的数据量大概有多大？大概多长时间爬一次？",
+    "keywords": [
+      "大概多长时间爬一次",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "用什么数据库存爬下来的数据？部署是你做的吗？怎么部署？",
+    "keywords": [
+      "用数据库存爬下来的数据",
+      "部署是你做的",
+      "部署",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "爬取下来的数据如何去重，说一下scrapy的具体的算法依据。",
+    "keywords": [
+      "scrapy",
+      "爬取下来的数据去重",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Scrapy的优缺点?",
+    "keywords": [
+      "Scrapy",
+      "Scrapy的优缺点",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "怎么设置爬取深度？",
+    "keywords": [
+      "设置爬取深度",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "scrapy和scrapy-redis有什么区别？为什么选择redis数据库？",
+    "keywords": [
+      "scrapy",
+      "scrapy-redis",
+      "redis",
+      "选择redis数据库",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "分布式爬虫主要解决什么问题？",
+    "keywords": [
+      "分布式爬虫主要解决问题",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "什么是分布式存储？",
+    "keywords": [
+      "是分布式存储",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "你所知道的分布式爬虫方案有哪些？",
+    "keywords": [
+      "你所知道的分布式爬虫方案",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "scrapy-redis，有做过其他的分布式爬虫吗？",
+    "keywords": [
+      "scrapy-redis",
+      "有做过其他的分布式爬虫",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "编写测试计划的目的是",
+    "keywords": [
+      "编写测试计划的目的是",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "对关键词触发模块进行测试",
+    "keywords": [
+      "对关键词触发模块进行测试",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "其他常用笔试题目网址汇总",
+    "keywords": [
+      "其他常用笔试题目网址汇总",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "测试人员在软件开发过程中的任务是什么",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "一条软件Bug记录都包含了哪些内容？",
+    "keywords": [
+      "Bug",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "简述黑盒测试和白盒测试的优缺点",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "请列出你所知道的软件测试种类，至少5项",
+    "keywords": [
+      "至少5项",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Alpha测试与Beta测试的区别是什么？",
+    "keywords": [
+      "Alpha",
+      "Beta",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "举例说明什么是Bug？一个bug report应包含什么关键字？",
+    "keywords": [
+      "Bug",
+      "bug",
+      "report",
+      "举例说明是Bug",
+      "一个bug",
+      "report应包含关键字",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "找出1G的文件中高频词",
+    "keywords": [
+      "G",
+      "找出1G的文件中高频词",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "一个大约有一万行的文本文件统计高频词",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "怎么在海量数据中找出重复次数最多的一个？",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "判断数据是否在大量数据中",
+    "keywords": [
+      "判断数据在大量数据中",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "python 字典的内部实现原理介绍",
+    "keywords": [
+      "python",
+      "字典的内部介绍",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "nginx,tomcat,apache 都是什么？",
+    "keywords": [
+      "nginx",
+      "tomcat",
+      "apache",
+      "都是",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python后端架构演进",
+    "keywords": [
+      "Python",
+      "Python后端架构演进"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "https://www.liaoxuefeng.com/wiki/1016959663602400/1017592449371072",
+    "keywords": [
+      "https",
+      "www.liaoxuefeng.com",
+      "wiki",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "深入理解Python中的元类(metaclass)",
+    "keywords": [
+      "Python",
+      "metaclass"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "http://stackoverflow.com/questions/136097/what-is-the-difference-between-staticmethod-and-classmethod-in-python",
+    "keywords": [
+      "http",
+      "stackoverflow.com",
+      "questions",
+      "what-is-the-difference-between-staticmethod-and-classmethod-in-python",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "https://realpython.com/blog/python/instance-class-and-static-methods-demystified/",
+    "keywords": [
+      "https",
+      "realpython.com",
+      "blog",
+      "python",
+      "instance-class-and-static-methods-demystified",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "可变参数个数。",
+    "keywords": [
+      "可变参数个数",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "__new__`是一个静态方法,而`__init__`是一个实例方法.",
+    "keywords": [
+      "new__",
+      "init__",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "__new__`方法会返回一个创建的实例,而`__init__`什么都不返回.",
+    "keywords": [
+      "new__",
+      "init__",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "只有在`__new__`返回一个cls的实例时后面的`__init__`才能被调用.",
+    "keywords": [
+      "new__",
+      "cls",
+      "init__",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "当创建一个新实例时调用`__new__`,初始化一个实例时用`__init__`.",
+    "keywords": [
+      "new__",
+      "init__",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "必须有一个内嵌函数",
+    "keywords": [
+      "必须有一个内嵌函数",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "内嵌函数必须引用外部函数中的变量",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "外部函数的返回值必须是内嵌函数",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "维护引用计数消耗资源",
+    "keywords": [
+      "维护引用计数消耗资源",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "创建一个蓝图对象",
+    "keywords": [
+      "创建一个蓝图对象",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "在这个蓝图对象上进行操作，例如注册路由、指定静态文件夹、注册模板过滤器...",
+    "keywords": [
+      "在这个蓝图对象上进行操作",
+      "例如注册路由",
+      "指定静态文件夹",
+      "注册模板过滤器...",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "在应用对象上注册这个蓝图对象",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Django走的大而全的方向，开发效率高。它的MTV框架，自带的ORM，admin后台管理，自带的sqlite数据库和开发测试用的服务器，给开发者提高了超高的开发效率。",
+    "keywords": [
+      "Django",
+      "MTV",
+      "ORM",
+      "admin",
+      "sqlite",
+      "开发效率高",
+      "它的MTV框架",
+      "自带的ORM",
+      "admin后台管理",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Tornado走的是少而精的方向，性能优越，它最出名的异步非阻塞的设计方式",
+    "keywords": [
+      "Tornado",
+      "性能优越",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "wsgi ,请求封装后交给web框架（Flask，Django)",
+    "keywords": [
+      "wsgi",
+      "web",
+      "Flask",
+      "Django",
+      "请求封装后交给web框架",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "中间件，对请求进行校验或在请求对象中添加其他相关数据，例如：csrf,request.session",
+    "keywords": [
+      "csrf",
+      "request.session",
+      "中间件",
+      "例如",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "路由匹配 根据浏览器发送的不同url去匹配不同的视图函数",
+    "keywords": [
+      "url",
+      "路由匹配",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "视图函数，在视图函数中进行业务逻辑的处理，可能涉及到：orm，templates",
+    "keywords": [
+      "orm",
+      "templates",
+      "视图函数",
+      "可能涉及到",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "中间件，对响应的数据进行处理",
+    "keywords": [
+      "中间件",
+      "对响应的数据进行处理",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "wsgi，将响应的内容发送给浏览器",
+    "keywords": [
+      "wsgi",
+      "将响应的内容发送给浏览器",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "数据库设计的第一范式(最基本)，基本上所有数据库的范式都是符合第一范式的，符合第一范式的表具有以下几个特点：",
+    "keywords": [
+      "数据库设计的第一范式",
+      "最基本",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "数据库设计的第二范式(是在第一范式的基础上设计的)，要求一个表中只具有一个业务主键，也就是说符合第二范式的表中不能存在非主键列对只对部分主键的依赖关系",
+    "keywords": [
+      "数据库设计的第二范式",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "数据库设计的第三范式，指每一个非主属性既不部分依赖与也不传递依赖于业务主键，也就是第二范式的基础上消除了非主属性对主键的传递依赖",
+    "keywords": [
+      "数据库设计的第三范式",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "GET是从服务器上获取数据，POST是向服务器传送数据",
+    "keywords": [
+      "GET",
+      "POST",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "在客户端，GET方式在通过URL提交数据，数据在URL中可以看到，POST方式，数据放置在HTML——HEADER内提交",
+    "keywords": [
+      "GET",
+      "URL",
+      "POST",
+      "HTML",
+      "HEADER",
+      "在客户端",
+      "数据在URL中可以看到",
+      "POST方式",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "对于GET方式，服务器端用Request.QueryString获取变量的值，对于POST方式，服务器端用Request.Form获取提交的数据",
+    "keywords": [
+      "GET",
+      "Request.QueryString",
+      "POST",
+      "Request.Form",
+      "对于GET方式",
+      "对于POST方式",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "日志是一种可以追踪某些软件运行时所发生事件的方法",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "一个事件可以用一个包含可选变量数据的消息来描述",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "此外，事件也有重要性的概念，这个重要性也可以被成为严重性级别(level)",
+    "keywords": [
+      "level",
+      "此外",
+      "事件也有重要性的概念",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "通过log的分析，可以方便用户了解系统或软件、应用的运行情况;",
+    "keywords": [
+      "log",
+      "通过log的分析",
+      "应用的运行情况",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "如果一个应用的log同时也分了多个级别，那么可以很轻易地分析得到该应用的健康状况，及时发现问题并快速定位、解决问题，补救损失。",
+    "keywords": [
+      "log",
+      "及时发现问题并快速定位",
+      "解决问题",
+      "补救损失",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "了解软件程序运行情况，是否正常",
+    "keywords": [
+      "了解软件程序运行情况",
+      "正常",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "初始化：无需任何参数，服务器响应第一个请求的时候调用一次，用于确定是否启用当前中间件",
+    "keywords": [
+      "初始化",
+      "无需任何参数",
+      "用于确定启用当前中间件",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "处理请求前：在每个请求上调用，返回None或HttpResponse对象。",
+    "keywords": [
+      "None",
+      "HttpResponse",
+      "处理请求前",
+      "在每个请求上调用",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "处理视图前:在每个请求上调用，返回None或HttpResponse对象。",
+    "keywords": [
+      "None",
+      "HttpResponse",
+      "处理视图前",
+      "在每个请求上调用",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "处理模板响应前：在每个请求上调用，返回实现了render方法的响应对象。",
+    "keywords": [
+      "render",
+      "处理模板响应前",
+      "在每个请求上调用",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "处理响应后：所有响应返回浏览器之前被调用，在每个请求上调用，返回HttpResponse对象。",
+    "keywords": [
+      "HttpResponse",
+      "处理响应后",
+      "在每个请求上调用",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "异常处理：当视图抛出异常时调用，在每个请求上调用，返回一个HttpResponse对象。",
+    "keywords": [
+      "HttpResponse",
+      "异常处理",
+      "当视图抛出异常时调用",
+      "在每个请求上调用",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "作为web服务器，它处理静态文件和索引文件效果非常高",
+    "keywords": [
+      "web",
+      "作为web服务器",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "它的设计非常注重效率，最大支持5万个并发连接，但只占用很少的内存空间",
+    "keywords": [
+      "它的设计非常注重效率",
+      "最大支持5万个并发连接",
+      "但只占用很少的内存空间",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "稳定性高，配置简洁。",
+    "keywords": [
+      "稳定性高",
+      "配置简洁",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "强大的反向代理和负载均衡功能，平衡集群中各个服务器的负载压力应用",
+    "keywords": [
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Django中耗时的任务用一个进程或者线程来执行，比如发邮件，使用celery.",
+    "keywords": [
+      "Django",
+      "celery.",
+      "比如发邮件",
+      "使用celery.",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "部署django项目是时候，配置文件中设置了进程和协程的相关配置。",
+    "keywords": [
+      "django",
+      "Python"
+    ],
+    "role": "后端开发工程师",
+    "category": "Python",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Redis 是什么？",
+    "keywords": [
+      "Redis"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Redis 缺点",
+    "keywords": [
+      "Redis",
+      "缺点"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Redis宕机怎么解决？",
+    "keywords": [
+      "Redis",
+      "Redis宕机解决"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "redis和mecached的区别，以及使用场景",
+    "keywords": [
+      "redis",
+      "mecached",
+      "使用场景",
+      "Redis"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Redis集群方案该怎么做?都有哪些方案?",
+    "keywords": [
+      "Redis",
+      "Redis集群方案该做",
+      "都方案"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Redis回收进程是如何工作的",
+    "keywords": [
+      "Redis"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Redis 跟 MySQL 缓存一致性",
+    "keywords": [
+      "Redis",
+      "MySQL",
+      "缓存一致性"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Redis 为什么那么快",
+    "keywords": [
+      "Redis",
+      "那么快"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Redis 中常见集群部署情况，出现性能问题如何排查。",
+    "keywords": [
+      "Redis",
+      "中常见集群部署情况",
+      "出现性能问题排查"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Redis 中的事务。",
+    "keywords": [
+      "Redis",
+      "中的事务"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "缓存雪崩、击穿、穿透",
+    "keywords": [
+      "缓存雪崩",
+      "击穿",
+      "穿透",
+      "Redis"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Redis 的持久化",
+    "keywords": [
+      "Redis",
+      "的持久化"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Redis不是号称单线程也有很高的性能么？为啥还需要多线程？",
+    "keywords": [
+      "Redis",
+      "为啥还需要多线程"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Redis 过期策略和内存淘汰机制",
+    "keywords": [
+      "Redis",
+      "过期策略和内存淘汰"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Redis 分布式锁怎么用？有什么问题？",
+    "keywords": [
+      "Redis",
+      "分布式锁用",
+      "有问题"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Redis为什么变慢了？一文讲透如何排查Redis性能问题",
+    "keywords": [
+      "Redis",
+      "Redis变慢了"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "是一个完全开源免费的 key-value 内存数据库",
+    "keywords": [
+      "key-value",
+      "是一个完全开源免费的",
+      "内存数据库",
+      "Redis"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "通常被认为是一个数据结构服务器，主要是因为其有着丰富的数据结构 strings、hash、list、sets、sorted sets",
+    "keywords": [
+      "strings",
+      "hash",
+      "list",
+      "sets",
+      "sorted",
+      "Redis"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "redis和Memcache都是将数据存放在内存中，都是内存数据库。不过memcache还可以用于缓存其他东西，例如图片，视频等等",
+    "keywords": [
+      "redis",
+      "Memcache",
+      "memcache",
+      "都是内存数据库",
+      "例如图片",
+      "视频等等",
+      "Redis"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "虚拟内存-redis当物理内存用完时，可以将一些很久没用的value交换到磁盘",
+    "keywords": [
+      "redis",
+      "value",
+      "Redis"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "过期策略-memcache在set时就指定，例如set key1 0 0 8，即永不过期。Redis可以通过例如expire设定，例如expire name 10",
+    "keywords": [
+      "memcache",
+      "set",
+      "key1",
+      "Redis",
+      "expire",
+      "name",
+      "例如set",
+      "即永不过期",
+      "例如expire"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "分布式-设定memcache集群，利用magent做一主多从，redis可以做一主多从。都可以一主一丛",
+    "keywords": [
+      "memcache",
+      "magent",
+      "redis",
+      "redis可以做一主多从",
+      "都可以一主一丛",
+      "Redis"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "存储数据安全-memcache挂掉后，数据没了，redis可以定期保存到磁盘(持久化)",
+    "keywords": [
+      "memcache",
+      "redis",
+      "数据没了",
+      "持久化",
+      "Redis"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "灾难恢复-memcache挂掉后，数据不可恢复，redis数据丢失后可以通过aof恢复",
+    "keywords": [
+      "memcache",
+      "redis",
+      "aof",
+      "数据不可恢复",
+      "Redis"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Redis支持数据的备份，即master-slave模式的数据备份",
+    "keywords": [
+      "Redis",
+      "master-slave",
+      "Redis支持数据的备份"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "应用场景不一样，redis除了作为NoSQL数据库使用外，还能用做消息队列，数据堆栈和数据缓存等;Memcache适合于缓存SQL语句，数据集，用户临时性数据，延迟查询数据和session等",
+    "keywords": [
+      "redis",
+      "NoSQL",
+      "Memcache",
+      "SQL",
+      "session",
+      "应用场景不一样",
+      "还能用做消息队列",
+      "数据堆栈和数据缓存等",
+      "数据集",
+      "用户临时性数据"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "如果简单的key/value存储应该选择memcached.",
+    "keywords": [
+      "key",
+      "value",
+      "memcached.",
+      "如果简单的key",
+      "Redis"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "redis 目前用的最多的集群方案，基本和twemproxy一致的效果，但它支持在节点数量改变情况下，旧节点数据客恢复到新hash节点",
+    "keywords": [
+      "redis",
+      "twemproxy",
+      "hash",
+      "目前用的最多的集群方案",
+      "Redis"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "redis cluster3.0自带的集群，特点在于他的分布式算法不是一致性hash，而是hash槽的概念，以及自身支持节点设置从节点。具体看官方介绍",
+    "keywords": [
+      "redis",
+      "cluster3.0",
+      "hash",
+      "而是hash槽的概念",
+      "自身支持节点设置从节点",
+      "具体看官方介绍",
+      "Redis"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Redis中的数据结构",
+    "keywords": [
+      "Redis",
+      "Redis中的数据结构"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Redis主从复制原理",
+    "keywords": [
+      "Redis",
+      "Redis主从复制"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Redis中内存淘汰算法实现",
+    "keywords": [
+      "Redis",
+      "Redis中内存淘汰算法"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Redis持久化的原理及优化",
+    "keywords": [
+      "Redis",
+      "Redis持久化的及优化"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Redis 基础",
+    "keywords": [
+      "Redis",
+      "基础"
+    ],
+    "role": "后端开发工程师",
+    "category": "Redis",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "RabbitMQ",
+    "keywords": [
+      "RabbitMQ",
+      "中间件"
+    ],
+    "role": "后端开发工程师",
+    "category": "中间件",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Kafka 为什么那么快？",
+    "keywords": [
+      "Kafka",
+      "那么快",
+      "中间件"
+    ],
+    "role": "后端开发工程师",
+    "category": "中间件",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Kafka 重平衡是怎么做的？",
+    "keywords": [
+      "Kafka",
+      "重平衡是做的",
+      "中间件"
+    ],
+    "role": "后端开发工程师",
+    "category": "中间件",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Kafka 架构体系",
+    "keywords": [
+      "Kafka",
+      "架构体系",
+      "中间件"
+    ],
+    "role": "后端开发工程师",
+    "category": "中间件",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "RabbitMQ 高频考题",
+    "keywords": [
+      "RabbitMQ",
+      "高频考题",
+      "中间件"
+    ],
+    "role": "后端开发工程师",
+    "category": "中间件",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "RabbitMQ 跟 Kafka 对比下，说下对 MQ",
+    "keywords": [
+      "RabbitMQ",
+      "Kafka",
+      "MQ",
+      "对比下",
+      "说下对",
+      "中间件"
+    ],
+    "role": "后端开发工程师",
+    "category": "中间件",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "数组中出现次数超过一半的数字-Python版",
+    "keywords": [
+      "Python",
+      "数据结构与算法"
+    ],
+    "role": "后端开发工程师",
+    "category": "数据结构与算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "求100以内的质数",
+    "keywords": [
+      "求100以内的质数",
+      "数据结构与算法"
+    ],
+    "role": "后端开发工程师",
+    "category": "数据结构与算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "无重复字符的最长子串-Python实现",
+    "keywords": [
+      "Python",
+      "数据结构与算法"
+    ],
+    "role": "后端开发工程师",
+    "category": "数据结构与算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "通过2个5/6升得水壶从池塘得到3升水",
+    "keywords": [
+      "通过2个5",
+      "数据结构与算法"
+    ],
+    "role": "后端开发工程师",
+    "category": "数据结构与算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "什么是MD5加密，有什么特点？",
+    "keywords": [
+      "MD5",
+      "是MD5加密",
+      "有特点",
+      "数据结构与算法"
+    ],
+    "role": "后端开发工程师",
+    "category": "数据结构与算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "什么是对称加密和非对称加密",
+    "keywords": [
+      "是对称加密和非对称加密",
+      "数据结构与算法"
+    ],
+    "role": "后端开发工程师",
+    "category": "数据结构与算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "冒泡排序的思想？",
+    "keywords": [
+      "冒泡排序的思想",
+      "数据结构与算法"
+    ],
+    "role": "后端开发工程师",
+    "category": "数据结构与算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "快速排序的思想？",
+    "keywords": [
+      "快速排序的思想",
+      "数据结构与算法"
+    ],
+    "role": "后端开发工程师",
+    "category": "数据结构与算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "如何判断单向链表中是否有环？",
+    "keywords": [
+      "判断单向链表中有环",
+      "数据结构与算法"
+    ],
+    "role": "后端开发工程师",
+    "category": "数据结构与算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "你知道哪些排序算法（一般是通过问题考算法）",
+    "keywords": [
+      "你知道排序算法",
+      "一般是通过问题考算法",
+      "数据结构与算法"
+    ],
+    "role": "后端开发工程师",
+    "category": "数据结构与算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "如何翻转一个单链表？",
+    "keywords": [
+      "翻转一个单链表",
+      "数据结构与算法"
+    ],
+    "role": "后端开发工程师",
+    "category": "数据结构与算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "青蛙跳台阶问题",
+    "keywords": [
+      "青蛙跳台阶问题",
+      "数据结构与算法"
+    ],
+    "role": "后端开发工程师",
+    "category": "数据结构与算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "两数之和 Two Sum",
+    "keywords": [
+      "Two",
+      "Sum",
+      "两数之和",
+      "数据结构与算法"
+    ],
+    "role": "后端开发工程师",
+    "category": "数据结构与算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "搜索旋转排序数组 Search in Rotated Sorted Array",
+    "keywords": [
+      "Search",
+      "in",
+      "Rotated",
+      "Sorted",
+      "Array",
+      "搜索旋转排序数组",
+      "数据结构与算法"
+    ],
+    "role": "后端开发工程师",
+    "category": "数据结构与算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python实现一个Stack的数据结构",
+    "keywords": [
+      "Python",
+      "Stack",
+      "数据结构与算法"
+    ],
+    "role": "后端开发工程师",
+    "category": "数据结构与算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "写一个二分查找",
+    "keywords": [
+      "写一个二分查找",
+      "数据结构与算法"
+    ],
+    "role": "后端开发工程师",
+    "category": "数据结构与算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "set 用 in 时间复杂度是多少，为什么？",
+    "keywords": [
+      "set",
+      "in",
+      "时间复杂度是多少",
+      "数据结构与算法"
+    ],
+    "role": "后端开发工程师",
+    "category": "数据结构与算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "面向对象编程中有组合和继承的方法实现新的类",
+    "keywords": [
+      "数据结构与算法"
+    ],
+    "role": "后端开发工程师",
+    "category": "数据结构与算法",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "select,poll和epoll",
+    "keywords": [
+      "select",
+      "poll",
+      "epoll",
+      "poll和epoll",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "程序编译与链接",
+    "keywords": [
+      "程序编译与链接",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "静态链接和动态链接",
+    "keywords": [
+      "静态链接和动态链接",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "边沿触发和水平触发",
+    "keywords": [
+      "边沿触发和水平触发",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "unix进程间通信方式(IPC)",
+    "keywords": [
+      "unix",
+      "IPC",
+      "unix进程间通信方式",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python异步使用场景有那些？",
+    "keywords": [
+      "Python",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "多线程共同操作同一个数据互斥锁同步？",
+    "keywords": [
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "什么是多线程竞争？",
+    "keywords": [
+      "是多线程竞争",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "请介绍一下Python的线程同步？",
+    "keywords": [
+      "Python",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "解释以下什么是锁，有哪几种锁？",
+    "keywords": [
+      "解释以下是锁",
+      "有哪几种锁",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "什么是死锁？",
+    "keywords": [
+      "是死锁",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "多线程交互访问数据，如果访问到了就不访问了？",
+    "keywords": [
+      "多线程交互访问数据",
+      "如果访问到了就不访问了",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "什么是线程安全，什么是互斥锁？",
+    "keywords": [
+      "是线程安全",
+      "是互斥锁",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "说说下面几个概念：同步，异步，阻塞，非阻塞？",
+    "keywords": [
+      "说说下面几个概念",
+      "同步",
+      "异步",
+      "阻塞",
+      "非阻塞",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "什么是僵尸进程和孤儿进程？怎么避免僵尸进程？",
+    "keywords": [
+      "是僵尸进程和孤儿进程",
+      "避免僵尸进程",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "python中进程与线程的使用场景？",
+    "keywords": [
+      "python",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "线程是并发还是并行，进程是并发还是并行？",
+    "keywords": [
+      "线程是并发还是并行",
+      "进程是并发还是并行",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "并行（parallel）和并发（concurrency）?",
+    "keywords": [
+      "parallel",
+      "concurrency",
+      "并行",
+      "和并发",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "IO密集型和CPU密集型区别？",
+    "keywords": [
+      "IO",
+      "CPU",
+      "IO密集型和CPU密集型",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "python asyncio的原理？",
+    "keywords": [
+      "python",
+      "asyncio",
+      "asyncio的",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "谈谈你对多进程，多线程，以及协程的理解，项目是否用？",
+    "keywords": [
+      "谈谈你对多进程",
+      "多线程",
+      "协程的理解",
+      "项目用",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "查找配对速度慢",
+    "keywords": [
+      "查找配对速度慢",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "数据由内核拷贝到用户态",
+    "keywords": [
+      "数据由内核拷贝到用户态",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "先来先服务(FCFS, First Come First Serve)",
+    "keywords": [
+      "FCFS",
+      "First",
+      "Come",
+      "Serve",
+      "先来先服务",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "短作业优先(SJF, Shortest Job First)",
+    "keywords": [
+      "SJF",
+      "Shortest",
+      "Job",
+      "First",
+      "短作业优先",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "最高优先权调度(Priority Scheduling)",
+    "keywords": [
+      "Priority",
+      "Scheduling",
+      "最高优先权调度",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "时间片轮转(RR, Round Robin)",
+    "keywords": [
+      "RR",
+      "Round",
+      "Robin",
+      "时间片轮转",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "多级反馈队列调度(multilevel feedback queue scheduling)",
+    "keywords": [
+      "multilevel",
+      "feedback",
+      "queue",
+      "scheduling",
+      "多级反馈队列调度",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "最早截至时间优先 EDF",
+    "keywords": [
+      "EDF",
+      "最早截至时间优先",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "最低松弛度优先 LLF",
+    "keywords": [
+      "LLF",
+      "最低松弛度优先",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "程序推进顺序不当",
+    "keywords": [
+      "程序推进顺序不当",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "请求和保持条件",
+    "keywords": [
+      "请求和保持条件",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "预防死锁(摒弃除1以外的条件)",
+    "keywords": [
+      "预防死锁",
+      "摒弃除1以外的条件",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "避免死锁(银行家算法)",
+    "keywords": [
+      "避免死锁",
+      "银行家算法",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "检测死锁(资源分配图)",
+    "keywords": [
+      "检测死锁",
+      "资源分配图",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "处理所有条件预编译指令，比如“#if”、“#ifdef”、 “#elif”、“#endif”",
+    "keywords": [
+      "if",
+      "ifdef",
+      "elif",
+      "endif",
+      "处理所有条件预编译指令",
+      "比如“#if”",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "处理“#include”预编译指令，将被包含的文件插入到该编译指令的位置，注：此过程是递归进行的",
+    "keywords": [
+      "include",
+      "此过程是递归进行的",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "添加行号和文件名标识，以便于编译时编译器产生调试用的行号信息以及用于编译时产生编译错误或警告时可显示行号",
+    "keywords": [
+      "添加行号和文件名标识",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "保留所有的#pragma编译器指令。",
+    "keywords": [
+      "pragma",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "页是信息的物理单位,分页是为了实现非连续分配,以便解决内存碎片问题,或者说分页是由于系统管理的需要.段是信息的逻辑单位,它含有一组意义相对完整的信息,分段的目的是为了更好地实现共享,满足用户的需要.",
+    "keywords": [
+      "页是信息的物理单位",
+      "分页是为了非连续分配",
+      "以便解决内存碎片问题",
+      "满足用户的需要.",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "页的大小固定,由系统确定,将逻辑地址划分为页号和页内地址是由机器硬件实现的.而段的长度却不固定,决定于用户所编写的程序,通常由编译程序在对源程序进行编译时根据信息的性质来划分.",
+    "keywords": [
+      "页的大小固定",
+      "由系统确定",
+      "决定于用户所编写的程序",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "分页的作业地址空间是一维的.分段的地址空间是二维的.",
+    "keywords": [
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "最佳置换算法OPT:不可能实现",
+    "keywords": [
+      "OPT",
+      "最佳置换算法OPT",
+      "不可能",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "先进先出FIFO",
+    "keywords": [
+      "FIFO",
+      "先进先出FIFO",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "最近最久未使用算法LRU:最近一段时间里最久没有使用过的页面予以置换.",
+    "keywords": [
+      "LRU",
+      "最近最久未使用算法LRU",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "clock算法",
+    "keywords": [
+      "clock",
+      "clock算法",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "管道（Pipe）：管道可用于具有亲缘关系进程间的通信，允许一个进程和另一个与它有共同祖先的进程之间进行通信。",
+    "keywords": [
+      "Pipe",
+      "管道",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "命名管道（named pipe）：命名管道克服了管道没有名字的限制，因此，除具有管道所具有的功能外，它还允许无亲缘关系进程间的通信。命名管道在文件系统中有对应的文件名。命名管道通过命令mkfifo或系统调用mkfifo来创建。",
+    "keywords": [
+      "named",
+      "pipe",
+      "mkfifo",
+      "命名管道",
+      "因此",
+      "除具有管道所具有的功能外",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "共享内存：使得多个进程可以访问同一块内存空间，是最快的可用IPC形式。是针对其他通信机制运行效率较低而设计的。往往与其它通信机制，如信号量结合使用，来达到进程间的同步及互斥。",
+    "keywords": [
+      "IPC",
+      "共享内存",
+      "是最快的可用IPC形式",
+      "往往与其它通信",
+      "如信号量结合使用",
+      "来达到进程间的同步及互斥",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "内存映射（mapped memory）：内存映射允许任何多个进程间通信，每一个使用该机制的进程通过把一个共享的文件映射到自己的进程地址空间来实现它。",
+    "keywords": [
+      "mapped",
+      "memory",
+      "内存映射",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "信号量（semaphore）：主要作为进程间以及同一进程不同线程之间的同步手段。",
+    "keywords": [
+      "semaphore",
+      "信号量",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "套接口（Socket）：更为一般的进程间通信机制，可用于不同机器之间的进程间通信。起初是由Unix系统的BSD分支开发出来的，但现在一般可以移植到其它类Unix系统上：Linux和System V的变种都支持套接字。",
+    "keywords": [
+      "Socket",
+      "Unix",
+      "BSD",
+      "Linux",
+      "System",
+      "V",
+      "套接口",
+      "更为一般的进程间通信",
+      "Linux和System",
+      "V的变种都支持套接字"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "不涉及共享资源，获对共享资源只读，即非互斥操作",
+    "keywords": [
+      "不涉及共享资源",
+      "获对共享资源只读",
+      "即非互斥操作",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "没有时序上的严格关系",
+    "keywords": [
+      "没有时序上的严格关系",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "不需要原子操作，或可以通过其他方式控制原子性",
+    "keywords": [
+      "不需要原子操作",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "常用于IO操作等耗时操作，因为比较影响客户体验和使用性能",
+    "keywords": [
+      "IO",
+      "常用于IO操作等耗时操作",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "不影响主线程逻辑",
+    "keywords": [
+      "不影响主线程逻辑",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "setDaemon(False)",
+    "keywords": [
+      "setDaemon",
+      "False",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "setDaemon(True)",
+    "keywords": [
+      "setDaemon",
+      "True",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "join（线程同步)",
+    "keywords": [
+      "join",
+      "线程同步",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "fork 两次用孙子进程去完成子进程的任务",
+    "keywords": [
+      "fork",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "用 wait() 函数使父进程阻塞",
+    "keywords": [
+      "wait",
+      "函数使父进程阻塞",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "使用信号量，在 signal handler 中调用 waitpid，这样父进程不用阻塞。",
+    "keywords": [
+      "signal",
+      "handler",
+      "waitpid",
+      "使用信号量",
+      "中调用",
+      "这样父进程不用阻塞",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "操作系统中的阻塞、非阻塞、同步、异步、BIO、NIO、AIO 细节。",
+    "keywords": [
+      "BIO",
+      "NIO",
+      "AIO",
+      "操作系统中的阻塞",
+      "非阻塞",
+      "同步",
+      "异步",
+      "细节",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Linux 常见指令",
+    "keywords": [
+      "Linux",
+      "常见指令",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "进程间通信几种方式，每种方式的优劣性。",
+    "keywords": [
+      "进程间通信几种方式",
+      "每种方式的优劣性",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "HTTP 的发展史理解优缺点，公钥、私钥理解跟加密过程。",
+    "keywords": [
+      "HTTP",
+      "的发展史理解优缺点",
+      "公钥",
+      "私钥理解跟加密过程",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "操作系统内存、进程、IO、文件管理的理解，自己大致说下理解。",
+    "keywords": [
+      "IO",
+      "操作系统内存",
+      "进程",
+      "文件管理的理解",
+      "自己大致说下理解",
+      "系统编程"
+    ],
+    "role": "后端开发工程师",
+    "category": "系统编程",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python 编程题-1",
+    "keywords": [
+      "Python",
+      "编程题-1",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python实现单例模式",
+    "keywords": [
+      "Python",
+      "Python单例模式",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "二维数组中的查找",
+    "keywords": [
+      "二维数组中的查找",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "从尾到头打印单链表",
+    "keywords": [
+      "从尾到头打印单链表",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "用两个栈实现队列",
+    "keywords": [
+      "用两个栈队列",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "算法和数据操作",
+    "keywords": [
+      "算法和数据操作",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "旋转数组的最小数字",
+    "keywords": [
+      "旋转数组的最小数字",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "二进制中1的个数",
+    "keywords": [
+      "二进制中1的个数",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "重建二叉树 LeetCode",
+    "keywords": [
+      "LeetCode",
+      "重建二叉树",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python 编程题-2",
+    "keywords": [
+      "Python",
+      "编程题-2",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "数值的整数次方",
+    "keywords": [
+      "数值的整数次方",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "打印1到最大的n位数",
+    "keywords": [
+      "n",
+      "打印1到最大的n位数",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "O(1)时间删除链表结点",
+    "keywords": [
+      "O",
+      "时间删除链表结点",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "调整数组顺序使寄数位于偶数前面",
+    "keywords": [
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "链表中倒数第k个结点",
+    "keywords": [
+      "k",
+      "链表中倒数第k个结点",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "合并两个排序的链表",
+    "keywords": [
+      "合并两个排序的链表",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "调整数组顺序使奇数位于偶数前面",
+    "keywords": [
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python 编程题-3",
+    "keywords": [
+      "Python",
+      "编程题-3",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "画图让抽象问题形象化",
+    "keywords": [
+      "画图让抽象问题形象化",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "顺时针打印矩阵",
+    "keywords": [
+      "顺时针打印矩阵",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "举例让抽象问题具体化",
+    "keywords": [
+      "举例让抽象问题具体化",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "包含min函数的栈",
+    "keywords": [
+      "min",
+      "包含min函数的栈",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "栈的压入弹出序列",
+    "keywords": [
+      "栈的压入弹出序列",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "从上往下打印二叉树",
+    "keywords": [
+      "从上往下打印二叉树",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "二叉树的后序遍历序列",
+    "keywords": [
+      "二叉树的后序遍历序列",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "二叉树中和为某一值的路径",
+    "keywords": [
+      "二叉树中和为某一值的路径",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "分解让复杂问题简单化",
+    "keywords": [
+      "分解让复杂问题简单化",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "复杂链表的复制",
+    "keywords": [
+      "复杂链表的复制",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "二叉搜索树与双向链表",
+    "keywords": [
+      "二叉搜索树与双向链表",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "二叉搜索树的后序遍历序列",
+    "keywords": [
+      "二叉搜索树的后序遍历序列",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python 编程题-4",
+    "keywords": [
+      "Python",
+      "编程题-4",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "数组中出现次数超过一半的数字",
+    "keywords": [
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "连续子数组的最大和",
+    "keywords": [
+      "连续子数组的最大和",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "从1到n整数中1出现的次数",
+    "keywords": [
+      "n",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "把数组排成最小的数",
+    "keywords": [
+      "把数组排成最小的数",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "时间效率与空间效率的平衡",
+    "keywords": [
+      "时间效率与空间效率的平衡",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "第一个只出现一次的字符",
+    "keywords": [
+      "第一个只出现一次的字符",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "数组中的逆序对",
+    "keywords": [
+      "数组中的逆序对",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "两个链表的第一个公共结点",
+    "keywords": [
+      "两个链表的第一个公共结点",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "丑数 LeetCode",
+    "keywords": [
+      "LeetCode",
+      "丑数",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Python 编程题-5",
+    "keywords": [
+      "Python",
+      "编程题-5",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "数字在排序数组中出现的次数",
+    "keywords": [
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "数组中只出现一次的数字",
+    "keywords": [
+      "数组中只出现一次的数字",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "和为s的两个数字VS和为s的连续正数序列",
+    "keywords": [
+      "s",
+      "VS",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "翻转单词顺序与左旋转字符串",
+    "keywords": [
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "n个骰子的点数",
+    "keywords": [
+      "n",
+      "n个骰子的点数",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "圆圈中最后剩下的数字",
+    "keywords": [
+      "圆圈中最后剩下的数字",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "求1+2...+n",
+    "keywords": [
+      "n",
+      "求1+2...+n",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "不用加减乘除做加法",
+    "keywords": [
+      "不用加减乘除做加法",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "不能被继承的类",
+    "keywords": [
+      "不能被继承的类",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "把字符串转化成整数",
+    "keywords": [
+      "把字符串转化成整数",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "树中两个结点的最低公共祖先",
+    "keywords": [
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "台阶问题/斐波那契",
+    "keywords": [
+      "台阶问题",
+      "斐波那契",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "去除列表中的重复元素",
+    "keywords": [
+      "去除列表中的重复元素",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "创建字典的方法",
+    "keywords": [
+      "创建字典的方法",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "fromkeys()方法",
+    "keywords": [
+      "fromkeys",
+      "方法",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "合并两个有序列表",
+    "keywords": [
+      "合并两个有序列表",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "交叉链表求交点",
+    "keywords": [
+      "交叉链表求交点",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "广度遍历和深度遍历二叉树",
+    "keywords": [
+      "广度遍历和深度遍历二叉树",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "求两棵树是否相同",
+    "keywords": [
+      "求两棵树相同",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "前序中序求后序",
+    "keywords": [
+      "前序中序求后序",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "两个字符串是否是变位词",
+    "keywords": [
+      "两个字符串是变位词",
+      "编程题"
+    ],
+    "role": "后端开发工程师",
+    "category": "编程题",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "三次握手和四次挥手",
+    "keywords": [
+      "三次握手和四次挥手",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "urllib和urllib2的区别",
+    "keywords": [
+      "urllib",
+      "urllib2",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Post和Get",
+    "keywords": [
+      "Post",
+      "Get",
+      "Post和Get",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "Cookie和Session",
+    "keywords": [
+      "Cookie",
+      "Session",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "apache和nginx的区别",
+    "keywords": [
+      "apache",
+      "nginx",
+      "apache和nginx",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "网站用户密码保存",
+    "keywords": [
+      "网站用户密码保存",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "HTTP和HTTPS",
+    "keywords": [
+      "HTTP",
+      "HTTPS",
+      "HTTP和HTTPS",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "CSRF和XSS",
+    "keywords": [
+      "CSRF",
+      "XSS",
+      "CSRF和XSS",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "幂等 Idempotence",
+    "keywords": [
+      "Idempotence",
+      "幂等",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "RESTful架构(SOAP,RPC)",
+    "keywords": [
+      "RESTful",
+      "SOAP",
+      "RPC",
+      "RESTful架构",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "CGI和WSGI",
+    "keywords": [
+      "CGI",
+      "WSGI",
+      "CGI和WSGI",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "HTTP1.0和HTTP1.1",
+    "keywords": [
+      "HTTP1.0",
+      "HTTP1.1",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "怎么实现强行关闭客户端和服务器之间的连接?",
+    "keywords": [
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "简述TCP和UDP的区别以及优缺点?",
+    "keywords": [
+      "TCP",
+      "UDP",
+      "简述TCP和UDP优缺点",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "简述浏览器通过WSGI请求动态资源的过程?",
+    "keywords": [
+      "WSGI",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "描述用浏览器访问www.baidu.com的过程",
+    "keywords": [
+      "www.baidu.com",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "列出你知道的HTTP协议的状态码，说出表示什么意思？",
+    "keywords": [
+      "HTTP",
+      "说出表示意思",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "说一下什么是tcp的2MSL？",
+    "keywords": [
+      "tcp",
+      "MSL",
+      "说一下是tcp的2MSL",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "为什么客户端在TIME-WAIT状态必须等待2MSL的时间？",
+    "keywords": [
+      "TIME-WAIT",
+      "MSL",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "使用Socket套接字需要传入哪些参数 ？",
+    "keywords": [
+      "Socket",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "HTTP常见请求头？",
+    "keywords": [
+      "HTTP",
+      "HTTP常见请求头",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "七层模型？",
+    "keywords": [
+      "七层模型",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "url的形式？",
+    "keywords": [
+      "url",
+      "url的形式",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "客户端通过向服务器端发送一个SYN来创建一个主动打开，作为三次握手的一部分。客户端把这段连接的序号设定为随机数 A。",
+    "keywords": [
+      "SYN",
+      "A",
+      "作为三次握手的一部分",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "服务器端应当为一个合法的SYN回送一个SYN/ACK。ACK 的确认码应为 A+1，SYN/ACK 包本身又有一个随机序号 B。",
+    "keywords": [
+      "SYN",
+      "ACK",
+      "A+1",
+      "B",
+      "的确认码应为",
+      "包本身又有一个随机序号",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "最后，客户端再发送一个ACK。当服务端受到这个ACK的时候，就完成了三路握手，并进入了连接创建状态。此时包序号被设定为收到的确认号 A+1，而响应则为 B+1。",
+    "keywords": [
+      "ACK",
+      "A+1",
+      "B+1",
+      "最后",
+      "客户端再发送一个ACK",
+      "就完成了三路握手",
+      "并进入了连接创建状态",
+      "而响应则为",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "客户端发送一个数据分段, 其中的 FIN 标记设置为1. 客户端进入 FIN-WAIT 状态. 该状态下客户端只接收数据, 不再发送数据.",
+    "keywords": [
+      "FIN",
+      "FIN-WAIT",
+      "客户端发送一个数据分段",
+      "其中的",
+      "标记设置为1.",
+      "客户端进入",
+      "状态.",
+      "该状态下客户端只接收数据",
+      "不再发送数据.",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "服务器接收到带有 FIN = 1 的数据分段, 发送带有 ACK = 1 的剩余数据分段, 确认收到客户端发来的 FIN 信息.",
+    "keywords": [
+      "FIN",
+      "ACK",
+      "服务器接收到带有",
+      "的数据分段",
+      "发送带有",
+      "的剩余数据分段",
+      "确认收到客户端发来的",
+      "信息.",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "服务器等到所有数据传输结束, 向客户端发送一个带有 FIN = 1 的数据分段, 并进入 CLOSE-WAIT 状态, 等待客户端发来带有 ACK = 1 的确认报文.",
+    "keywords": [
+      "FIN",
+      "CLOSE-WAIT",
+      "ACK",
+      "向客户端发送一个带有",
+      "的数据分段",
+      "并进入",
+      "状态",
+      "等待客户端发来带有",
+      "的确认报文.",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "urllib2可以接受一个Request类的实例来设置URL请求的headers，urllib仅可以接受URL。这意味着，你不可以伪装你的User Agent字符串等。",
+    "keywords": [
+      "urllib2",
+      "Request",
+      "URL",
+      "headers",
+      "urllib",
+      "User",
+      "Agent",
+      "这意味着",
+      "你不可以伪装你的User",
+      "Agent字符串等"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "明文hash后保存,如md5",
+    "keywords": [
+      "hash",
+      "md5",
+      "明文hash后保存",
+      "如md5",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "MD5+Salt方式,这个salt可以随机",
+    "keywords": [
+      "MD5+Salt",
+      "salt",
+      "MD5+Salt方式",
+      "这个salt可以随机",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "知乎使用了Bcrypy(好像)加密",
+    "keywords": [
+      "Bcrypy",
+      "知乎使用了Bcrypy",
+      "好像",
+      "加密",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "请求头Host字段,一个服务器多个网站",
+    "keywords": [
+      "Host",
+      "请求头Host字段",
+      "一个服务器多个网站",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "身份认证,状态管理,Cache缓存",
+    "keywords": [
+      "Cache",
+      "身份认证",
+      "状态管理",
+      "Cache缓存",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "PATCH一般用于资源的部分更新，而PUT一般用于资源的整体更新。",
+    "keywords": [
+      "PATCH",
+      "PUT",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "当资源不存在时，PATCH会创建一个新的资源，而PUT只会对已在资源进行更新。",
+    "keywords": [
+      "PATCH",
+      "PUT",
+      "当资源不存在时",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "客户端浏览器通过DNS解析到www.baidu.com的IP地址202.108.22.5，通过这个IP地址找到客户端到服务器的路径。客户端浏览器发起一个HTTP会话到202.108.22.5，然后通过TCP进行封装数据包，输入到网络层。",
+    "keywords": [
+      "DNS",
+      "www.baidu.com",
+      "IP",
+      "HTTP",
+      "TCP",
+      "输入到网络层",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "客户端的网络层不用关心应用层或者传输层的东西，主要做的是通过查找路由表确定如何到达服务器，期间可能经过多个路由器，这些都是由路由器来完成的工作，我不作过多的描述，无非就是通过查找路由表决定通过那个路径到达服务器。",
+    "keywords": [
+      "期间可能经过多个路由器",
+      "我不作过多的描述",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "客户端的链路层，包通过链路层发送到路由器，通过邻居协议查找给定IP地址的MAC地址，然后发送ARP请求查找目的地址，如果得到回应后就可以使用ARP的请求应答交换的IP数据包现在就可以传输了，然后发送IP数据包到达服务器的地址。",
+    "keywords": [
+      "IP",
+      "MAC",
+      "ARP",
+      "客户端的链路层",
+      "包通过链路层发送到路由器",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "浏览器获取输入的域名 www.baidu.com",
+    "keywords": [
+      "www.baidu.com",
+      "浏览器获取输入的域名",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "浏览器向DNS请求解析www.baidu.com的IP地址",
+    "keywords": [
+      "DNS",
+      "www.baidu.com",
+      "IP",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "域名系统DNS解析出百度服务器的IP地址",
+    "keywords": [
+      "DNS",
+      "IP",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "浏览器与该服务器建立TCP连接(默认端口号80)",
+    "keywords": [
+      "TCP",
+      "默认端口号80",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "浏览器发出HTTP请求，请求百度首页",
+    "keywords": [
+      "HTTP",
+      "浏览器发出HTTP请求",
+      "请求百度首页",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "服务器通过HTTP响应把首页文件发送给浏览器",
+    "keywords": [
+      "HTTP",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "TCP连接释放",
+    "keywords": [
+      "TCP",
+      "TCP连接释放",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "浏览器将首页文件进行解析，并将Web页显示给用户。",
+    "keywords": [
+      "Web",
+      "浏览器将首页文件进行解析",
+      "并将Web页显示给用户",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "应用层：HTTP(www访问协议)，DNS(域名解析服务)DNS解析域名为目的IP，通过IP找到服务器路径，客户端向服务器发起HTTP会话，然后通过运输层TCP协议封装数据包，在TCP协议基础上进行传输。",
+    "keywords": [
+      "HTTP",
+      "www",
+      "DNS",
+      "IP",
+      "TCP",
+      "应用层",
+      "www访问协议",
+      "域名解析服务",
+      "DNS解析域名为目的IP",
+      "通过IP找到服务器路径"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "传输层：TCP(为HTTP提供可靠的数据传输)，UDP(DNS使用UDP传输)HTTP会话会被分成报文段，添加源、目的端口；TCP协议进行主要工作。",
+    "keywords": [
+      "TCP",
+      "HTTP",
+      "UDP",
+      "DNS",
+      "传输层",
+      "DNS使用UDP传输",
+      "添加源",
+      "目的端口",
+      "TCP协议进行主要工作",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "网络层：IP(IP数据数据包传输和路由选择)，ICMP(提供网络传输过程中的差错检测)，ARP(将本机的默认网关IP地址映射成物理MAC地址)为数据包选择路由，IP协议进行主要工作，相邻结点的可靠传输，ARP协议将IP地址转成MAC地址。",
+    "keywords": [
+      "IP",
+      "ICMP",
+      "ARP",
+      "MAC",
+      "网络层",
+      "为数据包选择路由",
+      "IP协议进行主要工作",
+      "相邻结点的可靠传输",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "TCP 阻塞如何解决。",
+    "keywords": [
+      "TCP",
+      "阻塞解决",
+      "网络"
+    ],
+    "role": "后端开发工程师",
+    "category": "网络",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "QPS，如何压测，性能测试，性能指标，性能优化。",
+    "keywords": [
+      "QPS",
+      "压测",
+      "性能测试",
+      "性能指标",
+      "性能优化",
+      "项目与架构"
+    ],
+    "role": "后端开发工程师",
+    "category": "项目与架构",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "分布式锁实现方案。",
+    "keywords": [
+      "分布式锁方案",
+      "项目与架构"
+    ],
+    "role": "后端开发工程师",
+    "category": "项目与架构",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "G 内存，1T 文件，想找到出现次数第二大的字符串。",
+    "keywords": [
+      "G",
+      "T",
+      "内存",
+      "文件",
+      "项目与架构"
+    ],
+    "role": "后端开发工程师",
+    "category": "项目与架构",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "项目架构图，自我感觉项目难点，现在再让你重新做这个项目你会有什么修改跟调整",
+    "keywords": [
+      "项目架构图",
+      "自我感觉项目难点",
+      "项目与架构"
+    ],
+    "role": "后端开发工程师",
+    "category": "项目与架构",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "常用的负载均衡算法，自己选择个负载均衡算法来实现并进行自测。",
+    "keywords": [
+      "常用的负载均衡算法",
+      "项目与架构"
+    ],
+    "role": "后端开发工程师",
+    "category": "项目与架构",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "常用限流方法，自己咋实现。",
+    "keywords": [
+      "常用限流方法",
+      "自己咋",
+      "项目与架构"
+    ],
+    "role": "后端开发工程师",
+    "category": "项目与架构",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  },
+  {
+    "question": "分布式链路追踪的实现跟理解。",
+    "keywords": [
+      "分布式链路追踪的跟理解",
+      "项目与架构"
+    ],
+    "role": "后端开发工程师",
+    "category": "项目与架构",
+    "level": "",
+    "stage": "",
+    "lang": "zh",
+    "source": "yongxinz/backend-interview (MIT)"
+  }
+]

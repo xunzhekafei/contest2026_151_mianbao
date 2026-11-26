@@ -29,7 +29,13 @@ logger = logging.getLogger(__name__)
 BANK_DIR = pathlib.Path(__file__).resolve().parent.parent / "question_bank" / "data"
 
 # 白名单（见模块 docstring 第 2 条）。加数据源在这里加，不要在磁盘上乱放 JSON。
-BANK_FILES = ("zh_questions.json", "ai_questions.json")
+BANK_FILES = (
+    "zh_questions.json",
+    "ai_questions.json",
+    "fe_questions.json",
+    "backend_questions.json",
+    "algorithm_questions.json",
+)
 
 # 参考块硬上限：最坏情况下模型整段照抄 → 约 400 字 → 约 4MB TTS 音频，
 # 端侧 8MiB 缓冲（CLOUD_RESP_MAX）还留一倍余量。
@@ -97,13 +103,15 @@ ROLE_ALIASES = {
     # 为什么：`normalize_role` 的第 ③ 步是**双向包含取最长**，对 2~3 个字的短键
     # 来说那等于"谁的名字最长就归谁"，结果反直觉且没人会去查：
     #   "AI"   → 命中 `机器学习工程师`（因为它比 `AI 应用开发` 长）
-    #   "算法" → 命中 `大模型算法工程师`（碰巧是对的，但靠的是包含关系）
+    #   "算法" → 命中 `算法工程师`（碰巧是对的，但靠的是包含关系）
     #   "ML"   → 命中 `机器学习工程师`（碰巧是对的）
     # 显式写进别名表，行为就变成可读、可测、可预期的一行。
     # 注意别名表在第 ③ 步**之前**生效（见 normalize_role 的四步），所以这些条目
     # 一定赢过包含匹配。
-    "ai": "AI 应用开发",              # 中文语境下裸 "AI" 指应用方向，不是英文岗
-    "算法": "大模型算法工程师",
+    "ai": "AI 应用开发",
+    "算法": "算法工程师",
+    "前端": "前端工程师",
+    "后端": "后端开发工程师",
     "ml": "机器学习工程师",
     "agent": "智能体开发",
     # AI 应用开发（本次演示岗位）
@@ -121,9 +129,9 @@ ROLE_ALIASES = {
     "智能体工程师": "智能体开发",
     "智能体": "智能体开发",
     "aiagent开发": "智能体开发",
-    # 大模型算法工程师
+    # 大模型算法工程师（保留原岗位）
     "大模型算法": "大模型算法工程师",
-    "算法工程师": "大模型算法工程师",
+    "算法工程师": "算法工程师",
     "llm算法工程师": "大模型算法工程师",
     "大模型工程师": "大模型算法工程师",
     # 英文侧（ai_questions.json 的三个岗位）—— 旧英文名继续可用，映射到中文岗位
