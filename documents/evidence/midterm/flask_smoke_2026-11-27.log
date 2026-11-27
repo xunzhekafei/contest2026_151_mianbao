@@ -1,0 +1,34 @@
+# Flask smoke test
+timestamp: 2026-11-27 10:10:37 +08:00
+purpose: route and template smoke test only
+api_key_note: MIMO_API_KEY was set to a non-secret placeholder solely to allow the app to start; no ASR/LLM/TTS endpoint was called
+question_bank_records: 9615
+question_bank_files: 5
+question_bank_roles: 9
+health_http_status: 200
+health_json: {"message":"AI模拟面试官云端服务运行中","status":"ok"}
+history_api_http_status: 200
+history_page_http_status: 200
+history_page_contains_title: True
+history_session_id: f0cda83b-fde2-43e5-ad6d-0ac52f83b7e1
+history_role: 智能体开发
+server_stopped_after_smoke: True
+
+## server output
+
+2026-11-27 10:10:21,121 - __main__ - INFO - [密钥] MIMO_API_KEY 已加载（长度 38）
+2026-11-27 10:10:21,171 - question_bank - INFO - [题库] 已加载 9615 道题（5 个文件，9 个岗位）
+ * Serving Flask app 'app'
+ * Debug mode: off
+2026-11-27 10:10:21,171 - __main__ - INFO - [题库] 就绪：9615 道题，岗位：AI 应用开发、前端工程师、后端开发工程师、大模型算法工程师、数据分析师、数据科学家、智能体开发、机器学习工程师、算法工程师
+2026-11-27 10:10:21,177 - __main__ - INFO - 启动 AI模拟面试官 云端服务...
+2026-11-27 10:10:34,480 - werkzeug - INFO - WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.29.120.13:5000
+2026-11-27 10:10:34,480 - werkzeug - INFO - Press CTRL+C to quit
+2026-11-27 10:10:34,510 - werkzeug - INFO - 127.0.0.1 - - [27/Nov/2026 10:10:34] "GET /api/history HTTP/1.1" 200 -
+2026-11-27 10:10:34,640 - werkzeug - INFO - 127.0.0.1 - - [27/Nov/2026 10:10:34] "GET /history HTTP/1.1" 200 -
+2026-11-27 10:10:37,873 - werkzeug - INFO - 127.0.0.1 - - [27/Nov/2026 10:10:37] "GET /api/health HTTP/1.1" 200 -
+2026-11-27 10:10:37,909 - werkzeug - INFO - 127.0.0.1 - - [27/Nov/2026 10:10:37] "GET /api/history HTTP/1.1" 200 -
+2026-11-27 10:10:37,923 - werkzeug - INFO - 127.0.0.1 - - [27/Nov/2026 10:10:37] "GET /history HTTP/1.1" 200 -

@@ -1,0 +1,82 @@
+{
+  "generated_at": "2026-11-27T10:21:00+08:00",
+  "automated_tests": {
+    "full_environment": {
+      "log": "automated_tests_2026-11-27.log",
+      "bytes": 95246,
+      "files": 23,
+      "cases": 441,
+      "failures": 0,
+      "exit_code": 0,
+      "sha256": "cdd1a5219ae0f911a3998976ce5ad1bca5f62eb251eef6c9b85c97b810bf4995"
+    },
+    "without_third_party_dependencies": {
+      "log": "automated_tests_nodeps_2026-11-27.log",
+      "bytes": 37951,
+      "files": 16,
+      "cases": 291,
+      "skipped_files": 7,
+      "failures": 0,
+      "exit_code": 0,
+      "sha256": "5eedac38f588fe1867d70f2d01f0f9f89747376cffe9c58d4c9d6178d1eb8758"
+    },
+    "flask_route_smoke": {
+      "log": "flask_smoke_2026-11-27.log",
+      "bytes": 2149,
+      "health_status": 200,
+      "history_api_status": 200,
+      "history_page_status": 200,
+      "question_bank_records": 9615,
+      "question_bank_files": 5,
+      "question_bank_roles": 9,
+      "api_calls_to_mimo": 0,
+      "sha256": "4a9e639926e6c3a84b5f4e11707a042bf89c440163e151920086b42dd986b551"
+    }
+  },
+  "historical_visual_evidence": {
+    "source_videos": [
+      {
+        "name": "面包包设备录像.mp4",
+        "duration_seconds": 330.777889,
+        "resolution": "3840x2160",
+        "sha256": "e25f3cd632195f2d4d656c2cdc5aa9d03fed580fa0041168736a8840729b1375"
+      },
+      {
+        "name": "面包包面试对话界面.mp4",
+        "duration_seconds": 338.779,
+        "resolution": "2432x1440",
+        "sha256": "d8b8eb5b3ad0b684403e899f84fba9a4c95f3f9bb3a0b55d160ad5f7d4feef45"
+      }
+    ],
+    "extracted_images": [
+      {
+        "name": "device_overview_2026-11-03.jpg",
+        "source": "面包包设备录像.mp4",
+        "source_time_seconds": 3,
+        "bytes": 192936,
+        "sha256": "ef0ff7b713346bf20ca2ddf77de97c5b4707c945bd42614a8b2c18d2aaedae04"
+      },
+      {
+        "name": "device_interview_state_2026-11-03.jpg",
+        "source": "面包包设备录像.mp4",
+        "source_time_seconds": 15,
+        "bytes": 184625,
+        "sha256": "49b140f2d2a63b4906af85d6774c24db3241a23d74e3aac2ec98a4e495d99139"
+      },
+      {
+        "name": "web_conversation_historical.jpg",
+        "source": "面包包面试对话界面.mp4",
+        "source_time_seconds": 80,
+        "bytes": 110029,
+        "sha256": "f7be6f84b39931b20ece5c4c2c1cc5ee14bc8d89d8b2f377113135925fd5731f"
+      },
+      {
+        "name": "web_report_historical.jpg",
+        "source": "面包包面试对话界面.mp4",
+        "source_time_seconds": 330,
+        "bytes": 129625,
+        "sha256": "d51da6e6f50048e1292e816f6de8e37cedc40297aa2247f9b26c2c767c2004bd"
+      }
+    ]
+  }
+}

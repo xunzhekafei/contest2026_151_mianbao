@@ -1,0 +1,1079 @@
+=== test_director.py ===
+.........
+----------------------------------------------------------------------
+Ran 9 tests in 0.001s
+
+OK
+
+=== test_finish_guard.py ===
+test_deterministic (__main__.TestGatesAndSafety.test_deterministic) ... ok
+test_empty_and_none (__main__.TestGatesAndSafety.test_empty_and_none) ... ok
+test_length_gate_boundary (__main__.TestGatesAndSafety.test_length_gate_boundary)
+21 字以上一律不看 —— 需要铺垫一长串的都不是"说完了"。 ... ok
+test_normalize_strips_punctuation_and_whitespace (__main__.TestGatesAndSafety.test_normalize_strips_punctuation_and_whitespace) ... ok
+test_direct (__main__.TestShouldFinish.test_direct) ... ok
+test_full_width_and_case (__main__.TestShouldFinish.test_full_width_and_case) ... ok
+test_keeps_we_not_supported (__main__.TestShouldFinish.test_keeps_we_not_supported)
+`那我们就到这儿吧` **不**判定为结束：剥壳只剥语气词，不剥"我们"。 ... ok
+test_match_reason_returns_hit_phrase (__main__.TestShouldFinish.test_match_reason_returns_hit_phrase)
+命中时要能说出命中了哪条 —— 误判排查全靠它。 ... ok
+test_with_polite_shell (__main__.TestShouldFinish.test_with_polite_shell)
+真实收尾话几乎都带礼貌外壳 —— 剥壳是必须的，不是锦上添花。 ... ok
+test_ambiguous_short_answers (__main__.TestShouldNotFinish.test_ambiguous_short_answers)
+含义模糊的一律不判 —— 这几条都能是合法回答，见模块文档。 ... ok
+test_long_answer_containing_whitelist_phrase (__main__.TestShouldNotFinish.test_long_answer_containing_whitelist_phrase)
+整句精确匹配的意义：含白名单短语的长回答必须落空。 ... ok
+test_negated_or_qualified (__main__.TestShouldNotFinish.test_negated_or_qualified) ... ok
+test_question_is_not_a_request (__main__.TestShouldNotFinish.test_question_is_not_a_request)
+带问号的是提问 —— 闸 3。特别是"结束了吗"。 ... ok
+test_technical_answer_containing_finish_word (__main__.TestShouldNotFinish.test_technical_answer_containing_finish_word) ... ok
+test_every_phrase_is_already_normalized (__main__.TestWhitelistIsNormalized.test_every_phrase_is_already_normalized) ... ok
+test_no_phrase_exceeds_length_gate (__main__.TestWhitelistIsNormalized.test_no_phrase_exceeds_length_gate)
+长度闸不能把合法条目挡死：白名单里最长的一条也得 ≤ MAX_LEN。 ... ok
+test_phrases_are_lowercase (__main__.TestWhitelistIsNormalized.test_phrases_are_lowercase) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.003s
+
+OK
+
+=== test_growth.py ===
+..............
+----------------------------------------------------------------------
+Ran 14 tests in 0.002s
+
+OK
+
+=== test_interview_note.py ===
+test_malformed_entries_are_skipped (__main__.TestExportNotes.test_malformed_entries_are_skipped) ... ok
+test_markdown_has_notes_section (__main__.TestExportNotes.test_markdown_has_notes_section) ... ok
+test_markdown_without_notes_has_no_section (__main__.TestExportNotes.test_markdown_without_notes_has_no_section) ... ok
+test_clean_json (__main__.TestNormalizeNote.test_clean_json) ... ok
+test_empty_answer_skips_llm (__main__.TestNormalizeNote.test_empty_answer_skips_llm)
+空回答直接返回 {}，不加载技能、不调模型。 ... ok
+test_fenced_json (__main__.TestNormalizeNote.test_fenced_json) ... ok
+test_garbage_returns_empty (__main__.TestNormalizeNote.test_garbage_returns_empty) ... ok
+test_points_capped_and_trimmed (__main__.TestNormalizeNote.test_points_capped_and_trimmed) ... ok
+test_title_whitespace_is_squashed (__main__.TestNormalizeNote.test_title_whitespace_is_squashed) ... ok
+test_add_note_and_snapshot_sorted (__main__.TestSessionNotes.test_add_note_and_snapshot_sorted) ... ok
+test_notes_do_not_touch_history (__main__.TestSessionNotes.test_notes_do_not_touch_history)
+笔记绝不进 messages（否则会被当成对话发给模型）。 ... ok
+test_snapshot_without_notes_is_empty_list (__main__.TestSessionNotes.test_snapshot_without_notes_is_empty_list) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.001s
+
+OK
+
+=== test_interview_stage.py ===
+test_不是请对方提问的 (__main__.TestAskBackGuard.test_不是请对方提问的) ... ok
+test_兜底问句自己得能过判据 (__main__.TestAskBackGuard.test_兜底问句自己得能过判据)
+不然就是逻辑自相矛盾：替换完仍然"不合格"。 ... ok
+test_认出常见的反问说法 (__main__.TestAskBackGuard.test_认出常见的反问说法) ... ok
+test_default_plan_is_unchanged (__main__.TestDynamicRounds.test_default_plan_is_unchanged) ... ok
+test_every_plan_is_continuous (__main__.TestDynamicRounds.test_every_plan_is_continuous) ... ok
+test_five_six_round_plan (__main__.TestDynamicRounds.test_five_six_round_plan) ... ok
+test_normalize_target (__main__.TestDynamicRounds.test_normalize_target) ... ok
+test_压力档位的名单与代码对得上 (__main__.TestPlanMatchesThePrompt.test_压力档位的名单与代码对得上)
+提示词里的三档必须与 `llm_service.PRESSURE_LEVELS` 一字不差。 ... ok
+test_参考块不在_system_prompt_里 (__main__.TestPlanMatchesThePrompt.test_参考块不在_system_prompt_里)
+2026-10-01 改（台账 §11.42）：参考块改拼在本轮 user 消息里、紧跟阶段要求。 ... ok
+test_开场段覆盖_只打招呼_的退化输入 (__main__.TestPlanMatchesThePrompt.test_开场段覆盖_只打招呼_的退化输入)
+2026-10-18 真机：候选人只说了「我以为你好。」，开场却答「刚才你提到的项目里」。 ... ok
+test_提示词里没有多余的段 (__main__.TestPlanMatchesThePrompt.test_提示词里没有多余的段) ... ok
+test_每一段在提示词里都有文本 (__main__.TestPlanMatchesThePrompt.test_每一段在提示词里都有文本) ... ok
+test_每一段都有_brief (__main__.TestPlanMatchesThePrompt.test_每一段都有_brief)
+`brief` 是追加在**本轮 user 消息最后**的那一句（离"下一句要写什么"最近的位置）。 ... ok
+test_硬性要求仍在提示词末尾 (__main__.TestPlanMatchesThePrompt.test_硬性要求仍在提示词末尾)
+⚠️ §11.20 的修复靠的就是这一段留在结尾（recency）。加阶段时很容易 ... ok
+test_只有技术追问那一段用题库 (__main__.TestQuestionBankUsage.test_只有技术追问那一段用题库)
+背景深挖问的是他自己的项目，题库帮不上忙；注进去只会把话题从他自己的 ... ok
+test_未知段名不用题库 (__main__.TestQuestionBankUsage.test_未知段名不用题库) ... ok
+test_坏输入不炸 (__main__.TestStagePlan.test_坏输入不炸)
+它跑在面试主链路上 —— 一个坏的轮次不该让整场面试变成 500。 ... ok
+test_段表连续无空洞无重叠 (__main__.TestStagePlan.test_段表连续无空洞无重叠)
+段表必须严丝合缝覆盖 1~10 —— 中间漏一轮，那一轮就会静默地没有阶段。 ... ok
+test_每一轮都有确定的段 (__main__.TestStagePlan.test_每一轮都有确定的段)
+1~10 轮逐轮钉死。改了段表就要同步改这里 —— 那是故意的。 ... ok
+test_第11轮没有段 (__main__.TestStagePlan.test_第11轮没有段)
+第 11 轮的回复是**报告** —— 结束判据在那之前就把它分流了， ... ok
+test_轮数与结束判据对得上 (__main__.TestStagePlan.test_轮数与结束判据对得上)
+⚠️ 这两个数字是绑在一起的：`HISTORY_FINISH_THRESHOLD` 是 20 条消息 ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.028s
+
+OK
+
+=== test_live_stream.py ===
+test_empty_answer_emits_error (__main__.TestLiveRoute.test_empty_answer_emits_error) ... 2026-11-27 10:09:03,631 - app - INFO - [密钥] MIMO_API_KEY 已加载（长度 30）
+2026-11-27 10:09:03,708 - question_bank - INFO - [题库] 已加载 9615 道题（5 个文件，9 个岗位）
+2026-11-27 10:09:03,708 - app - INFO - [题库] 就绪：9615 道题，岗位：AI 应用开发、前端工程师、后端开发工程师、大模型算法工程师、数据分析师、数据科学家、智能体开发、机器学习工程师、算法工程师
+ok
+test_session_created_and_history_recorded (__main__.TestLiveRoute.test_session_created_and_history_recorded) ... ok
+test_stream_emits_sentences_and_done (__main__.TestLiveRoute.test_stream_emits_sentences_and_done) ... ok
+test_boundary_completes_sentence (__main__.TestSentenceAccumulator.test_boundary_completes_sentence) ... ok
+test_flush_returns_remainder (__main__.TestSentenceAccumulator.test_flush_returns_remainder) ... ok
+test_long_single_sentence_splits_at_comma (__main__.TestSentenceAccumulator.test_long_single_sentence_splits_at_comma) ... ok
+test_multiple_sentences_in_one_delta (__main__.TestSentenceAccumulator.test_multiple_sentences_in_one_delta) ... ok
+test_newline_is_boundary (__main__.TestSentenceAccumulator.test_newline_is_boundary) ... ok
+test_no_boundary_returns_nothing (__main__.TestSentenceAccumulator.test_no_boundary_returns_nothing) ... ok
+test_overlong_text_forced_cut (__main__.TestSentenceAccumulator.test_overlong_text_forced_cut) ... ok
+test_short_sentence_merges_with_next (__main__.TestSentenceAccumulator.test_short_sentence_merges_with_next) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 1.729s
+
+OK
+
+=== test_next_question.py ===
+test_hint_is_injected_in_technical_stage (__main__.TestDirectorHint.test_hint_is_injected_in_technical_stage)
+导演环的动作要求必须进本轮 user 消息（和 brief 同处）。 ... ok
+test_opening_has_no_director_hint (__main__.TestDirectorHint.test_opening_has_no_director_hint) ... ok
+test_原样重问触发一次重试 (__main__.TestRepeatGuard.test_原样重问触发一次重试) ... [重问] 第 9 轮与上一问相似度 0.86，补一次纠偏重试
+ok
+test_正常轮次零成本 (__main__.TestRepeatGuard.test_正常轮次零成本) ... ok
+test_第一轮没有上一问不触发 (__main__.TestRepeatGuard.test_第一轮没有上一问不触发) ... ok
+test_重试仍重问就照发 (__main__.TestRepeatGuard.test_重试仍重问就照发)
+宁可要一句稍重的追问，也不要让这一轮空掉（同 report_guard 的取舍）。 ... [重问] 第 9 轮与上一问相似度 0.86，补一次纠偏重试
+[重问] 重试后仍相似（或为空），按原样返回（不拦）
+ok
+test_重试请求带着原问题与纠偏指令 (__main__.TestRepeatGuard.test_重试请求带着原问题与纠偏指令)
+重试那一轮必须把原问题和纠偏指令一起带上，否则模型不知道要改什么 ... [重问] 第 9 轮与上一问相似度 0.86，补一次纠偏重试
+ok
+test_重试返回空也用原问 (__main__.TestRepeatGuard.test_重试返回空也用原问) ... [重问] 第 9 轮与上一问相似度 0.86，补一次纠偏重试
+[重问] 重试后仍相似（或为空），按原样返回（不拦）
+ok
+test_技术追问段带上岗位角度 (__main__.TestRoleFocus.test_技术追问段带上岗位角度)
+换岗位必须真的改变追问方向 —— 否则多岗位演示就是"换汤不换药"（§11.45）。 ... ok
+test_未知岗位优雅退化 (__main__.TestRoleFocus.test_未知岗位优雅退化)
+对不上就不注入、不报错 —— 同参考块的优雅退化。 ... ok
+test_背景深挖段不注入 (__main__.TestRoleFocus.test_背景深挖段不注入)
+背景深挖问的是他的基本功，加岗位角度只会把话题拽窄。 ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.177s
+
+OK
+
+=== test_page_display.py ===
+test_css_hidden_detector_works (__main__.TestPageIsReadable.test_css_hidden_detector_works)
+自检判据本身：`#report` / `#jump` 确实被 CSS 藏着，得认出来。 ... ok
+test_sections_are_found (__main__.TestPageIsReadable.test_sections_are_found) ... ok
+test_every_bound_element_exists_in_the_page (__main__.TestShowHide.test_every_bound_element_exists_in_the_page)
+`getElementById` 绑的 id 必须真在页面里 —— 拼错一个字母，那个变量就是 ... ok
+test_no_element_is_shown_by_clearing_inline_style (__main__.TestShowHide.test_no_element_is_shown_by_clearing_inline_style)
+★ 正题：被 CSS 藏起来的元素，不能用 `style.display = ""` 去显示。 ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.010s
+
+OK
+
+=== test_question_bank.py ===
+test_missing_dir_degrades_without_raising (__main__.TestBankLoading.test_missing_dir_degrades_without_raising)
+题库整个目录缺失时：不抛异常、返回空库、参考块为空。 ... [题库] zh_questions.json 加载失败，跳过：[Errno 2] No such file or directory: 'C:\\Users\\JACK\\AppData\\Local\\Temp\\不存在的题库目录_xyz\\zh_questions.json'
+[题库] ai_questions.json 加载失败，跳过：[Errno 2] No such file or directory: 'C:\\Users\\JACK\\AppData\\Local\\Temp\\不存在的题库目录_xyz\\ai_questions.json'
+[题库] fe_questions.json 加载失败，跳过：[Errno 2] No such file or directory: 'C:\\Users\\JACK\\AppData\\Local\\Temp\\不存在的题库目录_xyz\\fe_questions.json'
+[题库] backend_questions.json 加载失败，跳过：[Errno 2] No such file or directory: 'C:\\Users\\JACK\\AppData\\Local\\Temp\\不存在的题库目录_xyz\\backend_questions.json'
+[题库] algorithm_questions.json 加载失败，跳过：[Errno 2] No such file or directory: 'C:\\Users\\JACK\\AppData\\Local\\Temp\\不存在的题库目录_xyz\\algorithm_questions.json'
+[题库] 空库 —— 目录 C:\Users\JACK\AppData\Local\Temp\不存在的题库目录_xyz 下没有可用数据，面试将退化为自由提问（不注入参考题）
+ok
+test_no_glob_in_source (__main__.TestBankLoading.test_no_glob_in_source)
+§11.21 的安全设计：用白名单，不用 glob("*.json")。 ... ok
+test_record_count_and_roles (__main__.TestBankLoading.test_record_count_and_roles) ... ok
+test_stdlib_only (__main__.TestBankLoading.test_stdlib_only)
+只依赖标准库 —— 否则这个文件没法脱网直跑。 ... ok
+test_whitelist_ignores_stray_json (__main__.TestBankLoading.test_whitelist_ignores_stray_json)
+白名单的关键性质：data/ 里多出来的 JSON 不能被吃进题库。 ... ok
+test_cache_not_polluted_by_sorting (__main__.TestCacheIntegrity.test_cache_not_polluted_by_sorting)
+排序必须在副本上做：检索跑一轮后缓存顺序与内容都不能变。 ... ok
+test_concurrent_load_is_single_and_stable (__main__.TestCacheIntegrity.test_concurrent_load_is_single_and_stable)
+双检锁：并发首载只加载一次，所有线程拿到同一个对象。 ... ok
+test_block_has_no_markdown (__main__.TestDeterminismAndBudget.test_block_has_no_markdown)
+块里不能出现 Markdown —— 它在 system prompt 里，模型可能照抄到输出中， ... ok
+test_block_within_hard_limit_all_roles_all_rounds (__main__.TestDeterminismAndBudget.test_block_within_hard_limit_all_roles_all_rounds)
+9 个岗位 × 10 轮块长恒 ≤ 400 —— 这是端侧 8MiB 缓冲的第一道保险。 ... ok
+test_question_clipping (__main__.TestDeterminismAndBudget.test_question_clipping) ... ok
+test_same_input_three_times_identical (__main__.TestDeterminismAndBudget.test_same_input_three_times_identical)
+确定性：同一输入连算三次必须逐字相同（否则单测会漂、A/B 不可复现）。 ... ok
+test_每个题库岗位都有追问角度 (__main__.TestRoleFocusCoverage.test_每个题库岗位都有追问角度) ... ok
+test_角度不是空话 (__main__.TestRoleFocusCoverage.test_角度不是空话) ... ok
+test_alias_targets_are_real_roles (__main__.TestRoleMapping.test_alias_targets_are_real_roles)
+别名表的目标必须是题库里真实存在的岗位名 —— 写错会静默失效。 ... ok
+test_new_role_aliases (__main__.TestRoleMapping.test_new_role_aliases)
+新增三个岗位简称必须映射到对应的真实岗位。 ... ok
+test_normalize_role (__main__.TestRoleMapping.test_normalize_role) ... ok
+test_unmapped_role_yields_empty_block (__main__.TestRoleMapping.test_unmapped_role_yields_empty_block)
+落空岗位 → 空块 → 提示词与没有题库时逐字节相同。 ... ok
+test_all_english_questions_are_clipped (__main__.TestRotationCoverage.test_all_english_questions_are_clipped)
+英文题干全部超 60 字 —— 参考块里只能是"选题方向"，绝不能当原文念。 ... ok
+test_asked_questions_are_avoided (__main__.TestRotationCoverage.test_asked_questions_are_avoided)
+已问过的原题不该再被选中（逐字复用场景）。 ... ok
+test_rotation_covers_multiple_categories (__main__.TestRotationCoverage.test_rotation_covers_multiple_categories)
+命中不足时靠类目轮换补足：一场面试的类目必须铺开，不能十轮同一个话题。 ... ok
+test_filters_are_case_insensitive_substrings (__main__.TestSearch.test_filters_are_case_insensitive_substrings) ... ok
+test_hits_are_relevant (__main__.TestSearch.test_hits_are_relevant) ... ok
+test_level_filter_only_works_for_english (__main__.TestSearch.test_level_filter_only_works_for_english) ... ok
+test_limit_is_clamped (__main__.TestSearch.test_limit_is_clamped) ... ok
+test_unknown_role_returns_empty (__main__.TestSearch.test_unknown_role_returns_empty) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 3.197s
+
+OK
+
+=== test_question_similarity.py ===
+test_bad_shapes_do_not_crash (__main__.TestQuestionSimilarity.test_bad_shapes_do_not_crash)
+判据会被喂进各种形状（None / 数字 / 空），别炸 —— 同 report_guard 的取舍。 ... ok
+test_normal_pairs_below_threshold (__main__.TestQuestionSimilarity.test_normal_pairs_below_threshold)
+正常推进的相邻两问一个都不能误伤（只测「拦得住」，阈值就会悄悄收紧）。 ... ok
+test_order_does_not_matter (__main__.TestQuestionSimilarity.test_order_does_not_matter) ... ok
+test_punctuation_only_is_zero (__main__.TestQuestionSimilarity.test_punctuation_only_is_zero)
+只剩标点就没什么可比 —— 0.0，不是崩溃，也不是 1.0。 ... ok
+test_repeat_exceeds_threshold (__main__.TestQuestionSimilarity.test_repeat_exceeds_threshold)
+原样重问必须超阈值 —— 判据就是为这一对加的。 ... ok
+test_原样重问判为重问 (__main__.TestRepeatGuard.test_原样重问判为重问) ... ok
+test_排练用的是本模块的阈值 (__main__.TestRepeatGuard.test_排练用的是本模块的阈值)
+⚠️ 两处阈值必须是**同一个**：rehearsal.py 直接 import 这里的常量，而不是 ... ok
+test_正常推进不算重问 (__main__.TestRepeatGuard.test_正常推进不算重问) ... ok
+test_纠偏指令给出两条出路 (__main__.TestRepeatGuard.test_纠偏指令给出两条出路)
+⚠️ 只说"不要重复"没有给出路，模型会在原地打转 —— 指令必须**两条路都指**： ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.014s
+
+OK
+
+=== test_reply_guard.py ===
+test_assistant_messages_cleaned_user_untouched (__main__.TestCleanHistory.test_assistant_messages_cleaned_user_untouched) ... ok
+test_clean_history_is_unchanged (__main__.TestCleanHistory.test_clean_history_is_unchanged) ... ok
+test_empty_and_none (__main__.TestCleanHistory.test_empty_and_none) ... ok
+test_fully_meta_message_is_dropped (__main__.TestCleanHistory.test_fully_meta_message_is_dropped) ... ok
+test_english_question (__main__.TestCleanTextIsUntouched.test_english_question) ... ok
+test_multi_sentence_with_lead_in (__main__.TestCleanTextIsUntouched.test_multi_sentence_with_lead_in) ... ok
+test_no_question_mark (__main__.TestCleanTextIsUntouched.test_no_question_mark) ... ok
+test_normal_question_with_can_is_untouched (__main__.TestCleanTextIsUntouched.test_normal_question_with_can_is_untouched)
+「可以」不是推演标记，正常问句不能被误伤。 ... ok
+test_single_question (__main__.TestCleanTextIsUntouched.test_single_question) ... ok
+test_all_meta_yields_empty (__main__.TestDirtyOutputIsCleaned.test_all_meta_yields_empty) ... ok
+test_bold_label_line (__main__.TestDirtyOutputIsCleaned.test_bold_label_line) ... ok
+test_full_meta_block_keeps_only_question (__main__.TestDirtyOutputIsCleaned.test_full_meta_block_keeps_only_question) ... ok
+test_label_only_prefix (__main__.TestDirtyOutputIsCleaned.test_label_only_prefix) ... ok
+test_markdown_table_is_dropped (__main__.TestDirtyOutputIsCleaned.test_markdown_table_is_dropped) ... ok
+test_no_markdown_survives (__main__.TestDirtyOutputIsCleaned.test_no_markdown_survives)
+脏输出清理后不许留下 Markdown 痕迹（它会被逐字念出来）。 ... ok
+test_question_on_same_line_as_label (__main__.TestDirtyOutputIsCleaned.test_question_on_same_line_as_label) ... ok
+test_real_output_with_next_step_section (__main__.TestDirtyOutputIsCleaned.test_real_output_with_next_step_section)
+211 字的真实原始输出 → 58 字可念的问句（「下一步」「理由」那些全不念）。 ... ok
+test_reasoning_leak_salvages_the_quoted_question (__main__.TestDirtyOutputIsCleaned.test_reasoning_leak_salvages_the_quoted_question)
+推演型脏输出：只保留「」里的最终问句，不能把思考过程念出来。 ... ok
+test_reasoning_paragraph_without_label_is_dropped (__main__.TestDirtyOutputIsCleaned.test_reasoning_paragraph_without_label_is_dropped)
+真实脏输出的"理由"正文是**独立一段**、没有标签，靠"不含问句的块不念"丢掉。 ... ok
+test_reference_label_is_stripped_question_kept (__main__.TestDirtyOutputIsCleaned.test_reference_label_is_stripped_question_kept)
+2026-10-15 真机：模型把「参考方向：」这个内部标签念了出来（台账 §11.48）。 ... ok
+test_two_questions_are_not_truncated (__main__.TestDirtyOutputIsCleaned.test_two_questions_are_not_truncated)
+不做句子级截断：两句相关的问话要一起留下（砍掉前半句会失去所指）。 ... ok
+test_deterministic (__main__.TestInvariants.test_deterministic) ... ok
+test_empty_and_whitespace (__main__.TestInvariants.test_empty_and_whitespace) ... ok
+test_fallback_question_is_usable (__main__.TestInvariants.test_fallback_question_is_usable) ... ok
+test_idempotent (__main__.TestInvariants.test_idempotent) ... ok
+test_clean_history_removes_stage_direction (__main__.TestStageDirections.test_clean_history_removes_stage_direction) ... ok
+test_flatten_keeps_clean_text (__main__.TestStageDirections.test_flatten_keeps_clean_text) ... ok
+test_parenthetical_forms_are_removed (__main__.TestStageDirections.test_parenthetical_forms_are_removed) ... ok
+test_stage_direction_is_removed (__main__.TestStageDirections.test_stage_direction_is_removed) ... ok
+test_tts_text_is_one_line (__main__.TestStageDirections.test_tts_text_is_one_line) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 0.002s
+
+OK
+
+=== test_report_export.py ===
+test_blank_format_falls_back_to_markdown (__main__.TestExport.test_blank_format_falls_back_to_markdown)
+空/缺省按 md 处理 —— 前端不带参数直接点导出时走的就是这条路。 ... ok
+test_default_is_markdown (__main__.TestExport.test_default_is_markdown) ... ok
+test_filename_is_ascii_with_session_prefix (__main__.TestExport.test_filename_is_ascii_with_session_prefix)
+文件名必须纯 ASCII —— 中文名要走 RFC 5987，各版本 Werkzeug 行为不一致。 ... ok
+test_filename_survives_bad_session_id (__main__.TestExport.test_filename_survives_bad_session_id) ... ok
+test_json (__main__.TestExport.test_json) ... ok
+test_json_round_trips_everything (__main__.TestExport.test_json_round_trips_everything) ... ok
+test_markdown (__main__.TestExport.test_markdown) ... ok
+test_supported_list (__main__.TestExport.test_supported_list) ... ok
+test_unsupported_format (__main__.TestExport.test_unsupported_format) ... ok
+test_empty_and_none_are_safe (__main__.TestMarkdown.test_empty_and_none_are_safe) ... ok
+test_has_all_sections (__main__.TestMarkdown.test_has_all_sections) ... ok
+test_header_fields (__main__.TestMarkdown.test_header_fields) ... ok
+test_no_per_question_section_when_absent (__main__.TestMarkdown.test_no_per_question_section_when_absent)
+老会话没有这个字段 —— 那一节就不该出现，而不是印一个空标题。 ... ok
+test_per_question_review_is_rendered (__main__.TestMarkdown.test_per_question_review_is_rendered)
+逐题复盘是这份报告里**最像"练习工具"**的一节 —— 总分说明现状， ... ok
+test_per_question_tolerates_missing_question_text (__main__.TestMarkdown.test_per_question_tolerates_missing_question_text)
+题目文本缺了也不该崩 —— 退化成「（开场）」比让整份导出失败好。 ... ok
+test_pipe_in_comment_does_not_break_table (__main__.TestMarkdown.test_pipe_in_comment_does_not_break_table)
+评语里带 | 会把 Markdown 表格切碎，必须转义。 ... ok
+test_report_text_is_the_last_assistant_message (__main__.TestMarkdown.test_report_text_is_the_last_assistant_message) ... ok
+test_running_session_without_report_or_score (__main__.TestMarkdown.test_running_session_without_report_or_score) ... ok
+test_scores_are_rendered (__main__.TestMarkdown.test_scores_are_rendered) ... ok
+test_transcript_labels_both_speakers (__main__.TestMarkdown.test_transcript_labels_both_speakers) ... ok
+test_bad_input (__main__.TestReportText.test_bad_input) ... ok
+test_blank_report_field_falls_through (__main__.TestReportText.test_blank_report_field_falls_through) ... ok
+test_falls_back_to_last_assistant_when_finished (__main__.TestReportText.test_falls_back_to_last_assistant_when_finished)
+没有 report 字段但已结束 → 复用最后一条 assistant 消息，不另存一份。 ... ok
+test_no_report_while_running (__main__.TestReportText.test_no_report_while_running) ... ok
+test_prefers_report_field (__main__.TestReportText.test_prefers_report_field) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.003s
+
+OK
+
+=== test_report_guard.py ===
+test_the_conforming_report (__main__.TestHasQuoteOnRealSamples.test_the_conforming_report) ... ok
+test_the_real_failing_report (__main__.TestHasQuoteOnRealSamples.test_the_real_failing_report)
+真机那份报告 —— 这道闸存在的唯一理由。 ... ok
+test_两种都不合格 (__main__.TestProblems.test_两种都不合格) ... ok
+test_刚好到上限不算超 (__main__.TestProblems.test_刚好到上限不算超)
+边界：**刚好到上限合格，多一个字就动手**。 ... ok
+test_合格的报告没有问题 (__main__.TestProblems.test_合格的报告没有问题) ... ok
+test_空与None (__main__.TestProblems.test_空与None) ... ok
+test_缺引用 (__main__.TestProblems.test_缺引用) ... ok
+test_超长 (__main__.TestProblems.test_超长) ... ok
+test_deterministic (__main__.TestPureFunctionProperties.test_deterministic) ... ok
+test_does_not_mutate_history (__main__.TestPureFunctionProperties.test_does_not_mutate_history) ... ok
+test_empty_history_and_bad_history (__main__.TestQuoteEvidence.test_empty_history_and_bad_history) ... ok
+test_fabricated_quote_is_flagged (__main__.TestQuoteEvidence.test_fabricated_quote_is_flagged)
+模型编出来的"原话"要能被认出来（只记日志，不拦）。 ... ok
+test_good_quote_is_found (__main__.TestQuoteEvidence.test_good_quote_is_found) ... ok
+test_keyword_concatenation_is_reported_as_unmatched (__main__.TestQuoteEvidence.test_keyword_concatenation_is_reported_as_unmatched)
+⚠️ 已知行为，不是缺陷：提示词允许"摘关键词连起来"，那是**拼接**而非 ... ok
+test_no_quote_no_evidence_problem (__main__.TestQuoteEvidence.test_no_quote_no_evidence_problem) ... ok
+test_only_user_messages_count (__main__.TestQuoteEvidence.test_only_user_messages_count)
+面试官自己说过的话不算"候选人的原话"。 ... ok
+test_punctuation_and_space_differences_do_not_matter (__main__.TestQuoteEvidence.test_punctuation_and_space_differences_do_not_matter)
+语音转写的标点不可信：压掉标点后能对上就算对上。 ... ok
+test_empty_quote_is_not_a_quote (__main__.TestQuotedSpans.test_empty_quote_is_not_a_quote)
+`「」` 是空引用，不能算数 —— 否则模型写一对空括号就能骗过闸门。 ... ok
+test_multiple_keeps_order (__main__.TestQuotedSpans.test_multiple_keeps_order) ... ok
+test_none_and_empty (__main__.TestQuotedSpans.test_none_and_empty)
+闸门会被喂进各种形状，别在 None 上炸。 ... ok
+test_only_existing_pairs (__main__.TestQuotedSpans.test_only_existing_pairs)
+落单的「 不该把后面的整段都吞进去。 ... ok
+test_single (__main__.TestQuotedSpans.test_single) ... ok
+test_too_long_is_not_matched (__main__.TestQuotedSpans.test_too_long_is_not_matched)
+超过 40 字的引号内容不当作「引用」—— 闸门只回答"有没有"，长度是提示词的事。 ... ok
+test_上限与rehearsal保持一致 (__main__.TestRetryHint.test_上限与rehearsal保持一致)
+⚠️ 两处阈值必须一样，否则会出现"闸门觉得合格、排练判不及格"这种自相矛盾。 ... ok
+test_两种都有时两条都给 (__main__.TestRetryHint.test_两种都有时两条都给) ... ok
+test_没有问题时不拼东西 (__main__.TestRetryHint.test_没有问题时不拼东西) ... ok
+test_缺引用时给引用那条 (__main__.TestRetryHint.test_缺引用时给引用那条) ... ok
+test_超长时给长度那条 (__main__.TestRetryHint.test_超长时给长度那条) ... ok
+test_imports_are_stdlib_only (__main__.TestStdlibOnly.test_imports_are_stdlib_only) ... ok
+
+----------------------------------------------------------------------
+Ran 29 tests in 0.012s
+
+OK
+
+=== test_report_pdf.py ===
+test_empty_snapshot_does_not_raise (__main__.TestReportPdf.test_empty_snapshot_does_not_raise) ... ok
+test_partial_snapshot_without_score_or_expression (__main__.TestReportPdf.test_partial_snapshot_without_score_or_expression) ... ok
+test_renders_valid_pdf (__main__.TestReportPdf.test_renders_valid_pdf) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.186s
+
+OK
+
+=== test_report_retry.py ===
+test_empty_llm_result_returns_fallback (__main__.TestQuoteRetry.test_empty_llm_result_returns_fallback)
+两次都空（LLM 调不通）→ 走原有的兜底文案。 ... ok
+test_keeps_original_when_retry_also_fails (__main__.TestQuoteRetry.test_keeps_original_when_retry_also_fails)
+重试仍不合格 → **照发原文**，不丢弃、也不机械拼一句引用上去。 ... [报告] 首轮不合格（no_quote），补一次纠偏重试
+[报告] 重试后仍不合格（no_quote），按原样返回（不拦）
+ok
+test_no_retry_when_quote_present (__main__.TestQuoteRetry.test_no_retry_when_quote_present)
+正常轮次零成本 —— 这条是"只在缺的时候才多花一次调用"的守卫。 ... ok
+test_retries_once_when_quote_missing (__main__.TestQuoteRetry.test_retries_once_when_quote_missing) ... [报告] 首轮不合格（no_quote），补一次纠偏重试
+ok
+test_retry_hint_is_actually_sent (__main__.TestQuoteRetry.test_retry_hint_is_actually_sent)
+重试那一轮必须把原回复和纠偏指令一起带上，否则模型不知道要改什么。 ... [报告] 首轮不合格（no_quote），补一次纠偏重试
+ok
+test_两种问题一次重试里一起说 (__main__.TestQuoteRetry.test_两种问题一次重试里一起说)
+缺引用 + 超长 → **一次**重试，不是两次。 ... [报告] 首轮不合格（no_quote、too_long），补一次纠偏重试
+ok
+test_报告超长也会触发重试 (__main__.TestQuoteRetry.test_报告超长也会触发重试)
+2026-10-01 加：那次排练的报告写到 296 字（上限 250），提示词写着 200 也没用。 ... [报告] 首轮不合格（too_long），补一次纠偏重试
+ok
+test_重试后仍超长就照发 (__main__.TestQuoteRetry.test_重试后仍超长就照发)
+宁可要一份长的，也不要为了压字数把已经生成好的内容丢掉。 ... [报告] 首轮不合格（too_long），补一次纠偏重试
+[报告] 重试后仍不合格（too_long），按原样返回（不拦）
+ok
+test_prompt_comes_from_skill_file (__main__.TestSystemPromptIsUsed.test_prompt_comes_from_skill_file)
+用的是 skills/generate_feedback.json 里的提示词，不是硬编码。 ... ok
+test_prompt_covers_the_degenerate_case (__main__.TestSystemPromptIsUsed.test_prompt_covers_the_degenerate_case)
+提示词里必须留着那条专门覆盖退化情形的说明 —— 它正是这次修复的根因所在： ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.018s
+
+OK
+
+=== test_review_stream.py ===
+2026-11-27 10:09:14,550 - app - INFO - [密钥] MIMO_API_KEY 已加载（长度 30）
+2026-11-27 10:09:14,593 - question_bank - INFO - [题库] 已加载 9615 道题（5 个文件，9 个岗位）
+2026-11-27 10:09:14,593 - app - INFO - [题库] 就绪：9615 道题，岗位：AI 应用开发、前端工程师、后端开发工程师、大模型算法工程师、数据分析师、数据科学家、智能体开发、机器学习工程师、算法工程师
+test_markdown_uses_live_when_score_missing (__main__.TestExportFallback.test_markdown_uses_live_when_score_missing) ... ok
+test_markdown_without_any_review (__main__.TestExportFallback.test_markdown_without_any_review) ... ok
+test_add_and_dedupe (__main__.TestLiveReviewStorage.test_add_and_dedupe) ... ok
+test_snapshot_without_live_is_empty (__main__.TestLiveReviewStorage.test_snapshot_without_live_is_empty) ... ok
+test_clean_json_keeps_verbatim_evidence (__main__.TestNormalizeReview.test_clean_json_keeps_verbatim_evidence) ... ok
+test_evidence_not_in_answer_is_dropped (__main__.TestNormalizeReview.test_evidence_not_in_answer_is_dropped) ... ok
+test_garbage_returns_none (__main__.TestNormalizeReview.test_garbage_returns_none) ... ok
+test_missing_suggestion_is_dropped (__main__.TestNormalizeReview.test_missing_suggestion_is_dropped) ... ok
+test_punctuation_insensitive_match (__main__.TestNormalizeReview.test_punctuation_insensitive_match)
+原话跨标点时（压掉标点后仍是子串）证据保留。 ... ok
+test_pairs_skip_report_message (__main__.TestQuestionPairs.test_pairs_skip_report_message) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.001s
+
+OK
+
+=== test_routes.py ===
+2026-11-27 10:09:16,402 - app - INFO - [密钥] MIMO_API_KEY 已加载（长度 30）
+2026-11-27 10:09:16,443 - question_bank - INFO - [题库] 已加载 9615 道题（5 个文件，9 个岗位）
+2026-11-27 10:09:16,443 - app - INFO - [题库] 就绪：9615 道题，岗位：AI 应用开发、前端工程师、后端开发工程师、大模型算法工程师、数据分析师、数据科学家、智能体开发、机器学习工程师、算法工程师
+test_bad_token_rejected (__main__.TestAccountBind.test_bad_token_rejected) ... ok
+test_bind_sets_cookie_and_me_reads_it (__main__.TestAccountBind.test_bind_sets_cookie_and_me_reads_it) ... 2026-11-27 10:09:16,526 - user_store - INFO - [账号] 绑定成功 token=LZqymP… user=c8166dfe…
+2026-11-27 10:09:16,526 - app - INFO - [账号] 手机绑定成功 user=c8166dfe…
+ok
+test_bind_start_returns_url (__main__.TestAccountBind.test_bind_start_returns_url) ... ok
+test_device_token_ownership_and_history_filter (__main__.TestAccountBind.test_device_token_ownership_and_history_filter) ... 2026-11-27 10:09:16,555 - user_store - INFO - [账号] 绑定成功 token=o-DqoU… user=4feb1560…
+2026-11-27 10:09:16,555 - app - INFO - [账号] 手机绑定成功 user=4feb1560…
+2026-11-27 10:09:16,580 - llm_service - INFO - 加载 Skill: interview_note
+2026-11-27 10:09:16,594 - user_store - INFO - [账号] 绑定成功 token=pxSMcQ… user=6ba90000…
+2026-11-27 10:09:16,594 - app - INFO - [账号] 手机绑定成功 user=6ba90000…
+ok
+test_unowned_sessions_stay_public (__main__.TestAccountBind.test_unowned_sessions_stay_public) ... ok
+test_health (__main__.TestBasicRoutes.test_health) ... ok
+test_history_empty (__main__.TestBasicRoutes.test_history_empty)
+一场都没有时必须给 waiting=True，前端据此显示"等待面试开始"。 ... ok
+test_history_unknown_session_is_waiting (__main__.TestBasicRoutes.test_history_unknown_session_is_waiting)
+指定了一个不存在的 session_id → 目前也返回 waiting=True。 ... ok
+test_index_serves_display_page (__main__.TestBasicRoutes.test_index_serves_display_page) ... C:\Python314\Lib\unittest\case.py:615: ResourceWarning: unclosed file <_io.BufferedReader name='C:\\Users\\JACK\\Documents\\ChatGPT\\openvela模拟面试项目中期汇报\\cloud\\static/index.html'>
+  result = method()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_舍弃不存在的会话也算成功 (__main__.TestDiscardSession.test_舍弃不存在的会话也算成功)
+幂等：板子重发一次 DELETE 不该报错（网络重试会走到这里）。 ... 2026-11-27 10:09:16,688 - app - INFO - [舍弃] session=0f8fad5b-d9cb-469f-a165-70867728950e 内存=False 落盘删除=True
+ok
+test_舍弃会话_内存与磁盘一起删 (__main__.TestDiscardSession.test_舍弃会话_内存与磁盘一起删) ... 2026-11-27 10:09:16,692 - app - INFO - [舍弃] session=0f8fad5b-d9cb-469f-a165-70867728950e 内存=True 落盘删除=True
+ok
+test_非法_id_被拒 (__main__.TestDiscardSession.test_非法_id_被拒)
+id 会拼进文件名 —— 形状不对的一律 400（同 session_store 的纪律）。 ... ok
+test_latest_without_parameter (__main__.TestDiskFallback.test_latest_without_parameter) ... ok
+test_memory_wins_over_disk (__main__.TestDiskFallback.test_memory_wins_over_disk)
+内存与磁盘都有时以内存为准（内存是活的，磁盘是上一轮的存档）。 ... ok
+test_survives_memory_loss (__main__.TestDiskFallback.test_survives_memory_loss) ... ok
+test_default_format_is_markdown (__main__.TestExport.test_default_format_is_markdown) ... ok
+test_export_is_read_only (__main__.TestExport.test_export_is_read_only)
+导出只读：不改会话、不落新文件（对板子那条链路不能有任何影响）。 ... ok
+test_filename_is_ascii_and_attachment (__main__.TestExport.test_filename_is_ascii_and_attachment)
+文件名走 Content-Disposition —— 非 ASCII 会引出 RFC 5987 编码的坑， ... ok
+test_json_is_parseable (__main__.TestExport.test_json_is_parseable) ... ok
+test_markdown (__main__.TestExport.test_markdown) ... ok
+test_missing_session_is_404 (__main__.TestExport.test_missing_session_is_404) ... ok
+test_unsupported_format (__main__.TestExport.test_unsupported_format)
+⚠️ 这条必须用**存在**的会话：路由是先找会话、再判格式。 ... ok
+test_nothing_written_outside (__main__.TestExportPathTraversal.test_nothing_written_outside) ... ok
+test_rejected (__main__.TestExportPathTraversal.test_rejected) ... ok
+test_文字演练_记录口头语且不编语速 (__main__.TestExpressionMetrics.test_文字演练_记录口头语且不编语速) ... 2026-11-27 10:09:16,757 - llm_service - INFO - 加载 Skill: interview_note
+ok
+test_板子链路_音频指标入库 (__main__.TestExpressionMetrics.test_板子链路_音频指标入库) ... 2026-11-27 10:09:16,771 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 开始 ASR 识别...
+2026-11-27 10:09:16,771 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] ASR 识别结果: 我负责检索链路。...
+2026-11-27 10:09:16,775 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 调用 LLM...
+2026-11-27 10:09:16,775 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 开始 TTS...
+2026-11-27 10:09:16,776 - llm_service - INFO - 加载 Skill: interview_note
+ok
+test_文字演练_已结束不再生成第二份报告 (__main__.TestFinishedSessionGuard.test_文字演练_已结束不再生成第二份报告) ... 2026-11-27 10:09:16,781 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 已结束，返回既有报告（不重复处理）
+ok
+test_文字演练_并发请求被拒绝 (__main__.TestFinishedSessionGuard.test_文字演练_并发请求被拒绝)
+同一会话同时只处理一个请求 —— 报告轮 ~10 秒的窗口里连发会踩到。 ... 2026-11-27 10:09:16,783 - app - WARNING - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 上一条还在处理，拒绝并发请求
+ok
+test_板子链路_已结束返回既有报告且不跑_ASR_LLM (__main__.TestFinishedSessionGuard.test_板子链路_已结束返回既有报告且不跑_ASR_LLM) ... 2026-11-27 10:09:16,784 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 已结束，返回既有报告（不重复处理）
+ok
+test_aggregates_scored_sessions (__main__.TestGrowthRoute.test_aggregates_scored_sessions) ... ok
+test_empty_when_no_sessions (__main__.TestGrowthRoute.test_empty_when_no_sessions) ... ok
+test_role_filter (__main__.TestGrowthRoute.test_role_filter) ... 2026-11-27 10:09:16,820 - llm_service - INFO - LLM 请求: model=mimo-v2.6-flash, 消息数=2
+2026-11-27 10:09:16,820 - llm_service - INFO - LLM 请求: model=mimo-v2.6-flash, 消息数=2
+2026-11-27 10:09:16,820 - llm_service - INFO - LLM 请求: model=mimo-v2.6-flash, 消息数=2
+ok
+test_finished_flag_is_real (__main__.TestHistoryFromMemory.test_finished_flag_is_real)
+`is_finished` 曾经恒为 False（finish() 零调用者）—— 网页的报告卡片靠它。 ... ok
+test_reads_live_session (__main__.TestHistoryFromMemory.test_reads_live_session) ... ok
+test_serves_the_same_html_as_the_display_page (__main__.TestHistoryPage.test_serves_the_same_html_as_the_display_page)
+列表页与展示页共用一个 HTML（前端按路径分支）—— 这个断言是那条约定的锁。 ... ok
+test_pdf_export (__main__.TestPdfExport.test_pdf_export) ... ok
+test_建会话时钉住档位 (__main__.TestPressurePinning.test_建会话时钉住档位) ... 2026-11-27 10:09:17,221 - llm_service - INFO - 加载 Skill: interview_note
+2026-11-27 10:09:17,223 - llm_service - INFO - LLM 请求: model=mimo-v2.6-flash, 消息数=2
+2026-11-27 10:09:17,226 - llm_service - INFO - 加载 Skill: interview_note
+2026-11-27 10:09:17,228 - llm_service - INFO - LLM 请求: model=mimo-v2.6-flash, 消息数=2
+ok
+test_非法档位退回标准 (__main__.TestPressurePinning.test_非法档位退回标准) ... 2026-11-27 10:09:17,237 - llm_service - INFO - 加载 Skill: interview_note
+2026-11-27 10:09:17,238 - llm_service - INFO - LLM 请求: model=mimo-v2.6-flash, 消息数=2
+ok
+test_corrupt_file_does_not_break_the_endpoint (__main__.TestSessionsList.test_corrupt_file_does_not_break_the_endpoint) ... 2026-11-27 10:09:17,253 - session_store - WARNING - [落盘] 会话读取失败 broken: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+ok
+test_empty (__main__.TestSessionsList.test_empty) ... 2026-11-27 10:09:17,258 - httpx2 - INFO - HTTP Request: POST https://api.xiaomimimo.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+ok
+2026-11-27 10:09:17,259 - httpx2 - INFO - HTTP Request: POST https://api.xiaomimimo.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+test_item_fields_are_enough_to_recognise_a_session (__main__.TestSessionsList.test_item_fields_are_enough_to_recognise_a_session) ... 2026-11-27 10:09:17,260 - llm_service - ERROR - LLM 调用失败: Error code: 401 - Invalid API Key
+2026-11-27 10:09:17,261 - llm_service - ERROR - LLM 调用失败: Error code: 401 - Invalid API Key
+2026-11-27 10:09:17,265 - httpx2 - INFO - HTTP Request: POST https://api.xiaomimimo.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-11-27 10:09:17,266 - llm_service - ERROR - LLM 调用失败: Error code: 401 - Invalid API Key
+ok
+test_limit_is_clamped (__main__.TestSessionsList.test_limit_is_clamped) ... ok
+test_list_does_not_touch_memory_sessions (__main__.TestSessionsList.test_list_does_not_touch_memory_sessions)
+列表只读磁盘 —— 正在进行的会话不该被它搅动。 ... ok
+test_newest_first (__main__.TestSessionsList.test_newest_first) ... 2026-11-27 10:09:17,279 - httpx2 - INFO - HTTP Request: POST https://api.xiaomimimo.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-11-27 10:09:17,279 - llm_service - ERROR - LLM 调用失败: Error code: 401 - Invalid API Key
+ok
+test_answer_then_history_has_both_sides (__main__.TestTextInterview.test_answer_then_history_has_both_sides) ... 2026-11-27 10:09:17,293 - llm_service - INFO - 加载 Skill: interview_note
+2026-11-27 10:09:17,296 - llm_service - INFO - LLM 请求: model=mimo-v2.6-flash, 消息数=2
+ok
+test_device_route_is_not_affected (__main__.TestTextInterview.test_device_route_is_not_affected)
+新端点有没有连累板子那条链路 —— 那条约定的响应形状再确认一次。 ... 2026-11-27 10:09:17,300 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 开始 ASR 识别...
+2026-11-27 10:09:17,300 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] ASR 识别结果: 候选人说的话...
+2026-11-27 10:09:17,301 - speech_metrics - INFO - [表达] WAV 解析失败，跳过音频指标：
+2026-11-27 10:09:17,301 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 调用 LLM...
+2026-11-27 10:09:17,301 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 开始 TTS...
+2026-11-27 10:09:17,302 - llm_service - INFO - 加载 Skill: interview_note
+2026-11-27 10:09:17,304 - llm_service - INFO - LLM 请求: model=mimo-v2.6-flash, 消息数=2
+2026-11-27 10:09:17,305 - httpx2 - INFO - HTTP Request: POST https://api.xiaomimimo.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-11-27 10:09:17,306 - llm_service - ERROR - LLM 调用失败: Error code: 401 - Invalid API Key
+ok
+test_empty_answer_is_rejected (__main__.TestTextInterview.test_empty_answer_is_rejected) ... 2026-11-27 10:09:17,315 - httpx2 - INFO - HTTP Request: POST https://api.xiaomimimo.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-11-27 10:09:17,316 - llm_service - ERROR - LLM 调用失败: Error code: 401 - Invalid API Key
+ok
+test_no_scoring_before_the_report_round (__main__.TestTextInterview.test_no_scoring_before_the_report_round) ... 2026-11-27 10:09:17,323 - llm_service - INFO - 加载 Skill: interview_note
+2026-11-27 10:09:17,324 - llm_service - INFO - LLM 请求: model=mimo-v2.6-flash, 消息数=2
+ok
+test_report_round_finishes_and_triggers_scoring (__main__.TestTextInterview.test_report_round_finishes_and_triggers_scoring) ... 2026-11-27 10:09:17,334 - app - INFO - [session=3b79e9ea-8f9d-40b3-be96-7da6c7b521e9] 文字演练结束（2 轮）
+2026-11-27 10:09:17,334 - llm_service - INFO - 加载 Skill: interview_note
+2026-11-27 10:09:17,336 - llm_service - INFO - LLM 请求: model=mimo-v2.6-flash, 消息数=2
+ok
+test_role_comes_from_the_session_not_the_client (__main__.TestTextInterview.test_role_comes_from_the_session_not_the_client)
+刷新页面后客户端可能忘了当初选的岗位 —— 不能让它把整场带偏。 ... 2026-11-27 10:09:17,345 - llm_service - INFO - 加载 Skill: interview_note
+2026-11-27 10:09:17,346 - llm_service - INFO - LLM 请求: model=mimo-v2.6-flash, 消息数=2
+ok
+test_start_creates_a_session_and_never_calls_tts (__main__.TestTextInterview.test_start_creates_a_session_and_never_calls_tts) ... 2026-11-27 10:09:17,351 - llm_service - INFO - 加载 Skill: per_question_review
+2026-11-27 10:09:17,353 - llm_service - INFO - LLM 请求: model=mimo-v2.6-flash, 消息数=2
+ok
+test_start_prompt_guards_against_role_play (__main__.TestTextInterview.test_start_prompt_guards_against_role_play)
+⚠️ 开场提示词曾经很薄（三句话、无任何输出约束）—— 它从大赛第一天起就在 ... 2026-11-27 10:09:17,363 - httpx2 - INFO - HTTP Request: POST https://api.xiaomimimo.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-11-27 10:09:17,364 - llm_service - ERROR - LLM 调用失败: Error code: 401 - Invalid API Key
+2026-11-27 10:09:17,366 - httpx2 - INFO - HTTP Request: POST https://api.xiaomimimo.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-11-27 10:09:17,367 - llm_service - ERROR - LLM 调用失败: Error code: 401 - Invalid API Key
+2026-11-27 10:09:17,368 - llm_service - INFO - 加载 Skill: start_interview
+ok
+test_tts_gets_one_continuous_line (__main__.TestTextInterview.test_tts_gets_one_continuous_line)
+2026-10-19 用户真机反馈：压力档连珠追问被 TTS 读成"问一句、停一下、 ... 2026-11-27 10:09:17,370 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 开始 ASR 识别...
+2026-11-27 10:09:17,370 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] ASR 识别结果: 候选人说的话...
+2026-11-27 10:09:17,370 - speech_metrics - INFO - [表达] WAV 解析失败，跳过音频指标：
+2026-11-27 10:09:17,370 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 调用 LLM...
+2026-11-27 10:09:17,371 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 开始 TTS...
+2026-11-27 10:09:17,371 - llm_service - INFO - 加载 Skill: interview_note
+2026-11-27 10:09:17,372 - llm_service - INFO - LLM 请求: model=mimo-v2.6-flash, 消息数=2
+ok
+
+----------------------------------------------------------------------
+Ran 53 tests in 0.925s
+
+OK
+
+=== test_score_calibration.py ===
+test_skips_bad_files (__main__.TestLoad.test_skips_bad_files) ... ok
+test_empty_dataset (__main__.TestRender.test_empty_dataset) ... ok
+test_markdown_sections (__main__.TestRender.test_markdown_sections) ... ok
+test_anomalies (__main__.TestSummarize.test_anomalies) ... ok
+test_correlation_none_when_too_few (__main__.TestSummarize.test_correlation_none_when_too_few) ... ok
+test_counts_and_totals (__main__.TestSummarize.test_counts_and_totals) ... ok
+test_dimensions (__main__.TestSummarize.test_dimensions) ... ok
+test_evidence (__main__.TestSummarize.test_evidence) ... ok
+test_histogram (__main__.TestSummarize.test_histogram) ... ok
+test_roles (__main__.TestSummarize.test_roles) ... ok
+test_versions (__main__.TestSummarize.test_versions) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.026s
+
+OK
+
+=== test_score_guard.py ===
+test_assistant_message_does_not_count (__main__.TestEvidence.test_assistant_message_does_not_count)
+证据必须是**候选人**的原话，不能拿面试官的问题充当。 ... ok
+test_empty_quote (__main__.TestEvidence.test_empty_quote) ... ok
+test_found_in_user_message (__main__.TestEvidence.test_found_in_user_message) ... ok
+test_not_found (__main__.TestEvidence.test_not_found) ... ok
+test_not_mentioned_constant_matches_the_prompt (__main__.TestEvidence.test_not_mentioned_constant_matches_the_prompt)
+`NOT_MENTIONED` 与提示词里要求写的那句话必须一致 —— 改了这头忘了那头， ... ok
+test_not_mentioned_is_not_a_fabrication (__main__.TestEvidence.test_not_mentioned_is_not_a_fabrication)
+⚠️ 写「未提及」的维度**不算编造**，必须跳过。 ... ok
+test_punctuation_and_spacing_are_ignored (__main__.TestEvidence.test_punctuation_and_spacing_are_ignored) ... ok
+test_verify_evidence_all_supported (__main__.TestEvidence.test_verify_evidence_all_supported)
+GOOD_RAW 的四条证据都能在 HISTORY 里找到原话 → 没有维度被判失败。 ... ok
+test_verify_evidence_flags_fabricated_quote (__main__.TestEvidence.test_verify_evidence_flags_fabricated_quote)
+模型编的原话（历史里根本没有）要被点名 —— 这是复核的意义所在。 ... ok
+test_array_is_not_accepted (__main__.TestExtractJson.test_array_is_not_accepted)
+顶层是数组的不算 —— 规范结构是对象。 ... ok
+test_bare_object (__main__.TestExtractJson.test_bare_object) ... ok
+test_braces_inside_string (__main__.TestExtractJson.test_braces_inside_string) ... ok
+test_escaped_quote_inside_string (__main__.TestExtractJson.test_escaped_quote_inside_string) ... ok
+test_fence_without_language_tag (__main__.TestExtractJson.test_fence_without_language_tag) ... ok
+test_fenced (__main__.TestExtractJson.test_fenced) ... ok
+test_first_object_wins (__main__.TestExtractJson.test_first_object_wins) ... ok
+test_not_json (__main__.TestExtractJson.test_not_json) ... ok
+test_trailing_prose_with_brace (__main__.TestExtractJson.test_trailing_prose_with_brace)
+rfind 式截取的经典失败样例：JSON 后面还有一句带花括号的话。 ... ok
+test_good (__main__.TestIsUsable.test_good) ... ok
+test_rejects_empty_and_none (__main__.TestIsUsable.test_rejects_empty_and_none) ... ok
+test_rejects_out_of_range (__main__.TestIsUsable.test_rejects_out_of_range) ... ok
+test_bad_shapes (__main__.TestNormalize.test_bad_shapes) ... ok
+test_boolean_score_is_dropped (__main__.TestNormalize.test_boolean_score_is_dropped)
+True 在 Python 里是 int 的子类 —— 不特判就会变成 1 分。 ... ok
+test_duplicate_dimension_keeps_first (__main__.TestNormalize.test_duplicate_dimension_keeps_first) ... ok
+test_good_input (__main__.TestNormalize.test_good_input) ... ok
+test_ignores_model_total (__main__.TestNormalize.test_ignores_model_total)
+总分**我们算**：模型写 999 也不采信。 ... ok
+test_long_text_is_truncated (__main__.TestNormalize.test_long_text_is_truncated) ... ok
+test_missing_dimension_is_recorded_not_zeroed (__main__.TestNormalize.test_missing_dimension_is_recorded_not_zeroed)
+缺的维度如实记进 missing，**不补零** —— 补零等于凭空扣分。 ... ok
+test_non_numeric_score_is_dropped (__main__.TestNormalize.test_non_numeric_score_is_dropped) ... ok
+test_numeric_string_is_accepted (__main__.TestNormalize.test_numeric_string_is_accepted) ... ok
+test_order_is_fixed_regardless_of_input (__main__.TestNormalize.test_order_is_fixed_regardless_of_input) ... ok
+test_records_scoring_version (__main__.TestNormalize.test_records_scoring_version)
+评分结果要带口径版本，成长页才能识别跨版本不可比。 ... ok
+test_score_is_clamped (__main__.TestNormalize.test_score_is_clamped) ... ok
+test_score_with_unit_suffix (__main__.TestNormalize.test_score_with_unit_suffix) ... ok
+test_total_is_weighted_not_simple_average (__main__.TestNormalize.test_total_is_weighted_not_simple_average)
+总分按 30/30/25/15 加权（2026-10-31 取自 myagent 的评分口径）。 ... ok
+test_unknown_dimension_is_dropped (__main__.TestNormalize.test_unknown_dimension_is_dropped) ... ok
+test_bad_indexes_are_dropped (__main__.TestPerQuestion.test_bad_indexes_are_dropped)
+含 `True` —— 布尔是 int 的子类，不特判就会变成"第 1 题"。 ... ok
+test_bad_shapes (__main__.TestPerQuestion.test_bad_shapes) ... ok
+test_duplicate_index_keeps_the_first (__main__.TestPerQuestion.test_duplicate_index_keeps_the_first) ... ok
+test_item_without_suggestion_is_dropped (__main__.TestPerQuestion.test_item_without_suggestion_is_dropped)
+只有题号和原话的条目，在页面上占一行却什么都不告诉用户。 ... ok
+test_keeps_valid_items_sorted_by_index (__main__.TestPerQuestion.test_keeps_valid_items_sorted_by_index) ... ok
+test_long_text_is_clipped (__main__.TestPerQuestion.test_long_text_is_clipped) ... ok
+test_missing_field_gives_empty_list_not_key_error (__main__.TestPerQuestion.test_missing_field_gives_empty_list_not_key_error)
+老会话、或者模型没给这栏 —— 消费方都得能打开（页面上那段就不渲染）。 ... ok
+test_opening_question_constant (__main__.TestPerQuestion.test_opening_question_constant)
+第 1 题靠这句回填 —— 它不能是空的，也不能带换行（渲染时是一行标题）。 ... ok
+
+----------------------------------------------------------------------
+Ran 44 tests in 0.012s
+
+OK
+
+=== test_scoring.py ===
+2026-11-27 10:09:20,593 - app - INFO - [密钥] MIMO_API_KEY 已加载（长度 26）
+2026-11-27 10:09:20,647 - question_bank - INFO - [题库] 已加载 9615 道题（5 个文件，9 个岗位）
+2026-11-27 10:09:20,647 - app - INFO - [题库] 就绪：9615 道题，岗位：AI 应用开发、前端工程师、后端开发工程师、大模型算法工程师、数据分析师、数据科学家、智能体开发、机器学习工程师、算法工程师
+test_别的轮次不受影响 (__main__.TestAskBackFallback.test_别的轮次不受影响)
+兜底只在反问那一轮生效 —— 别把技术轮的正常追问也换掉。 ... 2026-11-27 10:09:20,656 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:20,677 - llm_service - INFO - [节奏] 第 5 轮 = 技术追问
+2026-11-27 10:09:20,677 - llm_service - INFO - [岗位] 第 5 轮带上「AI 应用开发」的关注角度
+2026-11-27 10:09:20,677 - llm_service - INFO - [题库] 第 5 轮带上参考块：265 字（检索词 4 字）
+2026-11-27 10:09:20,677 - llm_service - INFO - [压力] 第 5 轮档位：标准
+2026-11-27 10:09:20,678 - llm_service - INFO - [导演] 第 5 轮：【导演】本轮动作：换主题 —— 这个点已经问够或问不动了，转向同一项目里的另一个主题（连续两轮空泛/没内容，这个点问不动了）。
+ok
+test_正常问出想问就原样保留 (__main__.TestAskBackFallback.test_正常问出想问就原样保留) ... 2026-11-27 10:09:20,680 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:20,680 - llm_service - INFO - [节奏] 第 10 轮 = 反问环节
+2026-11-27 10:09:20,680 - llm_service - INFO - [题库] 第 10 轮（反问环节）本就不带参考块 —— 这一段问的是他自己的经历
+2026-11-27 10:09:20,681 - llm_service - INFO - [压力] 第 10 轮档位：标准
+ok
+test_没问出想问就换成固定句 (__main__.TestAskBackFallback.test_没问出想问就换成固定句) ... 2026-11-27 10:09:20,684 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:20,684 - llm_service - INFO - [节奏] 第 10 轮 = 反问环节
+2026-11-27 10:09:20,684 - llm_service - INFO - [题库] 第 10 轮（反问环节）本就不带参考块 —— 这一段问的是他自己的经历
+2026-11-27 10:09:20,684 - llm_service - INFO - [压力] 第 10 轮档位：标准
+2026-11-27 10:09:20,685 - llm_service - WARNING - [节奏] 反问环节没问出「想问」—— 换成固定问句：'那你们线上有没有做答案质量的监控？'
+ok
+test_attaches_the_question_text (__main__.TestAttachQuestions.test_attaches_the_question_text) ... ok
+test_bad_shapes (__main__.TestAttachQuestions.test_bad_shapes) ... ok
+test_out_of_range_index_is_dropped (__main__.TestAttachQuestions.test_out_of_range_index_is_dropped)
+闸门不知道这场有几题，范围只能在这里卡。 ... 2026-11-27 10:09:20,686 - llm_service - INFO - [评分] 逐题复盘里出现越界题号 99（本场共 2 题），已丢弃
+ok
+test_report_round_still_returns_the_same_six (__main__.TestDeviceProtocolUnchanged.test_report_round_still_returns_the_same_six)
+收官那一轮也一样 —— 它多了一个"起线程评分"的动作，但响应体不许变。 ... 2026-11-27 10:09:20,775 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 开始 ASR 识别...
+2026-11-27 10:09:20,775 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] ASR 识别结果: 候选人说的话...
+2026-11-27 10:09:20,776 - speech_metrics - INFO - [表达] WAV 解析失败，跳过音频指标：
+2026-11-27 10:09:20,776 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 调用 LLM...
+2026-11-27 10:09:20,776 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 面试结束（1 轮），本轮为报告轮
+2026-11-27 10:09:20,776 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 开始 TTS...
+2026-11-27 10:09:20,777 - llm_service - INFO - 加载 Skill: interview_note
+2026-11-27 10:09:20,782 - llm_service - INFO - 加载 Skill: per_question_review
+ok
+test_response_fields_are_exactly_the_agreed_six (__main__.TestDeviceProtocolUnchanged.test_response_fields_are_exactly_the_agreed_six) ... 2026-11-27 10:09:20,785 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 开始 ASR 识别...
+2026-11-27 10:09:20,786 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] ASR 识别结果: 候选人说的话...
+2026-11-27 10:09:20,786 - speech_metrics - INFO - [表达] WAV 解析失败，跳过音频指标：
+2026-11-27 10:09:20,786 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 调用 LLM...
+2026-11-27 10:09:20,786 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 开始 TTS...
+2026-11-27 10:09:20,787 - llm_service - INFO - 加载 Skill: interview_note
+ok
+test_scoring_starts_only_on_the_report_round (__main__.TestDeviceProtocolUnchanged.test_scoring_starts_only_on_the_report_round) ... 2026-11-27 10:09:20,797 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 开始 ASR 识别...
+2026-11-27 10:09:20,798 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] ASR 识别结果: 候选人说的话...
+2026-11-27 10:09:20,799 - speech_metrics - INFO - [表达] WAV 解析失败，跳过音频指标：
+2026-11-27 10:09:20,799 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 调用 LLM...
+2026-11-27 10:09:20,799 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 开始 TTS...
+2026-11-27 10:09:20,800 - llm_service - INFO - 加载 Skill: interview_note
+2026-11-27 10:09:20,808 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 开始 ASR 识别...
+2026-11-27 10:09:20,808 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] ASR 识别结果: 候选人说的话...
+2026-11-27 10:09:20,809 - speech_metrics - INFO - [表达] WAV 解析失败，跳过音频指标：
+2026-11-27 10:09:20,809 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 调用 LLM...
+2026-11-27 10:09:20,809 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 面试结束（1 轮），本轮为报告轮
+2026-11-27 10:09:20,809 - app - INFO - [session=0f8fad5b-d9cb-469f-a165-70867728950e] 开始 TTS...
+2026-11-27 10:09:20,811 - llm_service - INFO - 加载 Skill: interview_note
+2026-11-27 10:09:20,818 - llm_service - INFO - 加载 Skill: per_question_review
+ok
+test_block_contains_every_pair (__main__.TestQaPairs.test_block_contains_every_pair) ... ok
+test_empty_or_bad_history (__main__.TestQaPairs.test_empty_or_bad_history) ... ok
+test_first_question_is_the_backfilled_opening (__main__.TestQaPairs.test_first_question_is_the_backfilled_opening)
+⚠️ 设备上**并没有问过**第 1 题：候选人按 K1 直接开口，面试官才回应。 ... ok
+test_ignores_malformed_and_empty (__main__.TestQaPairs.test_ignores_malformed_and_empty) ... ok
+test_report_is_never_used_as_a_question (__main__.TestQaPairs.test_report_is_never_used_as_a_question)
+报告是历史里最后一条 assistant 消息，但它不是"下一题"。 ... ok
+test_evidence_retry_once_on_paraphrase (__main__.TestScoreInterview.test_evidence_retry_once_on_paraphrase)
+evidence 不是逐字原话 → 重试一次，改对后标 ok。 ... 2026-11-27 10:09:20,822 - llm_service - INFO - 加载 Skill: score_report
+2026-11-27 10:09:20,823 - llm_service - INFO - [评分] 1 个维度的依据未能与候选人原话对上，重试一次：['技术正确性']
+2026-11-27 10:09:20,823 - llm_service - INFO - [评分] 重试后未对上维度降到 0 个
+2026-11-27 10:09:20,824 - llm_service - INFO - [评分] 逐题复盘覆盖 0/1 题
+ok
+test_evidence_retry_still_partial_keeps_score (__main__.TestScoreInterview.test_evidence_retry_still_partial_keeps_score)
+重试仍对不上 → 保留评分，但标 partial（不丢整份报告）。 ... 2026-11-27 10:09:20,825 - llm_service - INFO - 加载 Skill: score_report
+2026-11-27 10:09:20,825 - llm_service - INFO - [评分] 1 个维度的依据未能与候选人原话对上，重试一次：['技术正确性']
+2026-11-27 10:09:20,826 - llm_service - INFO - [评分] 重试后仍未改善（1 个），保留首份评分
+2026-11-27 10:09:20,826 - llm_service - WARNING - [评分] 仍有 1 个维度的依据不是逐字原话：['技术正确性']
+2026-11-27 10:09:20,826 - llm_service - INFO - [评分] 逐题复盘覆盖 0/1 题
+ok
+test_happy_path (__main__.TestScoreInterview.test_happy_path) ... 2026-11-27 10:09:20,828 - llm_service - INFO - 加载 Skill: score_report
+2026-11-27 10:09:20,828 - llm_service - INFO - [评分] 逐题复盘覆盖 0/1 题
+ok
+test_missing_skill_returns_empty (__main__.TestScoreInterview.test_missing_skill_returns_empty) ... ok
+test_no_retry_when_evidence_is_verbatim (__main__.TestScoreInterview.test_no_retry_when_evidence_is_verbatim) ... 2026-11-27 10:09:20,830 - llm_service - INFO - 加载 Skill: score_report
+2026-11-27 10:09:20,831 - llm_service - INFO - [评分] 逐题复盘覆盖 0/1 题
+ok
+test_prompt_comes_from_the_skill_file (__main__.TestScoreInterview.test_prompt_comes_from_the_skill_file) ... 2026-11-27 10:09:20,832 - llm_service - INFO - 加载 Skill: score_report
+2026-11-27 10:09:20,833 - llm_service - INFO - 加载 Skill: score_report
+2026-11-27 10:09:20,834 - llm_service - INFO - [评分] 逐题复盘覆盖 0/1 题
+ok
+test_prompt_has_every_dimension_injected (__main__.TestScoreInterview.test_prompt_has_every_dimension_injected)
+维度**只有 DIMENSIONS 一个来源** —— 提示词模板里不写死， ... 2026-11-27 10:09:20,836 - llm_service - INFO - 加载 Skill: score_report
+2026-11-27 10:09:20,836 - llm_service - INFO - [评分] 逐题复盘覆盖 0/1 题
+ok
+test_various_bad_outputs_return_empty (__main__.TestScoreInterview.test_various_bad_outputs_return_empty) ... 2026-11-27 10:09:20,837 - llm_service - INFO - 加载 Skill: score_report
+2026-11-27 10:09:20,838 - llm_service - WARNING - [评分] LLM 返回为空
+2026-11-27 10:09:20,839 - llm_service - INFO - 加载 Skill: score_report
+2026-11-27 10:09:20,839 - llm_service - WARNING - [评分] 模型输出里抽不出 JSON：'对不起我做不到'
+2026-11-27 10:09:20,840 - llm_service - INFO - 加载 Skill: score_report
+2026-11-27 10:09:20,841 - llm_service - WARNING - [评分] 收拾不出可用的评分（原始 dimensions='None'）
+2026-11-27 10:09:20,842 - llm_service - INFO - 加载 Skill: score_report
+2026-11-27 10:09:20,842 - llm_service - WARNING - [评分] 收拾不出可用的评分（原始 dimensions='[]'）
+2026-11-27 10:09:20,843 - llm_service - INFO - 加载 Skill: score_report
+2026-11-27 10:09:20,843 - llm_service - WARNING - [评分] 收拾不出可用的评分（原始 dimensions="[{'name': '不认识的维度', 'score': 5}]"）
+2026-11-27 10:09:20,844 - llm_service - INFO - 加载 Skill: score_report
+2026-11-27 10:09:20,844 - llm_service - WARNING - [评分] 收拾不出可用的评分（原始 dimensions="[{'name': '技术正确性', 'score': '优秀'}]"）
+ok
+test_no_candidate_speech_means_no_call (__main__.TestScoreInterviewWithPerQuestion.test_no_candidate_speech_means_no_call)
+历史里全是面试官的话（没有候选人发言）→ 没有可评的东西，别浪费一次调用。 ... 2026-11-27 10:09:20,846 - llm_service - INFO - 加载 Skill: score_report
+2026-11-27 10:09:20,846 - llm_service - WARNING - [评分] 这场没有可评的问答（历史里没有候选人发言）
+ok
+test_opening_is_backfilled_when_the_candidate_spoke_first (__main__.TestScoreInterviewWithPerQuestion.test_opening_is_backfilled_when_the_candidate_spoke_first)
+真实端侧的流程：候选人按 K1 直接开口，面试官才回应 —— 第 1 题没有前置问题， ... 2026-11-27 10:09:20,848 - llm_service - INFO - 加载 Skill: score_report
+2026-11-27 10:09:20,848 - llm_service - INFO - [评分] 4 个维度的依据未能与候选人原话对上，重试一次：['技术正确性', '深度与原理', '工程与场景思考', '表达与结构']
+2026-11-27 10:09:20,849 - llm_service - INFO - [评分] 重试后仍未改善（4 个），保留首份评分
+2026-11-27 10:09:20,849 - llm_service - WARNING - [评分] 仍有 4 个维度的依据不是逐字原话：['技术正确性', '深度与原理', '工程与场景思考', '表达与结构']
+2026-11-27 10:09:20,849 - llm_service - INFO - [评分] 逐题复盘里出现越界题号 2（本场共 1 题），已丢弃
+2026-11-27 10:09:20,849 - llm_service - INFO - [评分] 逐题复盘里出现越界题号 99（本场共 1 题），已丢弃
+ok
+test_questions_are_attached_and_bad_ones_dropped (__main__.TestScoreInterviewWithPerQuestion.test_questions_are_attached_and_bad_ones_dropped) ... 2026-11-27 10:09:20,851 - llm_service - INFO - 加载 Skill: score_report
+2026-11-27 10:09:20,852 - llm_service - INFO - [评分] 4 个维度的依据未能与候选人原话对上，重试一次：['技术正确性', '深度与原理', '工程与场景思考', '表达与结构']
+2026-11-27 10:09:20,853 - llm_service - INFO - [评分] 重试后仍未改善（4 个），保留首份评分
+2026-11-27 10:09:20,854 - llm_service - WARNING - [评分] 仍有 4 个维度的依据不是逐字原话：['技术正确性', '深度与原理', '工程与场景思考', '表达与结构']
+2026-11-27 10:09:20,854 - llm_service - INFO - [评分] 逐题复盘里出现越界题号 2（本场共 1 题），已丢弃
+2026-11-27 10:09:20,854 - llm_service - INFO - [评分] 逐题复盘里出现越界题号 99（本场共 1 题），已丢弃
+ok
+test_report_is_not_fed_to_the_scorer (__main__.TestScoreInterviewWithPerQuestion.test_report_is_not_fed_to_the_scorer)
+报告在历史末尾 —— 但它**不该进评分输入**：评的是问答，不是自己的结论。 ... 2026-11-27 10:09:20,859 - llm_service - INFO - 加载 Skill: score_report
+2026-11-27 10:09:20,860 - llm_service - INFO - [评分] 4 个维度的依据未能与候选人原话对上，重试一次：['技术正确性', '深度与原理', '工程与场景思考', '表达与结构']
+2026-11-27 10:09:20,860 - llm_service - INFO - [评分] 重试后仍未改善（4 个），保留首份评分
+2026-11-27 10:09:20,860 - llm_service - WARNING - [评分] 仍有 4 个维度的依据不是逐字原话：['技术正确性', '深度与原理', '工程与场景思考', '表达与结构']
+2026-11-27 10:09:20,860 - llm_service - INFO - [评分] 逐题复盘里出现越界题号 2（本场共 1 题），已丢弃
+2026-11-27 10:09:20,865 - llm_service - INFO - [评分] 逐题复盘里出现越界题号 99（本场共 1 题），已丢弃
+ok
+test_占位符都替换干净了 (__main__.TestStageInjection.test_占位符都替换干净了) ... 2026-11-27 10:09:20,873 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:20,873 - llm_service - INFO - [节奏] 第 1 轮 = 开场
+2026-11-27 10:09:20,873 - llm_service - INFO - [题库] 第 1 轮（开场）本就不带参考块 —— 这一段问的是他自己的经历
+2026-11-27 10:09:20,873 - llm_service - INFO - [压力] 第 1 轮档位：标准
+2026-11-27 10:09:20,874 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:20,926 - llm_service - INFO - [节奏] 第 5 轮 = 技术追问
+2026-11-27 10:09:20,927 - llm_service - INFO - [岗位] 第 5 轮带上「AI 应用开发」的关注角度
+2026-11-27 10:09:20,927 - llm_service - INFO - [题库] 第 5 轮带上参考块：229 字（检索词 22 字）
+2026-11-27 10:09:20,927 - llm_service - INFO - [压力] 第 5 轮档位：标准
+2026-11-27 10:09:20,927 - llm_service - INFO - [导演] 第 5 轮：【导演】本轮动作：同层换角度 —— 换个场景、规模或反例，把同一个点问实，不要原样重复（回答偏空泛，换角度要一个具体例子）。
+2026-11-27 10:09:20,928 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:20,928 - llm_service - INFO - [节奏] 第 10 轮 = 反问环节
+2026-11-27 10:09:20,928 - llm_service - INFO - [题库] 第 10 轮（反问环节）本就不带参考块 —— 这一段问的是他自己的经历
+2026-11-27 10:09:20,928 - llm_service - INFO - [压力] 第 10 轮档位：标准
+2026-11-27 10:09:20,928 - llm_service - WARNING - [节奏] 反问环节没问出「想问」—— 换成固定问句：'一句问话？'
+ok
+test_压力档位的规则进_system_prompt_且本轮有提醒 (__main__.TestStageInjection.test_压力档位的规则进_system_prompt_且本轮有提醒)
+2026-10-19：三档照搬 myagent —— 规则正文进 system prompt、 ... 2026-11-27 10:09:20,929 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:20,947 - llm_service - INFO - [节奏] 第 5 轮 = 技术追问
+2026-11-27 10:09:20,947 - llm_service - INFO - [岗位] 第 5 轮带上「AI 应用开发」的关注角度
+2026-11-27 10:09:20,947 - llm_service - INFO - [题库] 第 5 轮带上参考块：229 字（检索词 22 字）
+2026-11-27 10:09:20,947 - llm_service - INFO - [压力] 第 5 轮档位：标准
+2026-11-27 10:09:20,947 - llm_service - INFO - [导演] 第 5 轮：【导演】本轮动作：同层换角度 —— 换个场景、规模或反例，把同一个点问实，不要原样重复（回答偏空泛，换角度要一个具体例子）。
+2026-11-27 10:09:20,948 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:20,972 - llm_service - INFO - [节奏] 第 5 轮 = 技术追问
+2026-11-27 10:09:20,972 - llm_service - INFO - [岗位] 第 5 轮带上「AI 应用开发」的关注角度
+2026-11-27 10:09:20,973 - llm_service - INFO - [题库] 第 5 轮带上参考块：229 字（检索词 22 字）
+2026-11-27 10:09:20,973 - llm_service - INFO - [压力] 第 5 轮档位：压力
+2026-11-27 10:09:20,973 - llm_service - INFO - [导演] 第 5 轮：【导演】本轮动作：同层换角度 —— 换个场景、规模或反例，把同一个点问实，不要原样重复（回答偏空泛，换角度要一个具体例子）。
+2026-11-27 10:09:20,977 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,005 - llm_service - INFO - [节奏] 第 5 轮 = 技术追问
+2026-11-27 10:09:21,005 - llm_service - INFO - [岗位] 第 5 轮带上「AI 应用开发」的关注角度
+2026-11-27 10:09:21,006 - llm_service - INFO - [题库] 第 5 轮带上参考块：229 字（检索词 22 字）
+2026-11-27 10:09:21,006 - llm_service - INFO - [压力] 第 5 轮档位：温和
+2026-11-27 10:09:21,007 - llm_service - INFO - [导演] 第 5 轮：【导演】本轮动作：同层换角度 —— 换个场景、规模或反例，把同一个点问实，不要原样重复（回答偏空泛，换角度要一个具体例子）。
+ok
+test_参考块不再放进_system_prompt (__main__.TestStageInjection.test_参考块不再放进_system_prompt)
+放 system prompt 里离指令太远，就是上面那个问题的成因。 ... 2026-11-27 10:09:21,008 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,030 - llm_service - INFO - [节奏] 第 5 轮 = 技术追问
+2026-11-27 10:09:21,031 - llm_service - INFO - [岗位] 第 5 轮带上「AI 应用开发」的关注角度
+2026-11-27 10:09:21,031 - llm_service - INFO - [题库] 第 5 轮带上参考块：229 字（检索词 22 字）
+2026-11-27 10:09:21,031 - llm_service - INFO - [压力] 第 5 轮档位：标准
+2026-11-27 10:09:21,032 - llm_service - INFO - [导演] 第 5 轮：【导演】本轮动作：同层换角度 —— 换个场景、规模或反例，把同一个点问实，不要原样重复（回答偏空泛，换角度要一个具体例子）。
+ok
+test_参考块只在技术段出现 (__main__.TestStageInjection.test_参考块只在技术段出现)
+背景深挖问的是他自己的项目，题库帮不上忙 —— 注进去只会把话题拽走。 ... 2026-11-27 10:09:21,034 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,034 - llm_service - INFO - [节奏] 第 1 轮 = 开场
+2026-11-27 10:09:21,034 - llm_service - INFO - [题库] 第 1 轮（开场）本就不带参考块 —— 这一段问的是他自己的经历
+2026-11-27 10:09:21,034 - llm_service - INFO - [压力] 第 1 轮档位：标准
+2026-11-27 10:09:21,035 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,035 - llm_service - INFO - [节奏] 第 2 轮 = 背景深挖
+2026-11-27 10:09:21,035 - llm_service - INFO - [题库] 第 2 轮（背景深挖）本就不带参考块 —— 这一段问的是他自己的经历
+2026-11-27 10:09:21,035 - llm_service - INFO - [压力] 第 2 轮档位：标准
+2026-11-27 10:09:21,036 - llm_service - INFO - [导演] 第 2 轮：【导演】本轮动作：同层换角度 —— 换个场景、规模或反例，把同一个点问实，不要原样重复（回答偏空泛，换角度要一个具体例子）。
+2026-11-27 10:09:21,036 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,054 - llm_service - INFO - [节奏] 第 5 轮 = 技术追问
+2026-11-27 10:09:21,054 - llm_service - INFO - [岗位] 第 5 轮带上「AI 应用开发」的关注角度
+2026-11-27 10:09:21,054 - llm_service - INFO - [题库] 第 5 轮带上参考块：229 字（检索词 22 字）
+2026-11-27 10:09:21,055 - llm_service - INFO - [压力] 第 5 轮档位：标准
+2026-11-27 10:09:21,055 - llm_service - INFO - [导演] 第 5 轮：【导演】本轮动作：同层换角度 —— 换个场景、规模或反例，把同一个点问实，不要原样重复（回答偏空泛，换角度要一个具体例子）。
+2026-11-27 10:09:21,056 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,056 - llm_service - INFO - [节奏] 第 10 轮 = 反问环节
+2026-11-27 10:09:21,056 - llm_service - INFO - [题库] 第 10 轮（反问环节）本就不带参考块 —— 这一段问的是他自己的经历
+2026-11-27 10:09:21,056 - llm_service - INFO - [压力] 第 10 轮档位：标准
+2026-11-27 10:09:21,056 - llm_service - WARNING - [节奏] 反问环节没问出「想问」—— 换成固定问句：'一句问话？'
+ok
+test_参考块紧跟在阶段要求下面 (__main__.TestStageInjection.test_参考块紧跟在阶段要求下面)
+★ 2026-10-01 改的（台账 §11.42）：**材料要跟着指令走**。 ... 2026-11-27 10:09:21,056 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,070 - llm_service - INFO - [节奏] 第 5 轮 = 技术追问
+2026-11-27 10:09:21,070 - llm_service - INFO - [岗位] 第 5 轮带上「AI 应用开发」的关注角度
+2026-11-27 10:09:21,070 - llm_service - INFO - [题库] 第 5 轮带上参考块：229 字（检索词 22 字）
+2026-11-27 10:09:21,070 - llm_service - INFO - [压力] 第 5 轮档位：标准
+2026-11-27 10:09:21,070 - llm_service - INFO - [导演] 第 5 轮：【导演】本轮动作：同层换角度 —— 换个场景、规模或反例，把同一个点问实，不要原样重复（回答偏空泛，换角度要一个具体例子）。
+ok
+test_开场段分情况处理_自报家门与试麦 (__main__.TestStageInjection.test_开场段分情况处理_自报家门与试麦)
+2026-10-18 真机：候选人只说了「我以为你好。」，开场却答「刚才你提到的项目里」。 ... 2026-11-27 10:09:21,072 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,072 - llm_service - INFO - [节奏] 第 1 轮 = 开场
+2026-11-27 10:09:21,072 - llm_service - INFO - [题库] 第 1 轮（开场）本就不带参考块 —— 这一段问的是他自己的经历
+2026-11-27 10:09:21,072 - llm_service - INFO - [压力] 第 1 轮档位：标准
+ok
+test_未知档位退回标准 (__main__.TestStageInjection.test_未知档位退回标准)
+入参被写错时不把错名字写进提示词 —— 退回默认（同岗位的优雅退化）。 ... 2026-11-27 10:09:21,073 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,095 - llm_service - INFO - [节奏] 第 5 轮 = 技术追问
+2026-11-27 10:09:21,095 - llm_service - INFO - [岗位] 第 5 轮带上「AI 应用开发」的关注角度
+2026-11-27 10:09:21,095 - llm_service - INFO - [题库] 第 5 轮带上参考块：229 字（检索词 22 字）
+2026-11-27 10:09:21,095 - llm_service - INFO - [压力] 第 5 轮档位：标准
+2026-11-27 10:09:21,096 - llm_service - INFO - [导演] 第 5 轮：【导演】本轮动作：同层换角度 —— 换个场景、规模或反例，把同一个点问实，不要原样重复（回答偏空泛，换角度要一个具体例子）。
+ok
+test_本轮_user_消息末尾也带着阶段要求 (__main__.TestStageInjection.test_本轮_user_消息末尾也带着阶段要求)
+★ 这是 2026-10-01 首次排练之后补的。 ... 2026-11-27 10:09:21,097 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,097 - llm_service - INFO - [节奏] 第 1 轮 = 开场
+2026-11-27 10:09:21,097 - llm_service - INFO - [题库] 第 1 轮（开场）本就不带参考块 —— 这一段问的是他自己的经历
+2026-11-27 10:09:21,097 - llm_service - INFO - [压力] 第 1 轮档位：标准
+2026-11-27 10:09:21,099 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,115 - llm_service - INFO - [节奏] 第 5 轮 = 技术追问
+2026-11-27 10:09:21,116 - llm_service - INFO - [岗位] 第 5 轮带上「AI 应用开发」的关注角度
+2026-11-27 10:09:21,116 - llm_service - INFO - [题库] 第 5 轮带上参考块：229 字（检索词 22 字）
+2026-11-27 10:09:21,116 - llm_service - INFO - [压力] 第 5 轮档位：标准
+2026-11-27 10:09:21,116 - llm_service - INFO - [导演] 第 5 轮：【导演】本轮动作：同层换角度 —— 换个场景、规模或反例，把同一个点问实，不要原样重复（回答偏空泛，换角度要一个具体例子）。
+2026-11-27 10:09:21,117 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,117 - llm_service - INFO - [节奏] 第 10 轮 = 反问环节
+2026-11-27 10:09:21,117 - llm_service - INFO - [题库] 第 10 轮（反问环节）本就不带参考块 —— 这一段问的是他自己的经历
+2026-11-27 10:09:21,117 - llm_service - INFO - [压力] 第 10 轮档位：标准
+2026-11-27 10:09:21,118 - llm_service - WARNING - [节奏] 反问环节没问出「想问」—— 换成固定问句：'一句问话？'
+ok
+test_每轮注入的是它那一段 (__main__.TestStageInjection.test_每轮注入的是它那一段) ... 2026-11-27 10:09:21,120 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,120 - llm_service - INFO - [节奏] 第 1 轮 = 开场
+2026-11-27 10:09:21,120 - llm_service - INFO - [题库] 第 1 轮（开场）本就不带参考块 —— 这一段问的是他自己的经历
+2026-11-27 10:09:21,120 - llm_service - INFO - [压力] 第 1 轮档位：标准
+2026-11-27 10:09:21,122 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,122 - llm_service - INFO - [节奏] 第 2 轮 = 背景深挖
+2026-11-27 10:09:21,122 - llm_service - INFO - [题库] 第 2 轮（背景深挖）本就不带参考块 —— 这一段问的是他自己的经历
+2026-11-27 10:09:21,122 - llm_service - INFO - [压力] 第 2 轮档位：标准
+2026-11-27 10:09:21,122 - llm_service - INFO - [导演] 第 2 轮：【导演】本轮动作：同层换角度 —— 换个场景、规模或反例，把同一个点问实，不要原样重复（回答偏空泛，换角度要一个具体例子）。
+2026-11-27 10:09:21,133 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,133 - llm_service - INFO - [节奏] 第 3 轮 = 背景深挖
+2026-11-27 10:09:21,133 - llm_service - INFO - [题库] 第 3 轮（背景深挖）本就不带参考块 —— 这一段问的是他自己的经历
+2026-11-27 10:09:21,133 - llm_service - INFO - [压力] 第 3 轮档位：标准
+2026-11-27 10:09:21,133 - llm_service - INFO - [导演] 第 3 轮：【导演】本轮动作：同层换角度 —— 换个场景、规模或反例，把同一个点问实，不要原样重复（回答偏空泛，换角度要一个具体例子）。
+2026-11-27 10:09:21,135 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,155 - llm_service - INFO - [节奏] 第 5 轮 = 技术追问
+2026-11-27 10:09:21,155 - llm_service - INFO - [岗位] 第 5 轮带上「AI 应用开发」的关注角度
+2026-11-27 10:09:21,155 - llm_service - INFO - [题库] 第 5 轮带上参考块：229 字（检索词 22 字）
+2026-11-27 10:09:21,155 - llm_service - INFO - [压力] 第 5 轮档位：标准
+2026-11-27 10:09:21,155 - llm_service - INFO - [导演] 第 5 轮：【导演】本轮动作：同层换角度 —— 换个场景、规模或反例，把同一个点问实，不要原样重复（回答偏空泛，换角度要一个具体例子）。
+2026-11-27 10:09:21,156 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,171 - llm_service - INFO - [节奏] 第 9 轮 = 技术追问
+2026-11-27 10:09:21,171 - llm_service - INFO - [岗位] 第 9 轮带上「AI 应用开发」的关注角度
+2026-11-27 10:09:21,172 - llm_service - INFO - [题库] 第 9 轮带上参考块：229 字（检索词 22 字）
+2026-11-27 10:09:21,172 - llm_service - INFO - [压力] 第 9 轮档位：标准
+2026-11-27 10:09:21,172 - llm_service - INFO - [导演] 第 9 轮：【导演】本轮动作：同层换角度 —— 换个场景、规模或反例，把同一个点问实，不要原样重复（回答偏空泛，换角度要一个具体例子）。
+2026-11-27 10:09:21,173 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,173 - llm_service - INFO - [节奏] 第 10 轮 = 反问环节
+2026-11-27 10:09:21,173 - llm_service - INFO - [题库] 第 10 轮（反问环节）本就不带参考块 —— 这一段问的是他自己的经历
+2026-11-27 10:09:21,173 - llm_service - INFO - [压力] 第 10 轮档位：标准
+2026-11-27 10:09:21,173 - llm_service - WARNING - [节奏] 反问环节没问出「想问」—— 换成固定问句：'一句问话？'
+ok
+test_硬性要求仍在提示词末尾 (__main__.TestStageInjection.test_硬性要求仍在提示词末尾)
+⚠️ §11.20 的修复靠它留在结尾（recency）。加了阶段块之后也得在。 ... 2026-11-27 10:09:21,174 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,174 - llm_service - INFO - [节奏] 第 1 轮 = 开场
+2026-11-27 10:09:21,174 - llm_service - INFO - [题库] 第 1 轮（开场）本就不带参考块 —— 这一段问的是他自己的经历
+2026-11-27 10:09:21,174 - llm_service - INFO - [压力] 第 1 轮档位：标准
+2026-11-27 10:09:21,175 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,205 - llm_service - INFO - [节奏] 第 5 轮 = 技术追问
+2026-11-27 10:09:21,205 - llm_service - INFO - [岗位] 第 5 轮带上「AI 应用开发」的关注角度
+2026-11-27 10:09:21,205 - llm_service - INFO - [题库] 第 5 轮带上参考块：229 字（检索词 22 字）
+2026-11-27 10:09:21,205 - llm_service - INFO - [压力] 第 5 轮档位：标准
+2026-11-27 10:09:21,205 - llm_service - INFO - [导演] 第 5 轮：【导演】本轮动作：同层换角度 —— 换个场景、规模或反例，把同一个点问实，不要原样重复（回答偏空泛，换角度要一个具体例子）。
+2026-11-27 10:09:21,208 - llm_service - INFO - 加载 Skill: next_question
+2026-11-27 10:09:21,208 - llm_service - INFO - [节奏] 第 10 轮 = 反问环节
+2026-11-27 10:09:21,208 - llm_service - INFO - [题库] 第 10 轮（反问环节）本就不带参考块 —— 这一段问的是他自己的经历
+2026-11-27 10:09:21,208 - llm_service - INFO - [压力] 第 10 轮档位：标准
+2026-11-27 10:09:21,209 - llm_service - WARNING - [节奏] 反问环节没问出「想问」—— 换成固定问句：'一句问话？'
+ok
+test_empty_score_leaves_session_untouched (__main__.TestStartScoring.test_empty_score_leaves_session_untouched) ... 2026-11-27 10:09:21,251 - app - WARNING - [评分] session=0f8fad5b-d9cb-469f-a165-70867728950e 未拿到可用评分（跳过）
+ok
+test_exception_is_swallowed (__main__.TestStartScoring.test_exception_is_swallowed)
+评分是锦上添花 —— 它炸了不能影响一场已经完成的面试。 ... 2026-11-27 10:09:21,269 - app - WARNING - [评分] session=0f8fad5b-d9cb-469f-a165-70867728950e 评分线程出错（不影响这场面试）：模型挂了
+ok
+test_score_is_attached_and_persisted (__main__.TestStartScoring.test_score_is_attached_and_persisted) ... 2026-11-27 10:09:21,319 - app - INFO - [评分] session=0f8fad5b-d9cb-469f-a165-70867728950e 完成：总分 70，4 个维度
+ok
+test_unknown_session_is_noop (__main__.TestStartScoring.test_unknown_session_is_noop) ... 2026-11-27 10:09:21,336 - llm_service - INFO - LLM 请求: model=mimo-v2.6-flash, 消息数=2
+2026-11-27 10:09:21,336 - llm_service - INFO - LLM 请求: model=mimo-v2.6-flash, 消息数=2
+2026-11-27 10:09:21,339 - llm_service - INFO - LLM 请求: model=mimo-v2.6-flash, 消息数=2
+2026-11-27 10:09:21,337 - llm_service - INFO - LLM 请求: model=mimo-v2.6-flash, 消息数=2
+2026-11-27 10:09:21,338 - llm_service - INFO - LLM 请求: model=mimo-v2.6-flash, 消息数=2
+2026-11-27 10:09:21,337 - llm_service - INFO - LLM 请求: model=mimo-v2.6-flash, 消息数=2
+ok
+test_default_target_10_is_unchanged (__main__.TestTargetRounds.test_default_target_10_is_unchanged) ... 2026-11-27 10:09:21,341 - llm_service - INFO - [结束] 到达目标轮数 10，生成报告
+ok
+test_target_6_continues_after_5th_answer (__main__.TestTargetRounds.test_target_6_continues_after_5th_answer) ... ok
+test_target_6_reports_after_6th_answer (__main__.TestTargetRounds.test_target_6_reports_after_6th_answer) ... 2026-11-27 10:09:21,342 - llm_service - INFO - [结束] 到达目标轮数 6，生成报告
+ok
+
+----------------------------------------------------------------------
+Ran 43 tests in 0.687s
+
+OK
+
+=== test_session_store.py ===
+test_corrupt_file_does_not_break_the_list (__main__.TestListSummaries.test_corrupt_file_does_not_break_the_list)
+⚠️ 一个半截文件不能把整个列表页拖成 500 —— 少一条记录远好过打不开。 ... [落盘] 会话读取失败 broken: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+ok
+test_empty_directory (__main__.TestListSummaries.test_empty_directory) ... ok
+test_ignores_stray_files_and_bad_names (__main__.TestListSummaries.test_ignores_stray_files_and_bad_names) ... ok
+test_respects_limit (__main__.TestListSummaries.test_respects_limit) ... ok
+test_sorted_by_mtime_desc (__main__.TestListSummaries.test_sorted_by_mtime_desc) ... ok
+test_summaries_do_not_leak_the_transcript (__main__.TestListSummaries.test_summaries_do_not_leak_the_transcript)
+列表项里**不该有整场对话** —— 20 条 × 几十 KB 就白传了。 ... ok
+test_content_mismatch_is_rejected (__main__.TestLoadFailures.test_content_mismatch_is_rejected)
+文件名与内容对不上（只可能是手工改过）→ 当损坏处理，别当成另一场返回。 ... [落盘] 文件内容与文件名不符，忽略: abc-123
+ok
+test_corrupt_json (__main__.TestLoadFailures.test_corrupt_json) ... [落盘] 会话读取失败 broken: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+ok
+test_json_array_is_rejected (__main__.TestLoadFailures.test_json_array_is_rejected) ... [落盘] 文件内容与文件名不符，忽略: arr
+ok
+test_missing_file (__main__.TestLoadFailures.test_missing_file) ... ok
+test_empty_directory (__main__.TestLoadLatest.test_empty_directory) ... ok
+test_ignores_stray_files (__main__.TestLoadLatest.test_ignores_stray_files)
+目录里的杂物（编辑器备份、上传中的临时文件）不能被当成会话。 ... ok
+test_no_directory (__main__.TestLoadLatest.test_no_directory) ... ok
+test_picks_newest_by_mtime (__main__.TestLoadLatest.test_picks_newest_by_mtime) ... ok
+test_bad_ids_are_rejected (__main__.TestPathTraversal.test_bad_ids_are_rejected) ... [落盘] 拒绝非法 session_id，未写入: '../../etc/passwd'
+[落盘] 拒绝非法 session_id，未写入: '../evil'
+[落盘] 拒绝非法 session_id，未写入: 'a/b'
+[落盘] 拒绝非法 session_id，未写入: 'a\\b'
+[落盘] 拒绝非法 session_id，未写入: '..'
+[落盘] 拒绝非法 session_id，未写入: '.'
+[落盘] 拒绝非法 session_id，未写入: ''
+[落盘] 拒绝非法 session_id，未写入: None
+[落盘] 拒绝非法 session_id，未写入: 'a b'
+[落盘] 拒绝非法 session_id，未写入: 'abc.json'
+[落盘] 拒绝非法 session_id，未写入: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+[落盘] 拒绝非法 session_id，未写入: '会话一'
+[落盘] 拒绝非法 session_id，未写入: 'abc\x00def'
+ok
+test_traversal_writes_nothing_outside (__main__.TestPathTraversal.test_traversal_writes_nothing_outside) ... [落盘] 拒绝非法 session_id，未写入: '../pwned'
+ok
+test_valid_ids (__main__.TestPathTraversal.test_valid_ids) ... ok
+test_chinese_is_not_escaped (__main__.TestRoundTrip.test_chinese_is_not_escaped)
+中文必须原样落盘（ensure_ascii=False）—— 打开文件要能直接读懂。 ... ok
+test_creates_directory_on_first_save (__main__.TestRoundTrip.test_creates_directory_on_first_save) ... ok
+test_no_temp_file_left_behind (__main__.TestRoundTrip.test_no_temp_file_left_behind) ... ok
+test_save_then_load (__main__.TestRoundTrip.test_save_then_load) ... ok
+test_second_save_overwrites (__main__.TestRoundTrip.test_second_save_overwrites) ... ok
+test_bad_snapshot_shapes (__main__.TestSaveNeverRaises.test_bad_snapshot_shapes) ... [落盘] 拒绝非法 session_id，未写入: ''
+[落盘] 拒绝非法 session_id，未写入: ''
+[落盘] 拒绝非法 session_id，未写入: ''
+[落盘] 会话保存失败（不影响本轮面试）: 'str' object has no attribute 'get'
+[落盘] 会话保存失败（不影响本轮面试）: 'int' object has no attribute 'get'
+ok
+test_failed_replace_cleans_temp_file (__main__.TestSaveNeverRaises.test_failed_replace_cleans_temp_file) ... [落盘] 会话保存失败（不影响本轮面试）: boom
+ok
+test_non_serializable_value (__main__.TestSaveNeverRaises.test_non_serializable_value) ... [落盘] 会话保存失败（不影响本轮面试）: Object of type object is not JSON serializable
+ok
+test_unwritable_directory (__main__.TestSaveNeverRaises.test_unwritable_directory) ... [落盘] 会话保存失败（不影响本轮面试）: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\JACK\\AppData\\Local\\Temp\\session_store_test_d7wfwwo1\\blocker\\sessions'
+ok
+test_bad_shapes_do_not_raise (__main__.TestSummary.test_bad_shapes_do_not_raise) ... ok
+test_first_answer_is_the_candidate_not_the_interviewer (__main__.TestSummary.test_first_answer_is_the_candidate_not_the_interviewer) ... ok
+test_first_answer_is_truncated (__main__.TestSummary.test_first_answer_is_truncated) ... ok
+test_no_messages (__main__.TestSummary.test_no_messages) ... ok
+test_no_score_gives_none_not_zero (__main__.TestSummary.test_no_score_gives_none_not_zero)
+没评过分 ≠ 0 分 —— 页面上前者不显示、后者会显示"0 分"。 ... ok
+test_shape_and_values (__main__.TestSummary.test_shape_and_values) ... ok
+
+----------------------------------------------------------------------
+Ran 32 tests in 0.247s
+
+OK
+
+=== test_speech_metrics.py ===
+...........
+----------------------------------------------------------------------
+Ran 11 tests in 0.041s
+
+OK
+
+=== test_user_store.py ===
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.116s
+
+OK
+
+✅ 23 个测试文件全部通过
